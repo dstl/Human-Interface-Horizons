@@ -1,0 +1,42 @@
+@import "./mixins.scss";
+
+.tech-details-container {
+  @include responsive-container;
+}
+
+.tech-details-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 48% 47%;
+
+  grid-template-areas:
+    "tech-details-meta-grid  tech-details-image-grid"
+    "tech-details-vis-grid  tech-details-vis-grid";
+  @include gripGap;
+}
+
+.tech-details-meta-grid {
+  grid-area: tech-details-meta-grid;
+  display: flex;
+  flex-direction: column;
+}
+
+.tech-details-vis-grid {
+  grid-area: tech-details-vis-grid;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tech-details-image-grid {
+  overflow: hidden;
+}
+
+.tech-details-image-title {
+  @include lg-font-size-global;
+  font-weight: 1000;
+  text-align: center;
+  justify-self: center;
+}

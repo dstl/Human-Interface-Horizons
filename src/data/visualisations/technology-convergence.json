@@ -1,0 +1,62 @@
+{
+  "route": "technology-convergence-visualisation",
+  "breadcrumb": {
+    "label": "Technology Convergence",
+    "link": "/technology-convergence"
+  },
+  "title": "Technology Convergence",
+  "heightRatio": 1.0,
+  "rootPath": "/",
+  "renderFunction": "renderTechnologyConvergence",
+  "scripts": [
+    {"file": "/visualisationScripts/hmi_technologyconvergence/js/d3.v5.min.js"},
+    {"file": "/visualisationScripts/hmi_technologyconvergence/js/jquery.min.js"},
+    {"file": "/visualisationScripts/hmi_technologyconvergence/js/jquery-ui.js"},
+    {"file": "/visualisationScripts/hmi_technologyconvergence/js/sankey.js"},
+    {"file": "/visualisationScripts/hmi_technologyconvergence/js/useful-full.js"},
+    {"file": "/visualisationScripts/hmi_technologyconvergence/js/aleph-hmi-technologyconvergence.js"},
+    {"file": "/visualisationScripts/hmi_technologyconvergence/js/gatsbyBridge.js"}
+  ],
+  "css": [
+    {"file": "/visualisationScripts/hmi_technologyconvergence/css/aleph-hmi-technologyconvergence.css"},
+    {"file": "/visualisationScripts/hmi_technologyconvergence/css/bootstrap.css"},
+    {"file": "/visualisationScripts/hmi_technologyconvergence/css/jquery-ui.css"}
+  ],
+  "settings": {
+    "groups": [
+      {
+        "id": "2",
+        "title": "Technology Selector",
+        "settings": {
+          "toggle": {
+            "maxToggled": "3",
+            "minToggled": "0",
+            "orderImportant": false
+          }
+        },
+        "buttons": [
+          {
+            "id": "change-view-style",
+            "type": "toggle",
+            "labelOff": "Equally Spaced",
+            "labelOn": "Timeline View",
+            "action": "toggle"
+          },
+          {
+            "id": "contract-time-axis",
+            "type": "toggle",
+            "labelOff": "Contract Time Axis",
+            "labelOn": "Contract Time Axis",
+            "action": "toggle"
+          },
+          {
+            "id": "return-to-tech-selector",
+            "type": "link",
+            "label": "Return to Technology Selector",
+            "action": "/technology-convergence"
+          }
+        ]
+      }
+    ]
+  }
+}

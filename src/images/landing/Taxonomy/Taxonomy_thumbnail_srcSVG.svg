@@ -1,0 +1,49 @@
+<svg class="aleph_chart aleph_hmiTecnhnologyTaxonomy aleph_baseResize" id="aleph_chart" width="2048" height="720"><g class="aleph-taxonomyTree" id="aleph-taxonomyTree" transform="translate(60,75)"><path class="link" d="M 409.6 174.375
+        C 204.8 174.375,
+          204.8 329.375,
+          0 329.375"></path><path class="link" d="M 409.6 484.375
+        C 204.8 484.375,
+          204.8 329.375,
+          0 329.375"></path><path class="link" d="M 819.2 387.5
+        C 614.4000000000001 387.5,
+          614.4000000000001 484.375,
+          409.6 484.375"></path><path class="link" d="M 819.2 426.25
+        C 614.4000000000001 426.25,
+          614.4000000000001 484.375,
+          409.6 484.375"></path><path class="link" d="M 819.2 465
+        C 614.4000000000001 465,
+          614.4000000000001 484.375,
+          409.6 484.375"></path><path class="link" d="M 819.2 503.75
+        C 614.4000000000001 503.75,
+          614.4000000000001 484.375,
+          409.6 484.375"></path><path class="link" d="M 819.2 542.5
+        C 614.4000000000001 542.5,
+          614.4000000000001 484.375,
+          409.6 484.375"></path><path class="link" d="M 819.2 581.25
+        C 614.4000000000001 581.25,
+          614.4000000000001 484.375,
+          409.6 484.375"></path><path class="link" d="M 819.2 38.75
+        C 614.4000000000001 38.75,
+          614.4000000000001 174.375,
+          409.6 174.375"></path><path class="link" d="M 819.2 77.5
+        C 614.4000000000001 77.5,
+          614.4000000000001 174.375,
+          409.6 174.375"></path><path class="link" d="M 819.2 116.25
+        C 614.4000000000001 116.25,
+          614.4000000000001 174.375,
+          409.6 174.375"></path><path class="link" d="M 819.2 155
+        C 614.4000000000001 155,
+          614.4000000000001 174.375,
+          409.6 174.375"></path><path class="link" d="M 819.2 193.75
+        C 614.4000000000001 193.75,
+          614.4000000000001 174.375,
+          409.6 174.375"></path><path class="link" d="M 819.2 232.5
+        C 614.4000000000001 232.5,
+          614.4000000000001 174.375,
+          409.6 174.375"></path><path class="link" d="M 819.2 271.25
+        C 614.4000000000001 271.25,
+          614.4000000000001 174.375,
+          409.6 174.375"></path><path class="link" d="M 819.2 310
+        C 614.4000000000001 310,
+          614.4000000000001 174.375,
+          409.6 174.375"></path><g class="aleph-tree-levelLabels-g" transform="translate(0,-65)"><g class="aleph-tree-levelLabels-branch-g aleph-tree-levelLabels-branch-g-0" transform="translate(409.6,0)"><text class="aleph-tree-levelLabel" x="0" y="0"><tspan x="0" y="0" dy="15">Accessibility</tspan></text></g><g class="aleph-tree-levelLabels-branch-g aleph-tree-levelLabels-branch-g-1" transform="translate(819.2,0)"><text class="aleph-tree-levelLabel" x="0" y="0"><tspan x="0" y="0" dy="15">Area of Cognition</tspan></text></g></g><g class="node" transform="translate(0, 329.375)"><circle class="node" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">catalogue</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">2</text></g><g class="node" transform="translate(409.6000061035156, 174.375)"><circle class="node" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Broad</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">8</text></g><g class="node" transform="translate(409.6000061035156, 484.375)"><circle class="node" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Moderate</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">6</text></g><g class="node" transform="translate(819.2000122070312, 38.75)"><circle class="node aleph-hasChildren" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Mechanical Reasoning</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">2</text></g><g class="node" transform="translate(819.2000122070312, 77.5)"><circle class="node aleph-hasChildren" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Visual Perception</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">6</text></g><g class="node" transform="translate(819.2000122070312, 116.25)"><circle class="node aleph-hasChildren" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Attention</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">1</text></g><g class="node" transform="translate(819.2000122070312, 155)"><circle class="node aleph-hasChildren" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Other Senses Perception</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">3</text></g><g class="node" transform="translate(819.2000122070312, 193.75)"><circle class="node aleph-hasChildren" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Verbal Communication</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">2</text></g><g class="node" transform="translate(819.2000122070312, 232.5)"><circle class="node aleph-hasChildren" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Decision Making</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">1</text></g><g class="node" transform="translate(819.2000122070312, 271.25)"><circle class="node aleph-hasChildren" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Spatial Reasoning</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">1</text></g><g class="node" transform="translate(819.2000122070312, 310)"><circle class="node aleph-hasChildren" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Listening</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">1</text></g><g class="node" transform="translate(819.2000122070312, 387.5)"><circle class="node aleph-hasChildren" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Spatial Reasoning</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">3</text></g><g class="node" transform="translate(819.2000122070312, 426.25)"><circle class="node aleph-hasChildren" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Verbal Communication</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">1</text></g><g class="node" transform="translate(819.2000122070312, 465)"><circle class="node aleph-hasChildren" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Visual Perception</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">1</text></g><g class="node" transform="translate(819.2000122070312, 503.75)"><circle class="node aleph-hasChildren" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Other Senses Perception</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">2</text></g><g class="node" transform="translate(819.2000122070312, 542.5)"><circle class="node aleph-hasChildren" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Mechanical Reasoning</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">1</text></g><g class="node" transform="translate(819.2000122070312, 581.25)"><circle class="node aleph-hasChildren" r="7.5" cursor="pointer"></circle><text class="aleph-nodeLabel" dy=".35em" x="0" y="-13.5" text-anchor="middle">Decision Making</text><text class="aleph-nodeChildCountlabel" dy=".35em" x="0" y="0" text-anchor="middle">1</text></g></g></svg>

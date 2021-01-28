@@ -1,0 +1,97 @@
+@import "./mixins.scss";
+
+footer {
+  font-weight: normal;
+  height: 50px;
+  background-color: #14022e;
+  color: white;
+  width: 100%;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: stretch;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  padding: 0px 50px;
+  margin-top: 25px;
+  z-index: 10;
+
+  @include sm {
+    margin-top: 25px;
+    padding: 0px 50px;
+    height: 50px;
+  }
+  @include md {
+    margin-top: 40px;
+    padding: 0px 70px;
+    height: 75px;
+  }
+  @include lg {
+    margin-top: 55px;
+    padding: 0px 90px;
+    height: 100px;
+  }
+  @include xl {
+    margin-top: 60px;
+    padding: 0px 110px;
+    height: 125px;
+  }
+  @include xxl {
+    margin-top: 75px;
+    padding: 0px 135px;
+    height: 150px;
+  }
+}
+
+.footer-links {
+  color: white;
+}
+
+.footer-left {
+  float: left;
+  text-align: left;
+}
+
+.footer-right {
+  text-align: right;
+  float: right;
+}
+
+.footer-center {
+  text-align: center;
+  display: inline-block;
+  width: 50%;
+}
+
+.footer-right,
+.footer-left {
+  width: 25%;
+}
+
+.footer-right,
+.footer-left,
+.footer-center {
+  font-size: 13pt;
+  margin-top: 13px;
+
+  @include sm {
+    font-size: 13pt;
+    margin-top: 13px;
+  }
+  @include md {
+    font-size: 15pt;
+    margin-top: 20px;
+  }
+  @include lg {
+    font-size: 18pt;
+    margin-top: 35px;
+  }
+  @include xl {
+    font-size: 21pt;
+    margin-top: 46px;
+  }
+  @include xxl {
+    font-size: 24pt;
+    margin-top: 60px;
+  }
+}

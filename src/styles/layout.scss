@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+@import "./mixins.scss";
+
+html,
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  height: 100%;
+  width: auto;
+}
+
+.layout-grid {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: 0px 0px;
+  grid-template-areas:
+    "headerGridRow"
+    "navBarContainerGridRow"
+    "mainContainerGridRow"
+    "footerGridRow";
+
+  & header {
+    z-index: 5000;
+    position: sticky !important;
+    width: 100%;
+    top: 0 !important;
+    grid-area: headerGridRow;
+  }
+
+  & .nav-bar-grid-row {
+    z-index: 5000;
+    position: sticky !important;
+    grid-area: navBarContainerGridRow;
+  }
+
+  &.main-container {
+    grid-area: mainContainerGridRow;
+  }
+
+  & footer {
+    grid-area: footerGridRow;
+  }
+}
+
+.main-title {
+  font-weight: bold;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 0px 0px;
+  grid-template-areas: "left center right";
+  background-color: #a8b0bf;
+  color: white;
+  margin-bottom: 1.4%;
+  height: 30px;
+  width: 100%;
+  @include mdx-font-size-global;
+
+  @include sm {
+    height: 30px;
+  }
+  @include md {
+    height: 40px;
+  }
+  @include lg {
+    height: 50px;
+  }
+  @include xl {
+    height: 65px;
+  }
+  @include xxl {
+    height: 80px;
+  }
+
+  &__home {
+    grid-area: left;
+    font-weight: bold;
+    padding-left: 45px;
+
+    @include sm {
+      padding-left: 45px;
+    }
+    @include md {
+      padding-left: 70px;
+    }
+    @include lg {
+      padding-left: 95px;
+    }
+    @include xl {
+      padding-left: 115px;
+    }
+    @include xxl {
+      padding-left: 135px;
+    }
+
+    a {
+      color: white;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+
+  &__header {
+    grid-area: center;
+    justify-self: center;
+  }
+
+  &__right {
+    grid-area: right;
+  }
+}
+
+.page-title {
+  text-align: center;
+  @include mdx-font-size-global;
+}
+
+.main-container {
+  height: fit-content;
+  margin: 0px 35px;
+  margin-bottom: 5px;
+  @include sm {
+    margin-bottom: 10px;
+  }
+  @include md {
+    margin-bottom: 25px;
+  }
+  @include lg {
+    margin: 0px 95px;
+    margin-bottom: 50px;
+  }
+  @include xl {
+    margin: 0px 115px;
+    margin-bottom: 75px;
+  }
+  @include xxl {
+    margin: 0px 135px;
+    margin-bottom: 100px;
+  }
+}
+
+.tool-tip-styling {
+  @include toolTipStyling;
+}
+
+.button-group {
+  @include div-bottom-right-fixed;
+  & .button {
+    @include global-button;
+    @include md-font-size-global;
+  }
+}
+
+.ignore-gatsby-wrapper {
+  #gatsby-focus-wrapper {
+    box-sizing: unset !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: unset !important;
+  }
+}

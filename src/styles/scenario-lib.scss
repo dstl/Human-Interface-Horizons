@@ -1,0 +1,149 @@
+@import "./mixins.scss";
+@mixin border {
+  border: 2px solid black;
+}
+@mixin gridBoxCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin titlesX {
+  @include mdx-font-size-global;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+@mixin titlesY {
+  @include mdx-font-size-global;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: bold;
+}
+@mixin subtitlesY {
+  //@include mdx-font-size-global;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 12pt;
+  font-weight: normal;
+}
+.s-l-p {
+  &__container {
+    @include responsive-container;
+  }
+  &__scenario-image-container {
+    position: relative;
+    text-align: center;
+    color: white;
+    width: 250px;
+    margin: 0 auto;
+  }
+  &__scenario-image-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 10pt;
+    background-image: linear-gradient(rgba(20, 2, 46, 0.5), rgba(20, 2, 46, 0.5));
+  }
+  &__scenario-title-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "s-l-p__scenario-title"
+      "s-l-p__scenario-subtitle";
+  }
+  &__scenario-title {
+    grid-area: s-l-p__scenario-title;
+    @include titlesY;
+  }
+  &__scenario-subtitle {
+    grid-area: s-l-p__scenario-subtitle;
+    @include subtitlesY;
+  }
+  &__grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 0.3fr;
+    gap: 5% 0%;
+    grid-template-areas:
+      ". s-l-p__x-title-left s-l-p__x-title-center s-l-p__x-title-right ."
+      "s-l-p__y-title-top s-l-p__scenario-1  s-l-p__scenario-2 s-l-p__scenario-3 ."
+      "s-l-p__y-title-middle s-l-p__scenario-4 s-l-p__scenario-5 s-l-p__scenario-6 ."
+      "s-l-p__y-title-bottom s-l-p__scenario-7 s-l-p__scenario-8 s-l-p__scenario-9 .";
+  }
+  &__x-title-left {
+    grid-area: s-l-p__x-title-left;
+    @include titlesX;
+  }
+  &__x-title-center {
+    grid-area: s-l-p__x-title-center;
+    @include titlesX;
+  }
+  &__x-title-right {
+    grid-area: s-l-p__x-title-right;
+    @include titlesX;
+  }
+  &__y-title-top {
+    grid-area: s-l-p__y-title-top;
+    @include titlesY;
+  }
+  &__y-title-middle {
+    grid-area: s-l-p__y-title-middle;
+    @include titlesY;
+  }
+  &__y-title-bottom {
+    grid-area: s-l-p__y-title-bottom;
+    @include titlesY;
+  }
+  &__scenario-1 {
+    grid-area: s-l-p__scenario-1;
+    @include gridBoxCenter;
+  }
+  &__scenario-2 {
+    grid-area: s-l-p__scenario-2;
+    @include gridBoxCenter;
+  }
+  &__scenario-3 {
+    grid-area: s-l-p__scenario-3;
+    @include gridBoxCenter;
+  }
+  &__scenario-4 {
+    grid-area: s-l-p__scenario-4;
+    @include gridBoxCenter;
+  }
+  &__scenario-5 {
+    grid-area: s-l-p__scenario-5;
+    @include gridBoxCenter;
+  }
+  &__scenario-6 {
+    grid-area: s-l-p__scenario-6;
+    @include gridBoxCenter;
+  }
+  &__scenario-7 {
+    grid-area: s-l-p__scenario-7;
+    @include gridBoxCenter;
+  }
+  &__scenario-8 {
+    grid-area: s-l-p__scenario-8;
+    @include gridBoxCenter;
+  }
+  &__scenario-9 {
+    grid-area: s-l-p__scenario-9;
+    @include gridBoxCenter;
+  }
+  &__link {
+    all: unset;
+    cursor: pointer;
+    @include gridBoxCenter;
+    @include mdx-font-size-global;
+    width: 65%;
+    padding: 5px;
+  }
+  &__icon {
+    @include imageCenterByWidth;
+  }
+}

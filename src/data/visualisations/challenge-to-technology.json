@@ -1,0 +1,41 @@
+{
+  "route": "challenge-to-technology-visualisation",
+  "breadcrumb": {
+    "label": "Technology to Future Challenge Mapping",
+    "link": "/challenge-to-technology"
+  },
+  "title": "Challenge To Technology Mapping",
+  "heightRatio": 1.0,
+  "rootPath": "/",
+  "renderFunction": "renderChallengeToTechnology",
+  "scripts": [
+    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/js/jquery.min.js"},
+    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/js/jquery-ui.js"},
+    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/js/d3.v5.min.js"},
+    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/js/useful-full.js"},
+    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/js/sankey.js"},
+    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/js/aleph-hmi-challengetotechnologylookup.js"},
+    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/js/gatsbyBridge.js"}
+  ],
+  "css": [
+    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/css/jquery-ui.css"},
+    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/css/bootstrap.css"},
+    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/css/aleph-hmi-challengetotechnologylookup.css"}
+  ],
+  "settings": {
+    "groups": [
+      {
+        "id": "1",
+        "title": "Actions",
+        "buttons": [
+          {
+            "id": "return-to-tech-selector",
+            "type": "link",
+            "label": "Return to Technology Selector",
+            "action": "/challenge-to-technology"
+          }
+        ]
+      }
+    ]
+  }
+}

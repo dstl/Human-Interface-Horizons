@@ -1,0 +1,101 @@
+@import "./mixins.scss";
+
+.react-tabs {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.1fr 1fr;
+  -webkit-tap-highlight-color: transparent;
+
+  &__tab-list {
+    display: flex;
+    padding: 0;
+    margin-bottom: 1px;
+  }
+
+  &__tab {
+    background: #14022e;
+    color: rgb(255, 255, 255);
+    display: inline-block;
+    border: 1px solid black;
+    border-bottom: none;
+    bottom: -1px;
+    position: relative;
+    list-style: none;
+    padding: 6px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    @include sm-font-size-global;
+    &--selected {
+      background: #cd2456;
+      border-color: #aaa;
+      color: rgb(255, 255, 255);
+      border-radius: 5px 5px 0 0;
+    }
+
+    &--disabled {
+      color: GrayText;
+      cursor: default;
+    }
+
+    &:focus {
+      box-shadow: 0 0 5px hsl(208, 99%, 50%);
+      border-color: hsl(208, 99%, 50%);
+      outline: none;
+
+      &:after {
+        content: "";
+        position: absolute;
+        height: 5px;
+        left: -4px;
+        right: -4px;
+        bottom: -5px;
+        background: #fff;
+      }
+    }
+  }
+
+  &__tab-panel {
+    @include md-font-size-global;
+    display: none;
+    border: 1px solid black;
+    padding: 6px;
+    height: auto;
+
+    @include sm {
+      padding: 8px;
+      border: 1px solid black;
+    }
+    @include md {
+      padding: 8px;
+      border: 2px solid black;
+    }
+    @include lg {
+      padding: 15px;
+      border: 3px solid black;
+    }
+    @include xl {
+      padding: 25px;
+      border: 4px solid black;
+    }
+    @include xxl {
+      padding: 35px;
+      border: 5px solid black;
+    }
+    &--selected {
+      display: flex;
+      overflow: auto;
+    }
+  }
+
+  &__prominentDevelopers-tab {
+    margin-right: 0;
+  }
+}
+
+ul,
+.react-tabs {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}

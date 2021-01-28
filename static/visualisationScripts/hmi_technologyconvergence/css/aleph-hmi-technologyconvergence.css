@@ -1,0 +1,784 @@
+/*
+    Project: HMI Technology Taxonomy visualisation
+    Filename: aleph-hmi_technologytaxonomy.css
+    Date built: July 2020 to ... 
+*/
+
+/*
+  Army/Land: 	#D4351C
+  Navy/Maritime: 	#003078
+  Air Force/Air: 	#5694CA
+
+  https://design-system.service.gov.uk/styles/colour/
+*/
+
+/*
+    ####################################################
+    M E D I A  Q U E R I E S
+    ####################################################
+    */
+
+/*
+    ::::::::::::::::::::::::::::::::::::::::::::::::::::
+    Bootstrap 4 breakpoints
+
+    // Extra small devices (portrait phones, less than 576px)
+    // No media query since this is the default in Bootstrap
+
+    // Small devices (landscape phones, 576px and up)
+    @media (min-width: 576px) { ... }
+
+    // Medium devices (tablets, 768px and up)
+    @media (min-width: 768px) { ... }
+
+    // Large devices (desktops, 992px and up)
+    @media (min-width: 992px) { ... }
+
+    // Extra large devices (large desktops, 1200px and up)
+    @media (min-width: 1200px) { ... }
+
+    */
+
+/* 
+    Extra small devices (portrait phones, less than 576px) 
+    No media query since this is the default in Bootstrap because it is "mobile first"
+    */
+
+body {
+  /* background-color: #211f20 !important; */
+  font-family: "Open Sans", serif;
+  /* overflow-y: hidden; */ /* Hide vertical scrollbar */
+  overflow-x: scroll; /* Hide horizontal scrollbar */
+  overflow-y: scroll;
+}
+
+/* very small devices  */
+@media (max-width: 575px) {
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+} /* */
+
+.aleph-container {
+  background-color: #ffffff !important;
+  /* overflow: auto; */
+ /*  position: absolute; */
+  top: 100px;
+  left: 0px;
+}
+
+.aleph-chart {
+  background-color: #ffffff;
+}
+
+.aleph-chart.dark {
+  background-color: /* #14022e */ #211f20;
+}
+
+.btn {
+  margin: 5px;
+}
+
+.hideBtn {
+  /* height: 10px; */
+  margin-top: 0px;
+  width: 67px;
+  visibility: hidden;
+}
+
+.hideBtn text {
+  display: inline;
+}
+
+.row {
+  display: block;
+  margin-left: 10px;
+  height: auto;
+  border-bottom: none;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: #14022e;
+  stroke-width: 1.5px;
+}
+
+.node.aleph-hasChildren {
+  fill: #cd2456;
+  stroke: #14022e;
+  stroke-width: 1.5px;
+}
+
+/* .node text {
+  font: 12px sans-serif;
+} */
+
+.aleph-nodeLabel {
+  font-size: 0.75rem;
+  fill: #14022e;
+  stroke: #14022e;
+  stroke-width: 0;
+}
+
+.aleph-nodeLabel.dark {
+  font-size: 1rem;
+  fill: #ffffff;
+  stroke: #ffffff;
+  /*   fill:#ACAFB2;
+  stroke:#ACAFB2; */
+  stroke-width: 0;
+}
+
+.aleph-nodeYearLabel {
+  pointer-events: none;
+}
+
+.aleph-nodeYearLabel {
+  font-size: 0.75rem;
+
+  /*   fill: #ffffff;
+  stroke: #ffffff; */
+  fill: #acafb2;
+  stroke: #acafb2;
+  stroke-width: 0;
+  font-weight: normal;
+  opacity: 0;
+}
+
+.aleph-nodeYearLabel.dark {
+  font-size: 0.75rem;
+  fill: #14022e;
+  stroke: #14022e;
+  stroke-width: 0;
+  font-weight: normal;
+  opacity: 0;
+}
+
+.primary {
+  opacity: 1;
+}
+
+.secondary {
+  opacity: 0.25;
+}
+
+.aleph-nodeBlock {
+  fill: #14022e;
+  stroke-width: 1px;
+  stroke: #14022e;
+}
+
+.aleph-nodeBlock.secondary {
+  fill: white;
+  stroke-width: 1px;
+  stroke: #14022e;
+  opacity: 0.25;
+}
+.aleph-nodeBlock.destination {
+  fill: #14022e;
+  /* stroke-width:1.5px; */
+  opacity: 1;
+  stroke: #14022e;
+}
+
+.aleph-nodeBlock.dark {
+  fill: #36becc;
+  stroke: none;
+}
+
+.aleph-nodeBlock:hover {
+  cursor: pointer;
+}
+
+.link {
+  fill: none;
+  stroke: none;
+  /*   stroke: #ce2256;
+  stroke-width: 2px; */
+  pointer-events: none;
+}
+
+.link.level1 {
+  stroke: #7b67a8;
+}
+
+.aleph-areaLink.level1 {
+  fill: #7b67a8 !important;
+  stroke-width: 0px !important;
+  stroke: none !important;
+  pointer-events: none;
+}
+
+.link.level2 {
+  stroke: #36bcee;
+}
+
+.aleph-areaLink.level2 {
+  fill: #36bcee !important;
+  stroke-width: 0px !important;
+  stroke: none !important;
+  pointer-events: none;
+}
+
+.link.level3 {
+  stroke: #2eb5b2;
+}
+.aleph-areaLink.level3 {
+  fill: #2eb5b2 !important;
+  stroke-width: 0px !important;
+  stroke: none !important;
+  pointer-events: none;
+}
+
+.link.level4 {
+  stroke: #fddd3e;
+}
+.aleph-areaLink.level4 {
+  fill: #fddd3e !important;
+  stroke-width: 0px !important;
+  stroke: none !important;
+  pointer-events: none;
+}
+
+.link.level5 {
+  stroke: #ef7835;
+}
+.aleph-areaLink.level5 {
+  fill: #ef7835 !important;
+  stroke-width: 0px !important;
+  stroke: none !important;
+  pointer-events: none;
+}
+
+.aleph-legendBase {
+  width: auto;
+  height: auto;
+  position: fixed;
+  right: 100px;
+  top: 5px;
+  /* opacity: 0.9; */
+  pointer-events: none;
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.aleph-primaryInputTech {
+  background-color: #14022e;
+  border-color: #14022e;
+  color: #fff;
+}
+
+.aleph-secondaryInputTech {
+  border-style: none;
+  /* background-color: #FFF; */
+  /* border-color: #14022e; */
+  border-color: rgba(20, 2, 46, 0.0);
+  border-width: 1px;
+  /* opacity: 1; */
+  background: rgba(255, 255, 255, 0.0);
+}
+
+label{
+  margin: auto;
+}
+
+.aleph-legendSwatch {
+  width: 115px;
+  height: 50px;
+  position: inline-block;
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  font-size: 0.5rem;
+}
+
+.aleph-legendSwatchLabel {
+  /*  font-size: 0.5rem; */
+  color: #000;
+  position: inline;
+  margin: 5px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.aleph-half {
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.aleph-primaryLink {
+  /*  opacity:0.80; */
+  /*  background-color: #acafb2; */
+  height: /* 30px */50%;
+}
+
+.aleph-secondaryLink {
+  /*   fill-opacity:0.25;
+  opacity:0.25; */
+  /*  background-color: #acafb2; */
+  height: /* 30px */50%;
+}
+
+.aleph-primaryLink.level1 {
+  border-width: 1;
+  background: rgba(123, 103, 168, 1);
+}
+
+.aleph-secondaryLink.level1 {
+  border-width: 1;
+  background: rgba(123, 103, 168, 0.25);
+}
+
+.aleph-primaryLink.level2 {
+  /* border-color: #36bcee; */
+  border-width: 1;
+  background: rgba(54, 188, 238, 1);
+}
+.aleph-secondaryLink.level2 {
+  /* border-color: #36bcee; */
+  border-width: 1;
+  background: rgba(54, 188, 238, 0.25);
+}
+
+.aleph-primaryLink.level3 {
+  /* border-color: #36bcee; */
+  border-width: 1;
+  background: rgba(46, 181, 178, 1);
+}
+.aleph-secondaryLink.level3 {
+  /* border-color: #36bcee; */
+  border-width: 1;
+  background: rgba(46, 181, 178, 0.25);
+}
+
+.aleph-primaryLink.level4 {
+  /* border-color: #36bcee; */
+  border-width: 1;
+  background: rgba(253, 221, 62, 1);
+}
+.aleph-secondaryLink.level4 {
+  /* border-color: #36bcee; */
+  border-width: 1;
+  background: rgba(253, 221, 62, 0.25);
+}
+
+.aleph-primaryLink.level5 {
+  /* border-color: #36bcee; */
+  border-width: 1;
+  background: rgba(239, 120, 53, 1);
+}
+.aleph-secondaryLink.level5 {
+  /* border-color: #36bcee; */
+  border-width: 1;
+  background: rgba(239, 120, 53, 0.25);
+}
+/* 
+.aleph-btn-unselected {
+  color: #fff;
+  filter: url(#drop-shadow);
+}
+ */
+ .aleph-btn-unselected {
+  color: #fff;
+  background-color: #808080;
+  border-color: #808080;
+  opacity: 0.33;
+  -moz-opacity: 0.33;
+}
+
+.aleph-btn-selected {
+  color: #fff;
+  /*  opacity:0.5; */
+  /*   background-color: #14022e;
+  border-color: #14022e; */
+}
+
+.aleph-tree-levelLabel {
+  fill: #14022e;
+  stroke-width: 0px;
+  stroke: none;
+  text-anchor: middle;
+  font-weight: bold;
+}
+
+.aleph-buttons {
+  margin-bottom: 25px;
+}
+
+.aleph-tree-levelLine {
+  fill: #acafb2;
+  stroke: #acafb2;
+  stroke-width: 2px;
+}
+
+.aleph-disabled {
+  cursor: no-drop !important;
+  opacity: 0.10;
+}
+
+.aleph-nodeLabel {
+  pointer-events: none;
+}
+
+.aleph-controlsTitle {
+  font-size: 1rem;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  font-weight: bold;
+  color: white;
+  display: block;
+  pointer-events: none;
+}
+
+.aleph-hide {
+  display: none;
+}
+
+.aleph-hmiToolTip {
+  fill: #ffffff;
+  stroke: #93a3b1;
+  stroke-width: 0.1px;
+  display: inline;
+  pointer-events: none;
+  filter: url(#drop-shadow);
+}
+
+.aleph-hmiToolTipTitle {
+  font-size: 1rem;
+  fill: #000;
+  font-weight: bold;
+  text-anchor: middle;
+}
+
+.aleph-hmiToolTipTitle-label {
+  font-size: 1.25rem;
+  color: #000;
+  font-weight: bold;
+  text-align: center;
+}
+
+.aleph-hmiToolTip-Div {
+  background-color: #fff;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #a0a0a0;
+  pointer-events: none;
+  height: auto;
+}
+/* 
+.aleph-hmiToolNewTechnologyInformation-label{
+  
+} */
+
+.aleph-DisplayOptions {
+  font-size: 1rem;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  font-weight: normal;
+  color: white;
+  position: absolute;
+  right: -42.5px;
+  top: 60px;
+  transform: rotate(270deg);
+  pointer-events: none;
+}
+
+.aleph-controls {
+  width: 400px;
+  height: auto;
+  background-color: #acafb2;
+  border-radius: 5px;
+  position: fixed;
+  left: -337px;
+  top: 50px;
+  z-index: 400;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.aleph-control {
+  position: relative;
+  left: 0px;
+  display: inline-block;
+  padding: 5px;
+  margin: 3px;
+  width: 325px;
+  top: 5px;
+}
+
+.aleph-controls.aleph-closeControls {
+  left: -370px;
+}
+
+.aleph-controls.aleph-openControls {
+  left: -30px;
+}
+
+.aleph-controls:hover {
+  /* background-color:#ACBFBF; */
+  cursor: pointer;
+}
+
+.aleph-expandCollapse.aleph-expandCollapseAll {
+  display: none;
+}
+
+.aleph-controls.aleph-expandCollapseAll {
+  height: 680px;
+}
+
+.aleph-nodeChildCountlabel {
+  fill: #fff;
+  stroke: none;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+#collapse {
+  width: 40%;
+  margin-right: 0px;
+}
+#expand {
+  width: 40%;
+  margin-left: 0px;
+}
+
+.aleph-convergence-filter {
+  width: 25%;
+}
+
+.aleph-hr {
+  width: 80%;
+  margin-left: 40px;
+}
+
+.tick text {
+  font-weight: 400;
+  fill: #14022e;
+  font-size: 1.25rem;
+}
+
+.tick.dark text {
+  font-weight: 400;
+  fill: #ffffff;
+  font-size: 1.25rem;
+}
+
+/* .tick line {
+  fill: #acafb2;
+} */
+
+.axis path {
+  fill: none;
+  stroke-width: 1.5px;
+  stroke: #acafb2;
+  pointer-events:none;
+}
+
+.axis.dark path {
+  fill: none;
+  stroke-width: 1.5px;
+  stroke: #ffffff;
+  pointer-events:none;
+}
+
+.tick line {
+  fill: #acafb2;
+  stroke: #acafb2;
+  pointer-events: none;
+  stroke-width: 1px;
+  opacity: 1;
+  pointer-events:none;
+}
+
+.tick.dark line {
+  fill: #ffffff;
+  stroke: #ffffff;
+  pointer-events: none;
+  stroke-width: 2px;
+  opacity: 1;
+  pointer-events:none;
+}
+
+.aleph-controlsGroup {
+  /* margin: 50px 12.5% 25px 12.5%; */
+  margin: 0 45%;
+  width: 100%;
+}
+
+.aleph-buttonsGroup {
+  margin: 0px 12.5% 5px 12.5%;
+  width: 100%;
+}
+
+#aleph-submit {
+  /* margin: 50px 45%; */
+  width: 200px;
+}
+
+#aleph-url {
+  width: 33%;
+  margin: 25px 33% 25px 33%;
+}
+
+/* #aleph-submitUrl,
+#aleph-copyUrl {
+  margin: 10px 45%;
+  width: 10%;
+} */
+
+.aleph-darkMode {
+  background-color: #14022e;
+  color: #ffffff;
+}
+
+.aleph-darkMode.dark {
+  background-color: #ffffff;
+  color: #14022e;
+}
+
+.aleph-exampleTechSelector {
+  margin-top: 10px;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.aleph-icon-row {
+  width: 100%;
+  display: block;
+  margin-top: 50px;
+}
+
+.aleph-icon-container {
+  width: 10%;
+  display: inline-block;
+}
+
+.tech-nameLabel {
+  display: block;
+  font-size: 0.45rem;
+  font-weight: bold;
+}
+
+.tech-label {
+  display: block;
+  font-size: 0.65rem;
+}
+
+.aleph-technology-icon {
+  width: 75px;
+  height: 75px;
+  margin: 10px;
+  display: inline-block;
+}
+
+.aleph-technology-icon:hover {
+  cursor: pointer;
+}
+
+.btn-danger:disabled {
+  color: #14022e;
+  background-color: #fff !important;
+  border-color: #14022e;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #14022e;
+  border-color: #14022e;
+}
+
+.btn-success:hover {
+  color: #fff;
+  border-color: #14022e;
+  background-color: #14022e;
+}
+.btn-success:not(:disabled):not(.disabled):active {
+  color: #fff;
+  border-color: #14022e;
+  background-color: #14022e;
+}
+
+.btn-success:not(:disabled):not(.disabled):active:focus,
+.show > .btn-success.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(20, 2, 46, 0.5);
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: #ce2256 !important;
+  border-color: #ce2256 !important;
+}
+
+.btn-danger:focus {
+  box-shadow: 0 0 0 0.2rem rgba(206, 34, 86, 0.5) !important;
+}
+
+
+
+.aleph-selectInstructions {
+  font-size: 1rem;
+  color: #000;
+  font-weight: normal;
+  text-align: left;
+  margin-left: 50px;
+}
+
+.aleph-selectInstructionsTitle {
+  font-size: 2rem;
+  color: #000;
+  font-weight: bold;
+  text-align: center;
+  margin: 0px 0% 0px 0%;
+  width: 100%;
+}
+
+span {
+  font-weight: bold;
+}
+
+
+.aleph-bullet {
+  margin: 0px 5%;
+  width: 90%;
+}
+
+
+
+#reset {
+  width: 200px;
+}
+
+.reset-submitRow{
+  margin:25px 0px;
+}
+
+.aleph-tooltip-label{
+  font-size:0.75rem;
+}
+
+.aleph-techIcon:hover{
+  cursor:pointer;
+}

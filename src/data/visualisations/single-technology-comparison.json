@@ -1,0 +1,78 @@
+{
+  "route": "single-technology-comparison-visualisation",
+  "title": "Technology Comparison",
+  "heightRatio": 1.0,
+  "rootPath": "/",
+  "renderFunction": "renderTechnologyComparison",
+  "scripts": [
+    {"file": "/visualisationScripts/hmi_technologycomparisons/js/d3.v5.min.js"},
+    {"file": "/visualisationScripts/hmi_technologycomparisons/js/jquery.min.js"},
+    {"file": "/visualisationScripts/hmi_technologycomparisons/js/jquery-ui.js"},
+    {"file": "/visualisationScripts/hmi_technologycomparisons/js/useful-full.js"},
+    {"file": "/visualisationScripts/hmi_technologycomparisons/js/aleph-hmiTechnologyComparison.js"},
+    {"file": "/visualisationScripts/hmi_technologycomparisons/js/aleph-technologyTimeLineChart.js"},
+    {"file": "/visualisationScripts/hmi_technologycomparisons/js/gatsbyBridge.js"}
+  ],
+  "css": [
+    {"file": "/visualisationScripts/hmi_technologycomparisons/css/aleph-himTechnologyComparison.css"},
+    {"file": "/visualisationScripts/hmi_technologycomparisons/css/bootstrap.css"},
+    {"file": "/visualisationScripts/hmi_technologycomparisons/css/jquery-ui.css"}
+  ],
+  "settings": {
+    "groups": [
+      {
+        "id": "1",
+        "title": "Chart Display Options",
+        "settings": {
+          "toggle": {
+            "maxToggled": "1",
+            "minToggled": "1",
+            "orderImportant": false
+          }
+        },
+        "buttons": [
+          {
+            "id": "chart-sort-alphabetical",
+            "type": "toggle",
+            "labelOff": "View Alphabetical",
+            "labelOn": "View Alphabetical",
+            "action": "toggle",
+            "isToggled": true
+          },
+          {
+            "id": "chart-sort-impact",
+            "type": "toggle",
+            "labelOff": "View Impact",
+            "labelOn": "View Impact",
+            "action": "toggle"
+          },
+          {
+            "id": "chart-sort-likelihood",
+            "type": "toggle",
+            "labelOff": "View Likelihood",
+            "labelOn": "View Likelihood",
+            "action": "toggle"
+          },
+          {
+            "id": "relational-option-show-labels",
+            "type": "toggle",
+            "labelOff": "Show Labels",
+            "labelOn": "Hide Labels",
+            "action": "toggle"
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "buttons": [
+          {
+            "id": "return-to-tech-selector",
+            "type": "link",
+            "label": "Return to Technology Library",
+            "action": "/technology-library"
+          }
+        ]
+      }
+    ]
+  }  
+}

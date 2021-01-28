@@ -1,0 +1,183 @@
+{
+  "route": "technology-taxonomy",
+  "title": "Technology Taxonomy",
+  "heightRatio": 1.0,
+  "rootPath": "/",
+  "renderFunction": "renderTechnologyTaxonomy",
+  "scripts": [
+    {"file": "/visualisationScripts/technology-taxonomy/js/d3.v5.min.js"},
+    {"file": "/visualisationScripts/technology-taxonomy/js/jquery.min.js"},
+    {"file": "/visualisationScripts/technology-taxonomy/js/jquery-ui.js"},
+    {"file": "/visualisationScripts/technology-taxonomy/js/useful_full.js"},
+    {"file": "/visualisationScripts/technology-taxonomy/js/hmi_technologytaxonomy.js"},
+    {"file": "/visualisationScripts/technology-taxonomy/js/gatsbyBridge.js"}
+  ],
+  "css": [
+    {
+      "file": "/visualisationScripts/technology-taxonomy/css/hmi_technologytaxonomy.css"
+    }
+  ],
+  "settings": {
+    "groups": [
+      {
+        "id": "1",
+        "title": "Taxonomy Levels",
+        "settings": {
+          "toggle": {
+            "maxToggled": "3",
+            "minToggled": "",
+            "orderImportant": true,
+            "positionLabels": true
+          },
+          "submitButton": {
+            "id": "taxonomy-submit",
+            "labelOff": "Submit Selection",
+            "labelOn": "Submit Selection"
+          },
+          "clearButton": {
+            "id": "taxonomy-clear",
+            "labelOff": "Clear Selection",
+            "labelOn": "Clear Selection"
+          }
+        },
+        "buttons": [
+          {
+            "id": "Accessibility",
+            "type": "toggle",
+            "labelOn": "Accessibility",
+            "labelOff": "Accessibility",
+            "action": "toggle",
+            "isToggled": false,
+            "isDisabled": false
+          },
+          {
+            "id": "Area of Cognition",
+            "type": "toggle",
+            "labelOff": "Area of Cognition",
+            "labelOn": "Area of Cognition",
+            "action": "toggle",
+            "isToggled": false,
+            "isDisabled": false
+          },
+          {
+            "id": "Direction of Information",
+            "type": "toggle",
+            "labelOff": "Direction of Information",
+            "labelOn": "Direction of Information",
+            "action": "toggle",
+            "isToggled": false,
+            "isDisabled": false
+          },
+          {
+            "id": "Disruptiveness",
+            "type": "toggle",
+            "labelOff": "Disruptiveness",
+            "labelOn": "Disruptiveness",
+            "action": "toggle",
+            "isToggled": false,
+            "isDisabled": false
+          },
+          {
+            "id": "Ease of Replacement",
+            "type": "toggle",
+            "labelOff": "Ease of Replacement",
+            "labelOn": "Ease of Replacement",
+            "action": "toggle",
+            "isToggled": false,
+            "isDisabled": false
+          },
+          {
+            "id": "Information Throughput",
+            "type": "toggle",
+            "labelOff": "Information Throughput",
+            "labelOn": "Information Throughput",
+            "action": "toggle",
+            "isToggled": false,
+            "isDisabled": false
+          },
+          {
+            "id": "Level of Cognitive Demand Required",
+            "type": "toggle",
+            "labelOff": "Level of Cognitive Demand Required",
+            "labelOn": "Level of Cognitive Demand Required",
+            "action": "toggle",
+            "isToggled": false,
+            "isDisabled": false
+          },
+          {
+            "id": "Level of Human Control",
+            "type": "toggle",
+            "labelOff": "Level of Human Control",
+            "labelOn": "Level of Human Control",
+            "action": "toggle",
+            "isToggled": false,
+            "isDisabled": false
+          },
+          {
+            "id": "Likelihood of Successful Development",
+            "type": "toggle",
+            "labelOff": "Likelihood of Successful Development",
+            "labelOn": "Likelihood of Successful Development",
+            "action": "toggle",
+            "isToggled": false,
+            "isDisabled": false
+          },
+          {
+            "id": "Likely Availability",
+            "type": "toggle",
+            "labelOff": "Likely Availability",
+            "labelOn": "Likely Availability",
+            "action": "toggle",
+            "isToggled": false,
+            "isDisabled": false
+          },
+          {
+            "id": "Relevant Environments",
+            "type": "toggle",
+            "labelOff": "Relevant Environments",
+            "labelOn": "Relevant Environments",
+            "action": "toggle",
+            "isToggled": false,
+            "isDisabled": false
+          },
+          {
+            "id": "Sensory Information",
+            "type": "toggle",
+            "labelOff": "Sensory Information",
+            "labelOn": "Sensory Information",
+            "action": "toggle",
+            "isToggled": false,
+            "isDisabled": false
+          },
+          {
+            "id": "Usability",
+            "type": "toggle",
+            "labelOff": "Usability",
+            "labelOn": "Usability",
+            "action": "toggle",
+            "isToggled": false,
+            "isDisabled": false
+          }
+        ]
+      },
+      {
+        "id": "2",
+        "title": "Actions",
+        "buttons": [
+          {
+            "id": "taxonomy-collapse-all",
+            "type": "function",
+            "label": "Collapse All",
+            "action": "collapseChart"
+          },
+          {
+            "id": "taxonomy-expand-all",
+            "type": "function",
+            "label": "Expand All",
+            "action": "expandChart"
+          }
+        ]
+      }
+    ]
+  }
+}

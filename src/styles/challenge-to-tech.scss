@@ -1,0 +1,98 @@
+@import "./mixins.scss";
+
+.c-to-t {
+  &__grid {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-rows: 1fr 4fr 0.5fr;
+    grid-template-areas:
+      "c-to-t__grid-text"
+      "c-to-t__families"
+      ".";
+    @include main-content-global;
+    @include md-font-size-global;
+  }
+
+  &__grid-text {
+    grid-area: c-to-t__grid-text;
+  }
+
+  &__family-grid-title {
+    font-weight: bold;
+    height: 3.8rem;
+
+    font-size: xx-small;
+    @include sm {
+      height: 4rem;
+      font-size: x-small;
+    }
+    @include md {
+      height: 8rem;
+      font-size: medium;
+    }
+    @include lg {
+      height: 14rem;
+      font-size: 18pt;
+    }
+    @include xl {
+      height: 14rem;
+      font-size: x-large;
+    }
+    @include xxl {
+      height: 20rem;
+      font-size: xx-large;
+    }
+  }
+  &__grid-challenge {
+    @include sm-font-size-global;
+  }
+
+  &__families {
+    grid-area: c-to-t__families;
+    display: flex;
+    height: fit-content;
+    gap: 1%;
+  }
+
+  &__challenge {
+    padding: 3px;
+    font-size: 7pt;
+    margin-bottom: 8px;
+    @include sm {
+      padding: 5px;
+      font-size: 7pt;
+      margin-bottom: 8px;
+    }
+    @include md {
+      padding: 8px 4px;
+      font-size: 10pt;
+      margin-bottom: 8px;
+    }
+    @include lg {
+      padding: 10px 5px;
+      font-size: 13pt;
+      margin-bottom: 8px;
+    }
+    @include xl {
+      padding: 10px;
+      font-size: 16pt;
+      margin-bottom: 8px;
+    }
+    @include xxl {
+      padding: 12px;
+      font-size: 18pt;
+      margin-bottom: 8px;
+    }
+    background-color: white;
+    @include border-radius-global;
+  }
+
+  &__family-group {
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    background-color: #efefef;
+    @include sm-padding-global;
+    @include border-radius-dark-global;
+  }
+}

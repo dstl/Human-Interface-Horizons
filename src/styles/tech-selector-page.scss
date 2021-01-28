@@ -1,0 +1,539 @@
+@import "./mixins.scss";
+
+$defaultRadius: 4px;
+$defaultAnimationTime: 70ms;
+
+.family-card-grid-wrapper {
+  display: flex;
+  margin: auto;
+}
+
+.family-card {
+  margin: 5px;
+  padding: 0.5rem;
+  background-color: #a1a8ad;
+  min-height: 140px;
+  min-width: 140px;
+  border-radius: $defaultRadius;
+
+  @media screen and(min-width: 1279px), screen and(max-width: 1279px) {
+    margin: 0px 5px;
+    min-height: 120px;
+    min-width: 120px;
+    width: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: stretch;
+  }
+
+  @media screen and(min-width: 3839px) {
+    margin: 0px 15px;
+    min-height: 420px;
+    min-width: 395px;
+  }
+
+  &.active {
+    color: #fff;
+    background-color: #14022e;
+  }
+}
+
+.family-card h4 {
+  cursor: pointer;
+  padding: 0.5rem;
+  margin: 0 0 10px 0;
+  text-align: center;
+  border: 0.5px solid #666;
+  border-radius: $defaultRadius;
+  transition: background-color $defaultAnimationTime;
+  -webkit-transition: background-color $defaultAnimationTime;
+  -o-transition: background-color $defaultAnimationTime;
+  font-size: 10pt;
+
+  &.active {
+    border-color: #fff;
+    &:hover {
+      background-color: #290758;
+    }
+  }
+
+  &:hover {
+    background-color: #bbb;
+  }
+  @include sm {
+    font-size: 10pt;
+  }
+  @include md {
+    font-size: 17pt;
+  }
+  @include lg {
+    font-size: 21pt;
+  }
+  @include xl {
+    font-size: 25pt;
+  }
+  @include xxl {
+    font-size: 28pt;
+  }
+}
+
+.family-card-button {
+  cursor: pointer;
+  padding: 0.25rem;
+  text-align: center;
+  border: solid #fff 1px;
+  border-radius: $defaultRadius;
+  background-color: #fff;
+  transition: background-color $defaultAnimationTime;
+  -webkit-transition: background-color $defaultAnimationTime;
+  -o-transition: background-color $defaultAnimationTime;
+  margin: 5px 0;
+  font-size: 10pt;
+  &:hover {
+    background-color: #eee;
+  }
+
+  &.active {
+    color: white;
+    background-color: #ce2256;
+  }
+
+  @include sm {
+    margin: 5px 0;
+    font-size: 10pt;
+  }
+  @include md {
+    margin: 6.5px 2.5px;
+    font-size: 13pt;
+  }
+  @include lg {
+    margin: 7.2px 5px;
+    font-size: 16pt;
+  }
+  @include xl {
+    margin: 8.5px 7.5px;
+    font-size: 20pt;
+  }
+  @include xxl {
+    margin: 10px 10px;
+    font-size: 24pt;
+  }
+}
+
+.sidebar-header {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 12pt;
+  font-weight: bold;
+
+  @include sm {
+    margin-top: 7px;
+    margin-bottom: 5px;
+    font-size: 10pt;
+  }
+  @include md {
+    margin-top: 19.6px;
+    margin-bottom: 16px;
+    font-size: 17pt;
+  }
+  @include lg {
+    margin-top: 24.2px;
+    margin-bottom: 20px;
+    font-size: 21pt;
+  }
+  @include xl {
+    margin-top: 27.8px;
+    margin-bottom: 25px;
+    font-size: 25pt;
+  }
+  @include xxl {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 28pt;
+  }
+}
+
+.sidebar-container {
+  position: static;
+  right: 0;
+  padding: 0 15px 15px 15px;
+  border: 3px solid black;
+  width: 135px;
+  margin-left: 15px;
+  height: -webkit-fill-available;
+  border-radius: 2px;
+
+  @include sm {
+    padding: 0 15px 15px 15px;
+    width: 135px;
+  }
+  @include md {
+    margin-left: 22.3px;
+    padding: 0 22.5px 22.5px 22.5px;
+    width: 230px;
+  }
+  @include lg {
+    margin-left: 31.6px;
+    padding: 0 30px 30px 30px;
+    width: 290px;
+  }
+  @include xl {
+    margin-left: 40px;
+    padding: 0 37.5px 37.5px 37.5px;
+    width: 340px;
+  }
+  @include xxl {
+    margin-left: 25px;
+    padding: 0 45px 45px 45px;
+    width: 360px;
+  }
+}
+
+.sidebar-button {
+  cursor: pointer;
+  width: 100%;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: stretch;
+  height: 18px;
+  margin: 2px 0;
+  background-color: #929292;
+  border: 0;
+  border-radius: 2px;
+  font-size: 10pt;
+  @include sm {
+    margin: 2px 0;
+    height: 18px;
+    font-size: 10pt;
+  }
+  @include md {
+    margin: 4px 0;
+    height: 26.3px;
+    font-size: 14.5pt;
+  }
+  @include lg {
+    margin: 6px 0;
+    height: 34.6px;
+    font-size: 17pt;
+  }
+  @include xl {
+    margin: 8px 0;
+    height: 43px;
+    font-size: 19pt;
+  }
+  @include xxl {
+    margin: 10px 0;
+    height: 50px;
+    font-size: 22pt;
+  }
+}
+
+.sidebar-button:focus {
+  background-color: white;
+}
+
+.tech-selector-container {
+  margin-top: 15px;
+  display: flex;
+  @include sm {
+    margin-top: 15px;
+  }
+  @include md {
+    margin-top: 22.5px;
+  }
+  @include lg {
+    margin-top: 30px;
+  }
+  @include xl {
+    margin-top: 37.5px;
+  }
+  @include xxl {
+    margin-top: 45px;
+  }
+}
+
+.tech-selector-main {
+  flex-grow: 1;
+}
+
+.tech-selector-guidance {
+  @include s-md-font-size-global;
+  text-align: center;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.tech-selector-sidebar {
+  position: static;
+  right: 0;
+  margin: 0 20px;
+}
+
+.tech-grid-wrapper {
+  margin: 0px -8px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+
+  @include sm {
+    margin: 0px -8px;
+    margin-bottom: 70px;
+  }
+  @include md {
+    margin: 0px -11px;
+    margin-bottom: 90px;
+  }
+  @include lg {
+    margin: 0px -14px;
+    margin-bottom: 110px;
+  }
+  @include xl {
+    margin: 0px -17px;
+    margin-bottom: 130px;
+  }
+  @include xxl {
+    margin: 0px -20px;
+    margin-bottom: 120px;
+  }
+}
+
+.tech-container {
+  cursor: pointer;
+  min-height: 75px;
+  width: 80px;
+  margin: 18px 15px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  transition: background-color $defaultAnimationTime;
+  -webkit-transition: background-color $defaultAnimationTime;
+  -o-transition: background-color $defaultAnimationTime;
+
+  @include sm {
+    padding: 5px;
+    margin: 32px 15px;
+    height: 75px;
+    width: 80px;
+  }
+  @include md {
+    padding: 9px;
+    margin: 46px 18px;
+    height: 112.5px;
+    width: 112.5px;
+  }
+  @include lg {
+    padding: 13px;
+    margin: 52px 20px;
+    height: 150px;
+    width: 150px;
+  }
+  @include xl {
+    padding: 17px;
+    margin: 65px 21px;
+    height: 187.5px;
+    width: 187.5px;
+  }
+  @include xxl {
+    padding: 20px;
+    margin: 85px 22.5px;
+    height: 225px;
+    width: 225px;
+  }
+
+  &:hover {
+    background-color: #eee;
+  }
+
+  &.disabled {
+    opacity: 0.3;
+  }
+
+  h4 {
+    margin: 0;
+  }
+}
+
+.tech-click-button {
+  cursor: pointer;
+  font-size: 6pt;
+  width: 80px;
+  min-height: 42px;
+
+  @include sm {
+    min-height: 45px;
+    width: 80px;
+
+    font-size: 6pt;
+    margin-top: 1%;
+  }
+  @include md {
+    min-height: 56px;
+    width: 112.5px;
+    font-size: 9pt;
+    margin-top: 2%;
+  }
+  @include lg {
+    min-height: 75px;
+    width: 150px;
+    font-size: 12pt;
+    margin-top: 3%;
+  }
+  @include xl {
+    min-height: 94px;
+    width: 187.5px;
+    font-size: 15pt;
+    margin-top: 4%;
+  }
+  @include xxl {
+    min-height: 113px;
+    width: 225px;
+    font-size: 18pt;
+    margin-top: 5%;
+  }
+
+  @include border-radius-dark-sm;
+  color: black;
+  background-color: #efefefef;
+  border-color: rgb(133, 133, 133);
+}
+
+.tech-container-icon {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+
+  &.disabled {
+    opacity: 0.3;
+  }
+}
+
+.tech-page-buttons {
+  min-height: 100px;
+  @include sm {
+    min-height: 100px;
+  }
+  @include md {
+    min-height: 150px;
+  }
+  @include lg {
+    min-height: 200px;
+  }
+  @include xl {
+    min-height: 250px;
+  }
+  @include xxl {
+    min-height: 300px;
+  }
+}
+
+.submit-button-tech-page {
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 3px;
+  bottom: 0;
+  right: 0;
+  width: 170px;
+  height: 20px;
+  margin-right: 35px;
+  margin-bottom: 50px;
+  font-size: 12pt;
+  z-index: 1;
+  float: right;
+
+  @include sm {
+    font-size: 12pt;
+    width: 170px;
+    height: 35px;
+    margin-right: 35px;
+    margin-bottom: 70px;
+  }
+  @include md {
+    font-size: 17pt;
+    width: 280px;
+    height: 45px;
+    margin-right: 60px;
+    margin-bottom: 90px;
+  }
+  @include lg {
+    font-size: 21pt;
+    width: 350px;
+    height: 55px;
+    margin-right: 95px;
+    margin-bottom: 125px;
+  }
+  @include xl {
+    font-size: 25pt;
+    width: 421px;
+    height: 65px;
+    margin-right: 120px;
+    margin-bottom: 160px;
+  }
+  @include xxl {
+    font-size: 28pt;
+    width: 475px;
+    height: 75px;
+    margin-right: 133px;
+    margin-bottom: 185px;
+  }
+}
+
+.submit-button-tech-page:hover {
+  background-color: #a8a7a7;
+}
+
+.reset-button-tech-page {
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 3px;
+  bottom: 0;
+  right: 0;
+  width: 170px;
+  height: 20px;
+  margin-right: 35px;
+  margin-bottom: 50px;
+  font-size: 12pt;
+  z-index: 1;
+  float: right;
+
+  @include sm {
+    font-size: 12pt;
+    width: 170px;
+    height: 35px;
+    margin-right: 35px;
+    margin-bottom: 70px;
+  }
+  @include md {
+    font-size: 17pt;
+    width: 280px;
+    height: 45px;
+    margin-right: 60px;
+    margin-bottom: 90px;
+  }
+  @include lg {
+    font-size: 21pt;
+    width: 350px;
+    height: 55px;
+    margin-right: 95px;
+    margin-bottom: 125px;
+  }
+  @include xl {
+    font-size: 25pt;
+    width: 421px;
+    height: 65px;
+    margin-right: 120px;
+    margin-bottom: 160px;
+  }
+  @include xxl {
+    font-size: 28pt;
+    width: 475px;
+    height: 75px;
+    margin-right: 133px;
+    margin-bottom: 185px;
+  }
+}
+
+.reset-button-tech-page:hover {
+  background-color: #a8a7a7;
+}

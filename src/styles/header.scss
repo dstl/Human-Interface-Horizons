@@ -1,0 +1,127 @@
+@import "./mixins.scss";
+
+.nav-container {
+  background-color: #14022e;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.09);
+  color: #cccccc;
+  min-height: 50px;
+  padding: 10px 45px;
+  height: 50px;
+  width: auto;
+  box-sizing: content-box;
+
+  @include sm {
+    height: 50px;
+    padding: 10px 45px;
+  }
+  @include md {
+    height: 75px;
+    padding: 11.5px 70px;
+  }
+  @include lg {
+    height: 100px;
+    padding: 12.5px 95px;
+  }
+  @include xl {
+    height: 125px;
+    padding: 13.5px 115px;
+  }
+  @include xxl {
+    height: 150px;
+    padding: 15px 135px;
+  }
+}
+
+.nav-logo-left {
+  float: left;
+  width: 25%;
+  margin-left: 45px;
+  margin: 0px auto;
+}
+
+.nav-logo-right {
+  text-align: right;
+  float: right;
+  width: 25%;
+}
+
+.nav-title-center {
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  width: 50%;
+  margin: auto 0px;
+  padding-top: 10px;
+  font-size: 18pt;
+  @include sm {
+    padding-top: 10px;
+    font-size: 18pt;
+  }
+  @include md {
+    padding-top: 20px;
+    font-size: 22.5pt;
+  }
+  @include lg {
+    padding-top: 30px;
+    font-size: 28.5pt;
+  }
+  @include xl {
+    padding-top: 40px;
+    font-size: 32.5pt;
+  }
+  @include xxl {
+    padding-top: 50px;
+    font-size: 38pt;
+  }
+}
+
+.ai-header-logo {
+  height: 45px;
+  padding-top: 3px;
+
+  @include sm {
+    padding-top: 3px;
+    height: 45px;
+  }
+  @include md {
+    padding-top: 8px;
+    height: 62px;
+  }
+  @include lg {
+    padding-top: 12px;
+    height: 78px;
+  }
+  @include xl {
+    padding-top: 16.5px;
+    height: 95px;
+  }
+  @include xxl {
+    padding-top: 22px;
+    height: 110px;
+  }
+}
+
+.dstl-header-logo {
+  height: 40px;
+  padding-top: 5px;
+  @include sm {
+    padding-top: 5px;
+    height: 40px;
+  }
+  @include md {
+    padding-top: 6px;
+    height: 65px;
+  }
+  @include lg {
+    padding-top: 12px;
+    height: 72px;
+  }
+  @include xl {
+    padding-top: 18px;
+    height: 85px;
+  }
+  @include xxl {
+    padding-top: 22px;
+    height: 100px;
+  }
+}

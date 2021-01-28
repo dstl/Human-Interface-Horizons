@@ -1,0 +1,23 @@
+@import "./mixins.scss";
+
+.scen {
+  p {
+    color: red;
+  }
+
+  &__container {
+    height: auto;
+  }
+
+  &__content {
+    margin: 35px 6%;
+    padding-bottom: 70px;
+    @include md-font-size-global;
+  }
+
+  &__image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

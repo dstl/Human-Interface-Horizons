@@ -1,0 +1,12 @@
+# Optimised for Gatsby, React, TS, graphQL
+root = true
+[*]
+[.csv]
+[public/**]
+[.cache/**]
+[node_modules/**]
+indent_style = space
+indent_size = 2
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true

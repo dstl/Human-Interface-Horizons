@@ -1,0 +1,190 @@
+@import "./mixins.scss";
+
+@mixin gridBoxes {
+  display: grid;
+  width: auto;
+  padding: 1%;
+  color: black;
+
+  border: 1px solid #4c149b;
+  @include sm {
+    border-width: 1px;
+  }
+  @include md {
+    border-width: 2px;
+  }
+  @include lg {
+    border-width: 2.5px;
+  }
+  @include xl {
+    border-width: 3px;
+  }
+  @include xxl {
+    border-width: 3px;
+  }
+  border-radius: 3px;
+  text-decoration: none;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  -ms-border-radius: 1px;
+  -o-border-radius: 1px;
+}
+
+@mixin customSideImages {
+  a {
+    .gatsby-image-wrapper {
+      img {
+        margin: 2px auto;
+        width: 85%;
+        height: unset;
+      }
+    }
+  }
+}
+
+.landing {
+  &__content-grid {
+    display: grid;
+    grid-template-rows: 0.2fr 5fr 0.5fr;
+    grid-template-areas: "landing__text-content-block" "landing__images-grid" ".";
+  }
+
+  &__text-content-block {
+    font-size: 8pt;
+
+    margin: 8px;
+
+    @include sm {
+      font-size: 10pt;
+
+      margin: 8px;
+    }
+    @include md {
+      font-size: 14pt;
+      margin: 17px;
+    }
+    @include lg {
+      font-size: 19pt;
+      margin: 24px;
+    }
+    @include xl {
+      font-size: 24pt;
+      margin: 32px;
+    }
+    @include xxl {
+      font-size: 31pt;
+      margin: 28px;
+    }
+    text-align: center;
+  }
+
+  &__image-title {
+    font-size: 7pt;
+    @include sm {
+      font-size: 7pt;
+    }
+    @include md {
+      font-size: 12pt;
+    }
+    @include lg {
+      font-size: 16pt;
+    }
+    @include xl {
+      font-size: 19pt;
+    }
+    @include xxl {
+      font-size: 23pt;
+    }
+    text-align: center;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  &__image-subtitle {
+    font-size: 6pt;
+    @include sm {
+      font-size: 6pt;
+    }
+    @include md {
+      font-size: 9pt;
+    }
+    @include lg {
+      font-size: 13pt;
+    }
+    @include xl {
+      font-size: 16pt;
+    }
+    @include xxl {
+      font-size: 21pt;
+    }
+    text-align: center;
+  }
+
+  &__images-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 5.1fr 1.25fr;
+    grid-template-rows: auto;
+    gap: 3px;
+    grid-template-areas:
+      "landing__challenge-to-technology landing__technology-selector landing__technology-library"
+      "landing__technology-taxonomy landing__technology-selector landing__scenario-library"
+      "landing__technology-convergence landing__technology-selector landing__cognitive-challenge-library";
+
+    @include sm {
+      gap: 3px;
+    }
+    @include md {
+      gap: 11.5px;
+    }
+    @include lg {
+      gap: 13.5px;
+    }
+    @include xl {
+      gap: 14px;
+    }
+    @include xxl {
+      gap: 15px;
+    }
+  }
+
+  &__technology-selector {
+    grid-area: landing__technology-selector;
+    @include gridBoxes;
+  }
+
+  &__challenge-to-technology {
+    grid-area: landing__challenge-to-technology;
+    @include gridBoxes;
+    @include customSideImages;
+  }
+
+  &__cognitive-challenge-library {
+    grid-area: landing__cognitive-challenge-library;
+    @include gridBoxes;
+    @include customSideImages;
+  }
+
+  &__technology-library {
+    grid-area: landing__technology-library;
+    @include gridBoxes;
+    @include customSideImages;
+  }
+
+  &__technology-taxonomy {
+    grid-area: landing__technology-taxonomy;
+    @include gridBoxes;
+    @include customSideImages;
+  }
+
+  &__technology-convergence {
+    grid-area: landing__technology-convergence;
+    @include gridBoxes;
+    @include customSideImages;
+  }
+
+  &__scenario-library {
+    grid-area: landing__scenario-library;
+    @include gridBoxes;
+    @include customSideImages;
+  }
+}

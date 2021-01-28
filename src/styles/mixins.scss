@@ -1,0 +1,558 @@
+// sm = 1280 X 720
+$screen-sm-w: 1280px;
+$screen-sm-h: 720px;
+
+// md = 1920 X 1080
+$screen-md-w: 1920px;
+$screen-md-h: 1080px;
+
+// lg = 2560 X 1440
+$screen-lg-w: 2560px;
+$screen-lg-h: 1440px;
+
+// xl = 3200 X 1800
+$screen-xl-w: 3200px;
+$screen-xl-h: 1800px;
+
+// xxl = 3840 X 2160
+$screen-xxl-w: 3840px;
+$screen-xxl-h: 2160px;
+
+/* >>--------- TESTING DONT DELETE --------->> */
+@mixin test-size-color-default {
+  background-color: rgb(255, 94, 94);
+}
+@mixin test-size-color-sm {
+  background-color: rgb(64, 128, 64);
+}
+@mixin test-size-color-md {
+  background-color: rgb(245, 223, 125);
+}
+@mixin test-size-color-lg {
+  background-color: rgb(115, 195, 226);
+}
+@mixin test-size-color-xl {
+  background-color: rgb(167, 115, 226);
+}
+@mixin test-size-color-xxl {
+  background-color: rgb(23, 25, 126);
+}
+// Usage
+// @include test-size-color-default;
+// @include test-size-color-sm;
+// @include test-size-color-md;
+// @include test-size-color-lg;
+// @include test-size-color-xl;
+// @include test-size-color-xxl;
+
+/* <<--------- TESTING DONT DELETE -----------<< */
+
+/* >>------ RESPONSIVE SIZES ----->> */
+@mixin sm {
+  @media (min-height: #{$screen-sm-h}) and (min-width: #{$screen-sm-w}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-height: #{$screen-md-h}) and (min-width: #{$screen-md-w}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-height: #{$screen-lg-h}) and (min-width: #{$screen-lg-w}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-height: #{$screen-xl-h}) and (min-width: #{$screen-xl-w}) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @media (min-height: #{$screen-xxl-h}) and (min-width: #{$screen-xxl-w}) {
+    @content;
+  }
+}
+/* <<------ RESPONSIVE SIZES -----<< */
+
+@mixin main-content-global {
+  height: calc(100vh - 130px); // Default
+  margin-top: 10px; // Default
+
+  @include sm {
+    height: calc(100vh - 140px);
+  }
+  @include md {
+    height: calc(100vh - 190px);
+  }
+  @include lg {
+    height: calc(100vh - 240px);
+  }
+  @include xl {
+    height: calc(100vh - 290px);
+  }
+  @include xxl {
+    height: calc(100vh - 350px);
+  }
+}
+
+@mixin responsive-container {
+  height: calc(100vh - 170px); // Default
+  margin-top: 10px; // Default
+
+  @include sm {
+    height: calc(100vh - 170px);
+  }
+  @include md {
+    height: calc(100vh - 250px);
+  }
+  @include lg {
+    height: calc(100vh - 360px);
+  }
+  @include xl {
+    height: calc(100vh - 410px);
+  }
+  @include xxl {
+    height: calc(100vh - 470px);
+  }
+}
+
+/* >>--------- FONT SIZES -------->> */
+
+// SMALL
+@mixin sm-font-size-global {
+  font-size: 10pt; // Default
+
+  @include sm {
+    font-size: 10pt;
+  }
+  @include md {
+    font-size: 12pt;
+  }
+  @include lg {
+    font-size: 14pt;
+  }
+  @include xl {
+    font-size: 16pt;
+  }
+  @include xxl {
+    font-size: 18pt;
+  }
+}
+@mixin s-md-font-size-global {
+  font-size: 11pt; // Default
+
+  @include sm {
+    font-size: 13pt;
+  }
+  @include md {
+    font-size: 15pt;
+  }
+  @include lg {
+    font-size: 19pt;
+  }
+  @include xl {
+    font-size: 24pt;
+  }
+  @include xxl {
+    font-size: 27pt;
+  }
+}
+
+// MEDIUM
+@mixin md-font-size-global {
+  font-size: 12pt; // Default
+
+  @include sm {
+    font-size: 12pt;
+  }
+  @include md {
+    font-size: 17pt;
+  }
+  @include lg {
+    font-size: 21pt;
+  }
+  @include xl {
+    font-size: 25pt;
+  }
+  @include xxl {
+    font-size: 28pt;
+  }
+}
+
+// MEDIUM +
+@mixin mdx-font-size-global {
+  font-size: 15pt; // Default
+  @include sm {
+    font-size: 15pt;
+  }
+  @include md {
+    font-size: 20pt;
+  }
+  @include lg {
+    font-size: 25pt;
+  }
+  @include xl {
+    font-size: 32pt;
+  }
+  @include xxl {
+    font-size: 40pt;
+  }
+}
+
+// LARGE
+@mixin lg-font-size-global {
+  font-size: 18pt; // Default
+
+  @include sm {
+    font-size: 18pt;
+  }
+  @include md {
+    font-size: 22.5pt;
+  }
+  @include lg {
+    font-size: 28.5pt;
+  }
+  @include xl {
+    font-size: 32.5pt;
+  }
+  @include xxl {
+    font-size: 38pt;
+  }
+}
+/* <<--------- FONT SIZES --------<< */
+
+/* >>--------- GRID ---------------->> */
+// GRID GAP
+@mixin gripGap {
+  gap: 10px;
+  @include sm {
+    gap: 10px;
+  }
+  @include md {
+    gap: 20px;
+  }
+  @include lg {
+    gap: 30px;
+  }
+  @include xl {
+    gap: 40px;
+  }
+  @include xxl {
+    gap: 50px;
+  }
+}
+/* <<--------- GRID ----------------<< */
+
+/* >>--------- PADDING ----------->> */
+// SMALL
+@mixin sm-padding-global {
+  padding: 5px; // Default
+
+  @include sm {
+    padding: 5px;
+  }
+  @include md {
+    padding: 10px;
+  }
+  @include lg {
+    padding: 15px;
+  }
+  @include xl {
+    padding: 20px;
+  }
+  @include xxl {
+    padding: 25px;
+  }
+}
+// MEDIUM
+@mixin md-padding-global {
+  padding: 10px; // Default
+
+  @include sm {
+    padding: 10px;
+  }
+  @include md {
+    padding: 20px;
+  }
+  @include lg {
+    padding: 30px;
+  }
+  @include xl {
+    padding: 40px;
+  }
+  @include xxl {
+    padding: 50px;
+  }
+}
+// LARGE
+@mixin lg-padding-global {
+  padding: 15px; // Default
+
+  @include sm {
+    padding: 15px;
+  }
+  @include md {
+    padding: 30px;
+  }
+  @include lg {
+    padding: 45px;
+  }
+  @include xl {
+    padding: 60px;
+  }
+  @include xxl {
+    padding: 75px;
+  }
+}
+/* <<--------- PADDING -----------<< */
+
+/* >>--------- BORDER STYLE ------>> */
+
+@mixin border-radius-global {
+  border: 0.5px solid #666; // Default
+  border-radius: 4px; // Default
+
+  @include sm {
+    border: 0.5px solid #666;
+    border-radius: 4px;
+  }
+  @include md {
+    border: 1px solid #666;
+    border-radius: 6px;
+  }
+  @include lg {
+    border: 1.5px solid #666;
+    border-radius: 8px;
+  }
+  @include xl {
+    border: 2px solid #666;
+    border-radius: 10px;
+  }
+  @include xxl {
+    border: 2.5px solid #666;
+    border-radius: 12px;
+  }
+}
+
+@mixin border-radius-dark-global {
+  border: 1.5px solid rgb(51, 51, 51); // Default
+  border-radius: 6px; // Default
+
+  @include sm {
+    border: 1.5px solid rgb(51, 51, 51);
+    border-radius: 6px;
+  }
+  @include md {
+    border: 2px solid rgb(51, 51, 51);
+    border-radius: 8px;
+  }
+  @include lg {
+    border: 2.5px solid rgb(51, 51, 51);
+    border-radius: 10px;
+  }
+  @include xl {
+    border: 3px solid rgb(51, 51, 51);
+    border-radius: 12px;
+  }
+  @include xxl {
+    border: 3.5px solid rgb(51, 51, 51);
+    border-radius: 14px;
+  }
+}
+
+@mixin border-radius-dark-sm {
+  border: 1.5px solid rgb(51, 51, 51); // Default
+  border-radius: 2px; // Default
+
+  @include sm {
+    border: 1.5px solid rgb(51, 51, 51); // Default
+    border-radius: 2px; // Default
+  }
+  @include md {
+    border: 2px solid rgb(51, 51, 51);
+    border-radius: 2.5px;
+  }
+  @include lg {
+    border: 2.5px solid rgb(51, 51, 51);
+    border-radius: 3px;
+  }
+  @include xl {
+    border: 3px solid rgb(51, 51, 51);
+    border-radius: 4px;
+  }
+  @include xxl {
+    border: 3.5px solid rgb(51, 51, 51);
+    border-radius: 5px;
+  }
+}
+
+@mixin border-radius-LG-dark-global {
+  border: 2px solid rgb(51, 51, 51); // Default
+  border-radius: 10px; // Default
+
+  @include sm {
+    border: 2px solid rgb(51, 51, 51);
+    border-radius: 14px;
+  }
+  @include md {
+    border: 3px solid rgb(51, 51, 51);
+    border-radius: 18px;
+  }
+  @include lg {
+    border: 4px solid rgb(51, 51, 51);
+    border-radius: 24px;
+  }
+  @include xl {
+    border: 5px solid rgb(51, 51, 51);
+    border-radius: 30px;
+  }
+  @include xxl {
+    border: 6px solid rgb(51, 51, 51);
+    border-radius: 36px;
+  }
+}
+/* <<--------- BORDER STYLE -----------<< */
+
+/* >>--------- BUTTONS ---------------->> */
+@mixin global-button {
+  cursor: pointer;
+  white-space: nowrap;
+
+  background-color: #0c0c0c;
+  color: white;
+
+  border: 1px solid black;
+  border-radius: 3px;
+
+  height: 35px;
+  width: fit-content;
+
+  margin-left: 30px;
+  padding: 0 65px;
+
+  @include sm {
+    height: 35px;
+    border-radius: 4.5px;
+  }
+  @include md {
+    height: 50px;
+    border-radius: 6px;
+  }
+  @include lg {
+    height: 65px;
+    border-radius: 8px;
+  }
+  @include xl {
+    height: 85px;
+    border-radius: 12px;
+  }
+  @include xxl {
+    height: 100px;
+    border-radius: 15px;
+  }
+}
+
+@mixin div-bottom-right-fixed {
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  margin-right: 35px;
+  margin-bottom: 56px;
+  z-index: 1;
+  width: fit-content;
+
+  @include sm {
+    margin-right: 35px;
+    margin-bottom: 60px;
+  }
+  @include md {
+    margin-right: 60px;
+    margin-bottom: 90px;
+  }
+  @include lg {
+    margin-right: 95px;
+    margin-bottom: 125px;
+  }
+  @include xl {
+    margin-right: 120px;
+    margin-bottom: 160px;
+  }
+  @include xxl {
+    margin-right: 133px;
+    margin-bottom: 185px;
+  }
+}
+/* <<--------- BUTTONS ----------------<< */
+
+/* >>--------- MARGINS ---------------->> */
+
+/* <<--------- MARGINS ----------------<< */
+
+/* >>--------- IMAGES ---------------->> */
+@mixin imageDefault {
+  transition: opacity 500ms ease 0s;
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-self: center;
+  object-fit: cover;
+}
+
+@mixin imageCenterByWidth {
+  @include imageDefault;
+  width: 100%;
+}
+
+@mixin imageCenterByHeight {
+  @include imageDefault;
+  height: 100%;
+}
+
+/* <<--------- IMAGES ----------------<< */
+
+/* >>--------- TOOL TIPS OVERRIDE ---------------->> */
+
+// https://www.npmjs.com/package/react-tooltip
+
+@mixin toolTipStyling {
+  background-color: #14022e !important;
+  color: #fff;
+  font-size: 12pt !important; // Default
+  border: 0.5px solid #666 !important; // Default
+  border-radius: 4px !important; // Default
+  font-size: 12pt !important;
+  @include sm {
+    border: 0.5px !important;
+    border-radius: 4px !important;
+    font-size: 12pt !important;
+  }
+  @include md {
+    border: 1px !important;
+    border-radius: 6px !important;
+    font-size: 17pt !important;
+  }
+  @include lg {
+    border: 1.5px !important;
+    border-radius: 8px !important;
+    font-size: 21pt !important;
+  }
+  @include xl {
+    border: 2px !important;
+    border-radius: 10px !important;
+    font-size: 25pt !important;
+  }
+  @include xxl {
+    border: 2.5px !important;
+    border-radius: 12px !important;
+    font-size: 28pt !important;
+  }
+}
+
+/* <<--------- TOOL TIPS OVERRIDE ----------------<< */
+
+/* >>--------- TEMPLATE ---------------->> */
+/* <<--------- TEMPLATE ----------------<< */

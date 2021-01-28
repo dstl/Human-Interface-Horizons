@@ -1,0 +1,189 @@
+@import "./mixins.scss";
+$defaultRadius: 4px;
+$defaultAnimationTime: 70ms;
+
+.tech-conver {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px 10px;
+  grid-template-areas:
+    "header-GI"
+    "main-GI"
+    "button-GI";
+
+  &__header-GI {
+    grid-area: header-GI;
+    text-align: center;
+    @include s-md-font-size-global;
+  }
+
+  &__main-GI {
+    justify-self: center;
+    grid-area: main-GI;
+    align-self: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__buttons-GI {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". . buttons-right";
+    grid-area: button-GI;
+  }
+
+  &__buttons-right {
+    align-self: center;
+    justify-self: right;
+    grid-area: buttons-right;
+    display: flex;
+
+    button {
+      &:hover {
+        background-color: #a8a7a7;
+      }
+
+      cursor: pointer;
+      margin-top: 5%;
+      border: 1px solid black;
+      font-size: 12pt;
+      border-radius: 3px;
+      width: 170px;
+      height: 35px;
+      margin-left: 2%;
+
+      @include sm {
+        font-size: 12pt;
+        width: 170px;
+        height: 35px;
+      }
+      @include md {
+        font-size: 17pt;
+        width: 280px;
+        height: 45px;
+      }
+      @include lg {
+        font-size: 21pt;
+        width: 350px;
+        height: 55px;
+      }
+      @include xl {
+        font-size: 25pt;
+        width: 421px;
+        height: 65px;
+      }
+      @include xxl {
+        font-size: 28pt;
+        width: 475px;
+        height: 75px;
+      }
+    }
+  }
+
+  &__grid-item {
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: 2%;
+
+    @include sm {
+      margin-left: 2%;
+      margin-right: 2%;
+      margin-top: 1%;
+    }
+    @include md {
+      margin-left: 2%;
+      margin-right: 2%;
+      margin-top: 3%;
+    }
+    @include lg {
+      margin-left: 2%;
+      margin-right: 2%;
+      margin-top: 3%;
+    }
+    @include xl {
+      margin-left: 2%;
+      margin-right: 2%;
+      margin-top: 3%;
+    }
+    @include xxl {
+      margin-left: 2%;
+      margin-right: 2%;
+      margin-top: 3%;
+    }
+  }
+
+  &__tech-container {
+    cursor: pointer;
+    align-items: center;
+    opacity: 1;
+    transition: background-color $defaultAnimationTime;
+    -webkit-transition: background-color $defaultAnimationTime;
+    -o-transition: background-color $defaultAnimationTime;
+
+    & * .gatsby-image-wrapper picture img {
+      opacity: 1 !important;
+    }
+
+    &:hover {
+      background-color: #eee;
+    }
+
+    h4 {
+      margin: 0;
+    }
+  }
+
+  &__tech-click-button {
+    cursor: pointer;
+    min-height: 42px;
+    width: 80px;
+    font-size: 6pt;
+
+    @include sm {
+      min-height: 45px;
+      width: 80px;
+      font-size: 6pt;
+    }
+    @include md {
+      min-height: 56px;
+      width: 112.5px;
+      font-size: 9pt;
+    }
+    @include lg {
+      min-height: 75px;
+      width: 160px;
+      font-size: 12pt;
+    }
+    @include xl {
+      min-height: 94px;
+      width: 187.5px;
+      font-size: 15pt;
+    }
+    @include xxl {
+      min-height: 113px;
+      width: 225px;
+      font-size: 18pt;
+    }
+
+    @include border-radius-dark-sm;
+    color: black;
+    background-color: #efefefef;
+    border-color: rgb(133, 133, 133);
+  }
+
+  &__tech-container-icon {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+
+    &.disabled {
+      opacity: 0.3;
+    }
+    &.enabled {
+      opacity: 1;
+    }
+  }
+}

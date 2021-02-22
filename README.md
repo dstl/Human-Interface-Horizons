@@ -1,4 +1,4 @@
-To view the site go to: [https://dstl.github.io/Future-HMI-Roadmap/](https://dstl.github.io/Future-HMI-Roadmap/)
+To view the site go to: [https://dstl.github.io/Human-Interface-Horizons/](https://dstl.github.io/Human-Interface-Horizons/)
 
 # Human Interface Horizons Tool
 

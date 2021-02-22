@@ -3,7 +3,7 @@ module.exports = {
     title: `Human Interface Horizons`,
     description: `Human Interface Horizons Tool`,
   },
-  pathPrefix: `/Future-HMI-Roadmap`,
+  pathPrefix: `/Human-Interface-Horizons`,
   flags: {
     FAST_DEV: true,
   },

@@ -32,6 +32,7 @@ import {
   removeSideBarItemTitleFromArray,
 } from '../components/technology-selector/filter-tech'
 import { FileNode } from 'gatsby-plugin-image/dist/src/components/hooks'
+import { FixedHeaderOffset } from '../components/core/fixed-header-offset'
 
 interface Props {
   data: {
@@ -186,7 +187,7 @@ export default function TechSelectorPage(props: Props) {
   )
 
   const submitEnabled = enabledTechnologies.length >= techCompareMin && enabledTechnologies.length <= techCompareMax
-  const resetEnabled = (activeChallenges.length > 0 || sideBarTitles.titles.length > 0 || enabledTechnologies.length > 0);
+  const resetEnabled = activeChallenges.length > 0 || sideBarTitles.titles.length > 0 || enabledTechnologies.length > 0
 
   // Event handlers
 
@@ -274,9 +275,9 @@ export default function TechSelectorPage(props: Props) {
       else {
         setExplicitlyEnabled([...explicitlyEnabledIds, techId])
       }
-        // setDisabledTechnologyIds((disabledTechnologyIds) =>
-        //   isDisabled ? disabledTechnologyIds.filter((c) => c !== techId) : [...disabledTechnologyIds, techId]
-        // )
+      // setDisabledTechnologyIds((disabledTechnologyIds) =>
+      //   isDisabled ? disabledTechnologyIds.filter((c) => c !== techId) : [...disabledTechnologyIds, techId]
+      // )
     }
   }
 
@@ -287,10 +288,10 @@ export default function TechSelectorPage(props: Props) {
   const onClickTechLink = (navToTechPage: string) => window.open(withPrefix(`/technology/${navToTechPage}`), '_blank')
 
   const onClickReset = () => {
-    setExplicitlyEnabled([]);
-    setDisabledTechnologyIds([]);
-    setSideBarTitles({titles: []});
-    setActiveChallenges([]);
+    setExplicitlyEnabled([])
+    setDisabledTechnologyIds([])
+    setSideBarTitles({ titles: [] })
+    setActiveChallenges([])
   }
 
   const onClickSubmit = () => {
@@ -327,6 +328,7 @@ export default function TechSelectorPage(props: Props) {
   return (
     <Layout title-="Aleph HMI" pageHeader="Technology Events Timeline">
       <SEO title="Tech Selector" />
+      <FixedHeaderOffset hasNavbar={true} />
       <div className="tech-selector-guidance">
         Use the filters below to select technologies that are relevant to different defence-specific challenges, or that
         are associated with different levels of disruptiveness, sensory modalities or operational environments. Once you
@@ -386,7 +388,7 @@ export const TechnologyQuery = graphql`
         }
       }
     }
-    technologyImages: allFile(filter: { relativePath: { regex: "/tech-images/icons/black/" } }) {
+    technologyImages: allFile(filter: { relativePath: { regex: "image/black/png/" } }) {
       edges {
         node {
           name

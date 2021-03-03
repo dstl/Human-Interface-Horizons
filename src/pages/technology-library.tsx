@@ -7,6 +7,7 @@ import { mapEdgesToNodes } from '../lib/helpers'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { FileNode } from 'gatsby-plugin-image/dist/src/components/hooks'
 import '../styles/tech-lib.scss'
+import { FixedHeaderOffset } from '../components/core/fixed-header-offset'
 
 interface Props {
   data: { allTechnologiesCsv: { edges: Technology[] }; technologyImages: FileNode[] }
@@ -19,6 +20,7 @@ export default function TechnologyLibrary(props: Props) {
   return (
     <Layout title-="Aleph HMI" pageHeader={'HMI Technology Catalogue'}>
       <SEO title="HMI Technology Catalogue" />
+      <FixedHeaderOffset hasNavbar={true} />
       <div className="tech-selector-guidance">
         Select from the HMI technologies below to see more detailed information about a given technology.
       </div>
@@ -59,7 +61,7 @@ export const IndexQuery = graphql`
         }
       }
     }
-    technologyImages: allFile(filter: { relativePath: { regex: "/tech-images/icons/black/" } }) {
+    technologyImages: allFile(filter: { relativePath: { regex: "image/black/png/" } }) {
       edges {
         node {
           name

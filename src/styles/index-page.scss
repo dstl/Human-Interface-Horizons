@@ -1,42 +1,63 @@
 @import "./mixins.scss";
 
+.main-container-index-page {
+  height: fit-content;
+  margin: 0px 10px;
+  margin-bottom: 5px;
+  @include sm {
+    margin-bottom: 10px;
+  }
+  @include md {
+    margin: 0px 18px;
+    margin-bottom: 25px;
+  }
+  @include lg {
+    margin: 0px 25px;
+    margin-bottom: 50px;
+  }
+  @include xl {
+    margin: 0px 30px;
+    margin-bottom: 75px;
+  }
+  @include xxl {
+    margin-bottom: 100px;
+  }
+}
+
 @mixin gridBoxes {
   display: grid;
   width: auto;
   padding: 1%;
   color: black;
-
   border: 1px solid #4c149b;
-  @include sm {
-    border-width: 1px;
-  }
-  @include md {
-    border-width: 2px;
-  }
-  @include lg {
-    border-width: 2.5px;
-  }
-  @include xl {
-    border-width: 3px;
-  }
-  @include xxl {
-    border-width: 3px;
-  }
-  border-radius: 3px;
   text-decoration: none;
-  -webkit-border-radius: 1px;
-  -moz-border-radius: 1px;
-  -ms-border-radius: 1px;
-  -o-border-radius: 1px;
+
+  @include border-radius-dark-sm;
+  border-color: #4c149b !important;
 }
 
 @mixin customSideImages {
   a {
     .gatsby-image-wrapper {
       img {
+        width: 43% !important;
+        @include sm {
+          width: 46% !important;
+        }
+        @include md {
+          width: 58% !important;
+        }
+        @include lg {
+          width: 63% !important;
+        }
+        @include xl {
+          width: 65% !important;
+        }
+        @include xxl {
+          width: 67% !important;
+        }
+        height: unset !important;
         margin: 2px auto;
-        width: 85%;
-        height: unset;
       }
     }
   }
@@ -46,17 +67,15 @@
   &__content-grid {
     display: grid;
     grid-template-rows: 0.2fr 5fr 0.5fr;
-    grid-template-areas: "landing__text-content-block" "landing__images-grid" ".";
+    grid-template-areas: "." "landing__images-grid" ".";
   }
 
   &__text-content-block {
     font-size: 8pt;
-
     margin: 8px;
 
     @include sm {
       font-size: 10pt;
-
       margin: 8px;
     }
     @include md {
@@ -79,56 +98,26 @@
   }
 
   &__image-title {
-    font-size: 7pt;
-    @include sm {
-      font-size: 7pt;
-    }
-    @include md {
-      font-size: 12pt;
-    }
-    @include lg {
-      font-size: 16pt;
-    }
-    @include xl {
-      font-size: 19pt;
-    }
-    @include xxl {
-      font-size: 23pt;
-    }
+    @include md-font-size-global;
     text-align: center;
     font-weight: bold;
     white-space: nowrap;
   }
 
   &__image-subtitle {
-    font-size: 6pt;
-    @include sm {
-      font-size: 6pt;
-    }
-    @include md {
-      font-size: 9pt;
-    }
-    @include lg {
-      font-size: 13pt;
-    }
-    @include xl {
-      font-size: 16pt;
-    }
-    @include xxl {
-      font-size: 21pt;
-    }
+    @include sm-font-size-global;
     text-align: center;
   }
 
   &__images-grid {
     display: grid;
-    grid-template-columns: 1.25fr 5.1fr 1.25fr;
+    grid-template-columns: 3fr 6fr 3fr;
     grid-template-rows: auto;
     gap: 3px;
     grid-template-areas:
-      "landing__challenge-to-technology landing__technology-selector landing__technology-library"
-      "landing__technology-taxonomy landing__technology-selector landing__scenario-library"
-      "landing__technology-convergence landing__technology-selector landing__cognitive-challenge-library";
+      "landing__technology-library landing__center-text-block landing__technology-convergence"
+      "landing__cognitive-challenge-library landing__center-text-block landing__technology-taxonomy"
+      "landing__challenge-to-technology landing__technology-selector landing__scenario-library";
 
     @include sm {
       gap: 3px;
@@ -145,6 +134,15 @@
     @include xxl {
       gap: 15px;
     }
+  }
+
+  &__center-text-block {
+    grid-area: landing__center-text-block;
+    // @include gridBoxes;
+    border: unset;
+    text-align: left;
+    margin: 1% 2.5%;
+    @include md-font-size-global;
   }
 
   &__technology-selector {
@@ -186,5 +184,9 @@
     grid-area: landing__scenario-library;
     @include gridBoxes;
     @include customSideImages;
+  }
+
+  &__center {
+    display: flex;
   }
 }

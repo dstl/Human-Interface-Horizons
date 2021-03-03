@@ -17,7 +17,9 @@ export const SidebarButton = (props: Props) => {
       className="sidebar-button"
       onClick={() => onClickSideBarItem({ title: title }, isActive)}
       style={
-        isActive ? { border: '0.5px solid black', backgroundColor: '#fff' } : { border: '0.5px solid transparent', backgroundColor: '#929292' }
+        isActive
+          ? { border: '0.5px solid black', color: 'white', backgroundColor: '#ce2256' }
+          : { border: '0.5px solid black', backgroundColor: 'white', color: 'black' }
       }
     >
       {title}

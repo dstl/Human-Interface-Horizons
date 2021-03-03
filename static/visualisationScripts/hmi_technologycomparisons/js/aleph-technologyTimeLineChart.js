@@ -1,29 +1,25 @@
 /*
   Project: HMI Technology Comparisons visualisation
   Filename: aleph-himTechnologyComparison.js
-  Date built: July 2020 to January 2020
+  Date built: July 2020 to February 2021
   Written By: James Bayliss (Data Vis Developer)
   Tech Stack: HTML5, CSS3, JS ES5/6, D3 (v5), JQuery 
-*/
 
-var navFunc
+  USEFUL LINKS:
+  Brush & Zoom:
+  https://bl.ocks.org/tristanwietsma/f4997974b5602a5b48ec8eba104335d4
 
-/*
+  Categorical/Ordinal Scatterplot:
+  https://bl.ocks.org/hydrosquall/fffbaaf171bfc100dc10effbf8242128
 
-USEFUL LINKS:
-Brush & Zoom:
-https://bl.ocks.org/tristanwietsma/f4997974b5602a5b48ec8eba104335d4
-
-Categorical/Ordinal Scatterplot:
-https://bl.ocks.org/hydrosquall/fffbaaf171bfc100dc10effbf8242128
-
-Drop-shadows:
-http://bl.ocks.org/wimdows/1502762
-https://observablehq.com/@bumbeishvili/svg-drop-shadows
-https://gist.github.com/cpbotha/5200394
+  Drop-shadows:
+  http://bl.ocks.org/wimdows/1502762
+  https://observablehq.com/@bumbeishvili/svg-drop-shadows
+  https://gist.github.com/cpbotha/5200394
 */
 
 // initialise and setup global variables.
+var navFunc
 var parseDate = d3.timeParse('%Y') // time format parser - currently set up to read in integer years (e.g. 2020, 2017). No month or date/day definition
 var x, y, x2, y2, x3, y3, xAxis, xAxis2, yAxis // x- and y- defintion initialsiations for both focus and context charts
 var context // context chart variable initialisation
@@ -38,7 +34,6 @@ var context_lineFunction // line path function definition of context chart paths
 var tooltip // focus chart tooltip variable initialisation
 var impact_Axis = ['Low Impact', 'Medium Impact', 'High Impact'] // y-axis domain definiton for 'Impact' categorical ordering
 var likelihood_Axis = ['Low Likelihood', 'Medium Likelihood', 'High Likelihood'] // y-axis domain definiton for 'Likelihood' categorical ordering
-
 var technologies_new = {}
 var technologies = {}
 
@@ -68,7 +63,6 @@ filter
 // overlay original SourceGraphic over translated blurred opacity by using
 // feMerge filter. Order of specifying inputs is important!
 var feMerge = filter.append('feMerge')
-
 feMerge.append('feMergeNode').attr('in', 'offsetBlur')
 feMerge.append('feMergeNode').attr('in', 'SourceGraphic')
 
@@ -120,9 +114,7 @@ function started() {
   */
 function dragged() {
   // grab transform attribute of selected timeline 'g' element
-  aleph.timeline
-    .raise() /* .transition().duration(250).ease(d3.easeLinear) */
-    .attr('transform', 'translate(0,' + d3.event.y + ')')
+  aleph.timeline.raise().attr('transform', 'translate(0,' + d3.event.y + ')')
 
   //dynamcially update y-coordinate of currently selected and dragged/ing timeline
   var mouseY = d3.event.y
@@ -240,8 +232,13 @@ d3.selectAll('.aleph-container').on('mouseup', function () {
                       heightDownPage: 
     ARGUMENTS RETURNED: none
     CALLED FROM: add_removeTimeLinePanel
+                addTimeLinePanels
     CALLS: snapXAxes
             clicked
+            started
+            dragged
+            ended
+            showHideTechnologyTimeLine
 */
 function buildTimeLineChart(panel, heightDownPage) {
   // select base SVG panel, append a new goup 'g' element. This will hold all DOM SVG content for individual technology timeline.
@@ -283,9 +280,7 @@ function buildTimeLineChart(panel, heightDownPage) {
       return
     })
 
-  // defintion onf D3 tooltip
-  //d3.selectAll(".aleph-hmiToolTip-Div").remove();
-
+  // define tootlip defintion.
   tooltip = d3
     .selectAll('.aleph-hmiToolTip-Div')
     .style('filter', 'url(#drop-shadow)')
@@ -296,6 +291,14 @@ function buildTimeLineChart(panel, heightDownPage) {
     .style('top', 50 + 'px')
     .style('width', aleph.toolTipDimensions.width + 'px')
 
+  /*
+    NAME: buildToolTipContent 
+    DESCRIPTION: function to build tooltip form.
+    ARGUMENTS TAKEN: none
+    ARGUMENTS RETURNED: none
+    CALLED FROM: on mouseover in onbuildTimeLineChart
+    CALLS: n/a
+  */
   function buildToolTipContent() {
     d3.selectAll('.aleph-tooltip-content').remove()
 
@@ -361,7 +364,7 @@ function buildTimeLineChart(panel, heightDownPage) {
       .text('Test Title Text')
 
     return
-  }
+  } // end function
 
   /*
     NAME: clicked 
@@ -391,6 +394,7 @@ function buildTimeLineChart(panel, heightDownPage) {
     .attr('width', aleph.windowWidth)
     .attr('height', aleph.timeLineHeight)
 
+  // append timeline background SVG rect
   appendTo
     .append('rect')
     .attr('class', 'aleph-falsePanelBackground FID' + panel.technology)
@@ -399,18 +403,18 @@ function buildTimeLineChart(panel, heightDownPage) {
     .attr('y', 0)
     .attr('width', aleph.windowWidth)
     .attr('height', 32.5)
-    .on('mouseover', function () {
-      d3.select(this).classed('aleph-grab', true).classed('aleph-grabbing', false)
-      return
-    })
-    .on('mousedown', function () {
-      d3.select(this).classed('aleph-grab', false).classed('aleph-grabbing', true)
-      return
-    })
-    .on('mouseout', function () {
-      d3.select(this).classed('aleph-grabbing', false).classed('aleph-grab', false)
-      return
-    })
+  // .on('mouseover', function () {
+  //   d3.select(this).classed('aleph-grab', true).classed('aleph-grabbing', false)
+  //   return
+  // })
+  // .on('mousedown', function () {
+  //   d3.select(this).classed('aleph-grab', false).classed('aleph-grabbing', true)
+  //   return
+  // })
+  // .on('mouseout', function () {
+  //   d3.select(this).classed('aleph-grabbing', false).classed('aleph-grab', false)
+  //   return
+  // })
   // .call(d3.drag().on("start", started))
   // .on("mousedown", function () {
   //   d3.event.stopPropagation();
@@ -429,8 +433,10 @@ function buildTimeLineChart(panel, heightDownPage) {
     USEFULL: // https://stackoverflow.com/questions/16770763/mouse-position-in-d3
   */
   function cursorCoords(d, x, y) {
+    // remvoe all old tooltip content
     d3.selectAll('.aleph-hmiToolTipChild-label').remove()
 
+    // determine height of tooltip.
     var toolTipHeight = d3.selectAll('.aleph-hmiToolTip-Div#tooltipDiv').style('height').replace('px', '')
 
     // modify class definiton of tooltip 'g' element and current offset position based on mouse cursor position
@@ -451,6 +457,7 @@ function buildTimeLineChart(panel, heightDownPage) {
         }
       })
 
+    // update tooltip label infomration
     d3.selectAll('.aleph-hmiToolTipTitle-label').text(d.techName)
     d3.selectAll('.aleph-hmiToolTipSubTitle-label').text(d.Event)
     d3.selectAll('.aleph-hmiToolTipEventType-label').html('<span>' + 'Event Type: ' + '</span>' + d.eventType)
@@ -477,6 +484,7 @@ function buildTimeLineChart(panel, heightDownPage) {
     .attr('y', 25)
     .text(panel.technologyName)
 
+  // append technology-specific icon image
   appendTo
     .append('svg:image')
     .attr('class', 'showHideIcon icon-hide FID' + panel.technology)
@@ -836,15 +844,20 @@ function buildTimeLineChart(panel, heightDownPage) {
     .selectAll('.axis.axis--x')
     .call(xAxis2)
 
+  // display chart ticks.
   var ticks = d3.selectAll('.axis.axis--x').selectAll('.tick text').style('display', 'inline')
 
+  // only display alternate ones if viewing on a small screen
   ticks.each(function (_, i) {
     if (i % 2 !== 0 && aleph.windowWidth < 992) {
       d3.select(this).style('display', 'none')
     }
   })
 
+  // calculate new height for eent rectangles.
   aleph.eventRectHeight = y.bandwidth() / 3
+
+  // reset counter to 0
   aleph.counter = 0
 
   // append aleph.data rectangles to upper focus chart, based on technology selected
@@ -854,15 +867,10 @@ function buildTimeLineChart(panel, heightDownPage) {
     .enter()
     .append('rect')
     .attr('class', function (d) {
-      return (
-        'focusBar event FID' +
-        panel.technology +
-        ' ' +
-        SpaceToCharacter(d.eventType, '-') +
-        ' ' +
-        'GLOBAL_UID-' +
-        d['GLOBAL_UID']
-      )
+      var eventType = CharacterToCharacter(d.eventType, ' ', '-')
+      eventType = CharacterToCharacter(eventType, '/', '-')
+
+      return 'focusBar event FID' + panel.technology + ' ' + eventType + ' ' + 'GLOBAL_UID-' + d['GLOBAL_UID']
     })
     .attr('id', function (d) {
       return 'event-' + d['GLOBAL_UID']
@@ -949,7 +957,7 @@ function buildTimeLineChart(panel, heightDownPage) {
         'aleph-hide focus focusBar eventLabel FID' +
         panel.technology +
         ' ' +
-        SpaceToCharacter(d.eventType, '-') +
+        CharacterToCharacter(d.eventType, ' ', '-') +
         ' ' +
         'GLOBAL_UID-' +
         d['GLOBAL_UID']
@@ -962,7 +970,22 @@ function buildTimeLineChart(panel, heightDownPage) {
       return x(parseDate(d.eventStartDate))
     })
     .attr('dx', 5)
-    .attr('dy', '0.75rem')
+    // .attr('dy', '0.75rem')
+    .attr('dy', function (d, i) {
+      if (y.domain().length == 1) {
+        return '0.80rem'
+      } else if (y.domain().length == 2) {
+        return '0.80rem'
+      } else if (y.domain().length == 3) {
+        return '0.80rem'
+      } else if (y.domain().length == 4) {
+        return '0.85rem'
+      } else if (y.domain().length == 5) {
+        return '0.70rem'
+      } else if (y.domain().length == 6) {
+        return '0.65rem'
+      }
+    })
     // JITTER
     .attr('y', function (d) {
       // https://stackoverflow.com/questions/14320053/how-does-this-line-of-code-work-d3-js-opacity-function
@@ -1012,11 +1035,14 @@ function buildTimeLineChart(panel, heightDownPage) {
     .enter()
     .append('rect')
     .attr('class', function (d) {
+      var eventType = CharacterToCharacter(d.eventType, ' ', '-')
+      eventType = CharacterToCharacter(eventType, '/', '-')
+
       return (
         'context contextBar event FID' +
         panel.technology +
         ' ' +
-        SpaceToCharacter(d.eventType, '-') +
+        CharacterToCharacter(eventType, ' ', '-') +
         ' ' +
         'GLOBAL_UID-' +
         d['GLOBAL_UID']
@@ -1180,12 +1206,10 @@ function buildTimeLineChart(panel, heightDownPage) {
                 and snaps the time interval displayed on all other timelines to interval of selected technology
     ARGUMENTS TAKEN: info :
     ARGUMENTS RETURNED: none
-    CALLED FROM: none
+    CALLED FROM: buildTimeLIneCharts
     CALLS: none
 */
 function snapXAxes(info, snapType) {
-  // console.log(info);
-
   // if user has selected a checkbox associated to a specific technology and associated timeline
   // UI will snap all timelines to same time inteval of teh slected technologies
   if (snapType == 'snapTo') {
@@ -1215,7 +1239,6 @@ function snapXAxes(info, snapType) {
       })
 
     // udpate positioning of d3 brush selection and handles
-    // NEEDS IMPROVEMENT - NEXT USER INTERACTION RESETS/SNAPS BRUSH SELECTION POSITION BACK TO ORIGINAL LOCATION
     d3.selectAll('.selection')
       .attr('x', x2(x.domain()[0]))
       .attr('width', x2(x.domain()[1]) - x2(x.domain()[0]))
@@ -1284,6 +1307,7 @@ function snapXAxes(info, snapType) {
         .attr('x', x2(end))
     }
 
+    // diaable ability to interact with passive timelines until user unchecks the tick box on the active timeline.
     d3.selectAll('.brush').classed('aleph-handles-no-pointer-events', false)
     d3.selectAll('.brush').selectAll('.handle').classed('aleph-handles-no-pointer-events', false)
     d3.selectAll('.brush').selectAll('.overlay').classed('aleph-handles-no-pointer-events', false)
@@ -1299,8 +1323,8 @@ function snapXAxes(info, snapType) {
     DESCRIPTION: function called when user changes sort order of y-axes on timeline charts. can be either categorical (event type) or ranking (H, M , L) 
     ARGUMENTS RECEIVED: fid - button information for sort order button selected by user
     ARGUMENTS RETURNED: none
-    CALLED FROM: none
-    CALLS: update_lineCoordinatesArray
+    CALLED FROM: onClickToggle
+    CALLS: 
 
     http://bl.ocks.org/johangithub/97a186c551e7f6587878
 */
@@ -1596,56 +1620,11 @@ function changeSortOrder(fid) {
 } // end function changeSortOrder
 
 /*
-    NAME: wrapTooltipText 
-    DESCRIPTION: function to wrap long lines to defined width. can be used for labels, strings, axis titles etc.
-    ARGUMENTS TAKEN:  text
-                      content_width
-                      ttmargin
-    ARGUMENTS RETURNED: none
-    CALLED FROM: removeLinklines
-    CALLS: none
-*/
-function wrapTooltipText(text, content_width, ttmargin) {
-  text.each(function () {
-    var text = d3.select(this),
-      words = text.text().split(/\s+/).reverse(),
-      word,
-      line = [],
-      lineNumber = 0,
-      lineHeight = 15, // ems
-      y = text.attr('y'),
-      dy = 1,
-      tspan = text.text(null).append('tspan').attr('x', ttmargin).attr('y', y).attr('dy', dy)
-
-    while ((word = words.pop())) {
-      line.push(word)
-
-      tspan.text(line.join(' '))
-      if (tspan.node().getComputedTextLength() > content_width) {
-        line.pop()
-        tspan.text(line.join(' '))
-        line = [word]
-        tspan = text
-          .append('tspan')
-          .attr('x', ttmargin)
-          .attr('y', y)
-          .attr('dy', ++lineNumber * lineHeight + dy)
-          .text(word)
-
-        vis.lineCount++
-      }
-    }
-  })
-
-  return
-} // end function wrap()
-
-/*
     NAME: displayLabels 
     DESCRIPTION: function to show/hide event rectangles.
     ARGUMENTS TAKEN:  fid
     ARGUMENTS RETURNED: none
-    CALLED FROM: removeLinklines
+    CALLED FROM: onClickToggle
     CALLS: none
 */
 function displayLabels(fid) {

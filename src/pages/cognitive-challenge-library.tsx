@@ -13,6 +13,7 @@ import {
   ChallengesLibraryTitles,
 } from '../../types/Global'
 import '../styles/challenge-lib.scss'
+import { FixedHeaderOffset } from '../components/core/fixed-header-offset'
 
 interface Props {
   data: {
@@ -51,6 +52,7 @@ export default function CognitiveChallengeLibrary(props: Props) {
   return (
     <Layout title-="Aleph HMI" pageHeader={'Future Cognitive Challenges Table'}>
       <SEO title="Future Cognitive Challenges Table" />
+      <FixedHeaderOffset hasNavbar={true} />
       <div className="ccl__container">
         <div className="ccl__grid">
           <p className="ccl__para">
@@ -60,7 +62,7 @@ export default function CognitiveChallengeLibrary(props: Props) {
           <FamilySideTabs families={families} onClickFamilyTab={onClickFamilyTab} selectedTab={currentTab} />
           <div className="ccl__tech-grid">
             <div className="ccl__table" ref={scrollDivRef}>
-            <table className="fixed-header fixed-column-one">
+              <table className="fixed-header fixed-column-one">
                 <TableHeaders titles={tableTitles} />
                 <TableRows challenges={challenges} families={families} selectedTab={currentTab} />
               </table>

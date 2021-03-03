@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import { FixedHeaderOffset } from '../components/core/fixed-header-offset'
 import Layout from '../components/core/layout'
 import SEO from '../components/core/seo'
 
 const NotFoundPage = () => (
   <Layout pageHeader={'NOT FOUND'}>
     <SEO title="404: Not found" />
+    <FixedHeaderOffset hasNavbar={false} />
     <PositionCenter>
       <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
     </PositionCenter>

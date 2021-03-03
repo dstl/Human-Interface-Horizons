@@ -9,18 +9,17 @@
   "rootPath": "/",
   "renderFunction": "renderTechnologyConvergence",
   "scripts": [
-    {"file": "/visualisationScripts/hmi_technologyconvergence/js/d3.v5.min.js"},
-    {"file": "/visualisationScripts/hmi_technologyconvergence/js/jquery.min.js"},
-    {"file": "/visualisationScripts/hmi_technologyconvergence/js/jquery-ui.js"},
-    {"file": "/visualisationScripts/hmi_technologyconvergence/js/sankey.js"},
-    {"file": "/visualisationScripts/hmi_technologyconvergence/js/useful-full.js"},
+    {"file": "/js/d3.v5.min.js"},
+    {"file": "/js/jquery.min.js"},
+    {"file": "/js/jquery-ui.js"},
+    {"file": "/visualisationScripts/hmi_technologyconvergence/js/technologyconvergence-sankey.js"},
     {"file": "/visualisationScripts/hmi_technologyconvergence/js/aleph-hmi-technologyconvergence.js"},
     {"file": "/visualisationScripts/hmi_technologyconvergence/js/gatsbyBridge.js"}
   ],
   "css": [
     {"file": "/visualisationScripts/hmi_technologyconvergence/css/aleph-hmi-technologyconvergence.css"},
-    {"file": "/visualisationScripts/hmi_technologyconvergence/css/bootstrap.css"},
-    {"file": "/visualisationScripts/hmi_technologyconvergence/css/jquery-ui.css"}
+    {"file": "/css/bootstrap.css"},
+    {"file": "/css/jquery-ui.css"}
   ],
   "settings": {
     "groups": [

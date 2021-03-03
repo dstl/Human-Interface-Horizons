@@ -5,17 +5,16 @@
   "rootPath": "/",
   "renderFunction": "renderTechnologyTaxonomy",
   "scripts": [
-    {"file": "/visualisationScripts/technology-taxonomy/js/d3.v5.min.js"},
-    {"file": "/visualisationScripts/technology-taxonomy/js/jquery.min.js"},
-    {"file": "/visualisationScripts/technology-taxonomy/js/jquery-ui.js"},
-    {"file": "/visualisationScripts/technology-taxonomy/js/useful_full.js"},
+    {"file": "/js/d3.v5.min.js"},
+    {"file": "/js/jquery.min.js"},
+    {"file": "/js/jquery-ui.js"},
     {"file": "/visualisationScripts/technology-taxonomy/js/hmi_technologytaxonomy.js"},
     {"file": "/visualisationScripts/technology-taxonomy/js/gatsbyBridge.js"}
   ],
   "css": [
-    {
-      "file": "/visualisationScripts/technology-taxonomy/css/hmi_technologytaxonomy.css"
-    }
+    { "file": "/visualisationScripts/technology-taxonomy/css/hmi_technologytaxonomy.css" },
+    { "file": "/css/bootstrap.css" },
+    { "file": "/css/jquery-ui.css" }
   ],
   "settings": {
     "groups": [
@@ -32,7 +31,8 @@
           "submitButton": {
             "id": "taxonomy-submit",
             "labelOff": "Submit Selection",
-            "labelOn": "Submit Selection"
+            "labelOn": "Submit Selection",
+            "isDisabled": true
           },
           "clearButton": {
             "id": "taxonomy-clear",

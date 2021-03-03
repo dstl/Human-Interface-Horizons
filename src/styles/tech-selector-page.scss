@@ -197,10 +197,20 @@ $defaultAnimationTime: 70ms;
   width: stretch;
   height: 18px;
   margin: 2px 0;
-  background-color: #929292;
-  border: 0;
-  border-radius: 2px;
   font-size: 10pt;
+
+  border: solid #666 0.5px;
+  border-radius: 2px;
+  background-color: #fff;
+  transition: background-color $defaultAnimationTime;
+  -webkit-transition: background-color $defaultAnimationTime;
+  -o-transition: background-color $defaultAnimationTime;
+
+  &:focus {
+    border: solid white 1px;
+    outline: 0;
+  }
+
   @include sm {
     margin: 2px 0;
     height: 18px;
@@ -226,10 +236,6 @@ $defaultAnimationTime: 70ms;
     height: 50px;
     font-size: 22pt;
   }
-}
-
-.sidebar-button:focus {
-  background-color: white;
 }
 
 .tech-selector-container {
@@ -261,6 +267,7 @@ $defaultAnimationTime: 70ms;
   text-align: center;
   height: auto;
   margin-bottom: 10px;
+  /* margin-top: 100px; */
 }
 
 .tech-selector-sidebar {
@@ -312,7 +319,7 @@ $defaultAnimationTime: 70ms;
 
   @include sm {
     padding: 5px;
-    margin: 32px 15px;
+    margin: 42px 15px;
     height: 75px;
     width: 80px;
   }
@@ -356,39 +363,39 @@ $defaultAnimationTime: 70ms;
 
 .tech-click-button {
   cursor: pointer;
-  font-size: 6pt;
+  font-size: 8pt;
   width: 80px;
-  min-height: 42px;
+  height: 61px;
 
   @include sm {
-    min-height: 45px;
+    height: 54px;
     width: 80px;
 
-    font-size: 6pt;
+    font-size: 8pt;
     margin-top: 1%;
   }
   @include md {
-    min-height: 56px;
+    height: 75px;
     width: 112.5px;
-    font-size: 9pt;
+    font-size: 11pt;
     margin-top: 2%;
   }
   @include lg {
-    min-height: 75px;
+    height: 84px;
     width: 150px;
-    font-size: 12pt;
+    font-size: 14pt;
     margin-top: 3%;
   }
   @include xl {
-    min-height: 94px;
+    height: 108px;
     width: 187.5px;
-    font-size: 15pt;
+    font-size: 17pt;
     margin-top: 4%;
   }
   @include xxl {
-    min-height: 113px;
+    height: 125px;
     width: 225px;
-    font-size: 18pt;
+    font-size: 20pt;
     margin-top: 5%;
   }
 

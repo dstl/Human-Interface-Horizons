@@ -26,6 +26,7 @@ export const ToggleButton = (props: ToggleProps) => {
 }
 
 interface SubmitProps {
+  isDisabled: boolean
   label: string
   groupId: string
   toggledStates: object[]
@@ -34,8 +35,14 @@ interface SubmitProps {
 }
 
 export const SubmitButton = (props: SubmitProps) => {
-  const { label, groupId, toggledStates, orderedIds, submitHandler } = props
-  return <button onClick={() => submitHandler(groupId, toggledStates, orderedIds)}>{`${label}`}</button>
+  const { label, groupId, toggledStates, orderedIds, isDisabled, submitHandler } = props
+
+  return (
+    <button
+      className={isDisabled ? 'submit-button__disabled' : ''}
+      onClick={() => (isDisabled ? {} : submitHandler(groupId, toggledStates, orderedIds))}
+    >{`${label}`}</button>
+  )
 }
 
 interface NavProps {

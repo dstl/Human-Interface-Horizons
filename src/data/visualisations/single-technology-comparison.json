@@ -5,18 +5,17 @@
   "rootPath": "/",
   "renderFunction": "renderTechnologyComparison",
   "scripts": [
-    {"file": "/visualisationScripts/hmi_technologycomparisons/js/d3.v5.min.js"},
-    {"file": "/visualisationScripts/hmi_technologycomparisons/js/jquery.min.js"},
-    {"file": "/visualisationScripts/hmi_technologycomparisons/js/jquery-ui.js"},
-    {"file": "/visualisationScripts/hmi_technologycomparisons/js/useful-full.js"},
+    {"file": "/js/d3.v5.min.js"},
+    {"file": "/js/jquery.min.js"},
+    {"file": "/js/jquery-ui.js"},
     {"file": "/visualisationScripts/hmi_technologycomparisons/js/aleph-hmiTechnologyComparison.js"},
     {"file": "/visualisationScripts/hmi_technologycomparisons/js/aleph-technologyTimeLineChart.js"},
     {"file": "/visualisationScripts/hmi_technologycomparisons/js/gatsbyBridge.js"}
   ],
   "css": [
-    {"file": "/visualisationScripts/hmi_technologycomparisons/css/aleph-himTechnologyComparison.css"},
-    {"file": "/visualisationScripts/hmi_technologycomparisons/css/bootstrap.css"},
-    {"file": "/visualisationScripts/hmi_technologycomparisons/css/jquery-ui.css"}
+    {"file": "/visualisationScripts/hmi_technologycomparisons/css/aleph-himTechnologyComparison-single.css"},
+    {"file": "/css/bootstrap.css"},
+    {"file": "/css/jquery-ui.css"}
   ],
   "settings": {
     "groups": [

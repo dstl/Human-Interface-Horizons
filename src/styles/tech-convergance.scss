@@ -26,55 +26,51 @@ $defaultAnimationTime: 70ms;
     justify-content: center;
   }
 
-  &__buttons-GI {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: ". . buttons-right";
-    grid-area: button-GI;
-  }
-
   &__buttons-right {
-    align-self: center;
-    justify-self: right;
-    grid-area: buttons-right;
     display: flex;
-
+    justify-content: flex-end;
+    max-height: fit-content;
     button {
       &:hover {
         background-color: #a8a7a7;
       }
 
       cursor: pointer;
-      margin-top: 5%;
       border: 1px solid black;
       font-size: 12pt;
       border-radius: 3px;
       width: 170px;
       height: 35px;
-      margin-left: 2%;
+      margin-left: 1.5%;
+      margin-top: 1%;
 
+      margin-bottom: 55px;
       @include sm {
+        margin-bottom: 55px;
         font-size: 12pt;
         width: 170px;
         height: 35px;
       }
       @include md {
+        margin-bottom: 75px;
         font-size: 17pt;
         width: 280px;
         height: 45px;
       }
       @include lg {
+        margin-bottom: 75px;
         font-size: 21pt;
         width: 350px;
         height: 55px;
       }
       @include xl {
+        margin-bottom: 75px;
         font-size: 25pt;
         width: 421px;
         height: 65px;
       }
       @include xxl {
+        margin-bottom: 100px;
         font-size: 28pt;
         width: 475px;
         height: 75px;
@@ -137,34 +133,35 @@ $defaultAnimationTime: 70ms;
 
   &__tech-click-button {
     cursor: pointer;
-    min-height: 42px;
     width: 80px;
-    font-size: 6pt;
+    height: 61px;
+    font-size: 8pt;
 
     @include sm {
-      min-height: 45px;
+      height: 54px;
       width: 80px;
-      font-size: 6pt;
+      font-size: 8pt;
     }
     @include md {
-      min-height: 56px;
+      height: 75px;
       width: 112.5px;
-      font-size: 9pt;
+      font-size: 11pt;
     }
     @include lg {
-      min-height: 75px;
-      width: 160px;
-      font-size: 12pt;
+      height: 84px;
+      width: 150px;
+      font-size: 14pt;
+      margin-top: 3%;
     }
     @include xl {
-      min-height: 94px;
+      height: 108px;
       width: 187.5px;
-      font-size: 15pt;
+      font-size: 17pt;
     }
     @include xxl {
-      min-height: 113px;
+      height: 125px;
       width: 225px;
-      font-size: 18pt;
+      font-size: 20pt;
     }
 
     @include border-radius-dark-sm;

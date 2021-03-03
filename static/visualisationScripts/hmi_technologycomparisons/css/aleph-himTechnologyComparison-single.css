@@ -1,0 +1,976 @@
+/*
+    Project: HMI Technology Comparisons visualisation
+    Filename: aleph-himTechnologyComparison.css
+    Date built: July 2020 to ... 
+*/
+
+/*
+  Army/Land: 	#D4351C
+  Navy/Maritime: 	#003078
+  Air Force/Air: 	#5694CA
+
+  https://design-system.service.gov.uk/styles/colour/
+*/
+
+/*
+    ####################################################
+    M E D I A  Q U E R I E S
+    ####################################################
+    */
+
+/*
+    ::::::::::::::::::::::::::::::::::::::::::::::::::::
+    Bootstrap 4 breakpoints
+
+    // Extra small devices (portrait phones, less than 576px)
+    // No media query since this is the default in Bootstrap
+
+    // Small devices (landscape phones, 576px and up)
+    @media (min-width: 576px) { ... }
+
+    // Medium devices (tablets, 768px and up)
+    @media (min-width: 768px) { ... }
+
+    // Large devices (desktops, 992px and up)
+    @media (min-width: 992px) { ... }
+
+    // Extra large devices (large desktops, 1200px and up)
+    @media (min-width: 1200px) { ... }
+
+    */
+
+/* 
+    Extra small devices (portrait phones, less than 576px) 
+    No media query since this is the default in Bootstrap because it is "mobile first"
+    */
+
+body {
+  /* background-color: #211f20 !important; */
+  font-family: "Open Sans", serif;
+  /* overflow-y: hidden; */ /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+/* very small devices  */
+@media (max-width: 575px) {
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+} /* */
+
+.aleph-container {
+  background-color: #ffffff !important;
+  transform: translate(-60px, 0px);
+  /* transform: translate(-60px, -30px); */
+/*   position: absolute;
+  top: 165px;
+  left: 0px; */
+}
+
+.aleph-chart {
+  background-color: #ffffff;
+}
+
+.btn {
+  margin: 5px;
+  font-size: 0.66rem;
+  width: 100px;
+}
+
+.aleph-no-pointer-events {
+  pointer-events: none !important;
+  cursor: no-drop !important;
+  opacity:0.05;
+}
+
+.aleph-handles-no-pointer-events {
+  pointer-events: none !important;
+  cursor: no-drop !important;
+  opacity:1.00;
+}
+
+.hideBtn {
+  /* height: 10px; */
+  margin-top: 0px;
+  width: 67px;
+  visibility: hidden;
+}
+
+.hideBtn text {
+  display: inline;
+}
+
+.row {
+  display: block;
+  margin-left: 10px;
+  height: auto;
+  border-bottom: none;
+}
+
+.row2 {
+  border-bottom: solid;
+}
+
+.aleph-timelinePanel {
+  display: block;
+}
+
+.event {
+  stroke-width: 0px;
+  fill-opacity: 0.85;
+  clip-path: url(#clip);
+}
+
+.eventLabel {
+  clip-path: url(#clip);
+  pointer-events: none;
+
+  display: inline;
+}
+
+.zoom {
+  cursor: move;
+  fill: none;
+  pointer-events: all;
+}
+
+.tick text {
+  font-weight: bold;
+}
+
+.axis text {
+/*   font-weight: bold;
+  font-size: 1rem; */
+  font-weight: normal;
+  font-size: 0.8rem;
+  fill: #14022e;
+}
+
+.axis--y text {
+  font-weight: normal;
+  /* font-size: 1rem; */
+  font-size: 0.8rem;
+  fill: #14022e;
+}
+
+.axis path {
+  fill: none;
+  stroke-width: 3.5px;
+  stroke: #93a3b1;
+}
+
+.axis .tick line {
+  fill: #b0b7bb !important;
+  stroke: #b0b7bb !important;
+  pointer-events: none;
+  stroke-width: 1;
+  opacity: 0.25;
+}
+
+/* 
+.Defence-Implication {
+  fill: none;
+  stroke: #14022e;
+}
+
+.Integration {
+  fill: #7b67a8;
+  stroke: #7b67a8;
+}
+
+.Legal-and-Ethical {
+  fill: #36bcee;
+  stroke: #36bcee;
+}
+
+.Production {
+  fill: #2eb5b2;
+  stroke: #2eb5b2;
+}
+
+.Societal-Adoption {
+  fill: #fddd3e;
+  stroke: #fddd3e;
+}
+
+.Technology-Development {
+  fill: #ef7835;
+  stroke: #ef7835;
+} */
+
+/* 
+
+.eventLabel {
+  fill: #211f20;
+  stroke: none;
+  stroke-width: 1px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-anchor: start;
+} */
+
+.checkBoxRectCentre {
+  pointer-events: none;
+}
+
+.checkBoxRect {
+  fill: white;
+  stroke: #000;
+  stroke-width: 2px;
+}
+.checkBoxRect:hover {
+  /*   fill: #211f20; */
+  cursor: pointer;
+  /*   fill-opacity: 0.5; */
+}
+
+/* .clicked {
+  fill: #211f20;
+  fill-opacity: 1;
+} */
+
+.cannotClick {
+  pointer-events: none;
+  fill: red;
+  stroke: red;
+  cursor: no-drop;
+}
+
+.selection {
+  fill: rgba(200, 200, 200, 1);
+  stroke: rgba(200, 200, 200, 0);
+  /* stroke: #106882; */
+  stroke-width: 2.5px;
+  fill-opacity: 0.25;
+}
+
+.handle {
+  fill: #106882;
+  stroke: #106882;
+  stroke-width: 1;
+}
+
+.aleph-panelTechTitle {
+  /* fill: #14022e; */
+  fill: #fff;
+  stroke: none;
+  stroke-width: 0px;
+  font-size: 1.75rem;
+  font-weight: bold;
+  /*  text-decoration: underline; */
+  text-decoration: none;
+}
+
+.btn-group {
+  float: right;
+  margin-right: 50px;
+}
+
+.aleph-sortOption {
+  color: #fff;
+  background-color: #005d7e;
+  border-color: #005d7e;
+}
+
+.aleph-btn-unselected {
+  color: #fff;
+  background-color: #808080;
+  border-color: #808080;
+}
+
+.aleph-btn-selected {
+  color: #fff;
+  background-color: #14022e;
+  border-color: #14022e;
+}
+
+.aleph-falseFullPanelBackground {
+  fill: #fff;
+  pointer-events: none;
+}
+
+.checkBoxRectFalseback {
+  fill: #0f0;
+}
+
+.aleph-falsePanelBackground {
+  fill: #14022e;
+  /* stroke-dasharray: 10,10,10,10; */
+  stroke: #14022e;
+  fill-opacity: 1;
+  stroke-width: 0.5;
+}
+/* 
+.aleph-falsePanelBackground:hover {
+  cursor: grab;
+} */
+.aleph-grab {
+  cursor: grab;
+}
+.aleph-grabbing {
+  cursor: grabbing;
+}
+
+.aleph-timelineClicked {
+  stroke-width: 0.5;
+  stroke: #14022e;
+  stroke-opacity: 1;
+  fill-opacity: 1;
+  cursor: grab;
+  fill: #14022e;
+  cursor: grabbing;
+}
+
+.aleph-draggedFarEnoughHigh {
+  /*   stroke-width: 5px;
+  stroke: #F00; */
+  opacity: 0.1;
+}
+
+.aleph-draggedFarEnoughLow {
+  /*   stroke-width: 5px;
+  stroke: #0F0; */
+  opacity: 0.1;
+}
+
+.segment {
+  opacity: 1;
+}
+
+.aleph-linkLine {
+  fill: none;
+  stroke: #005d7e;
+  stroke-width: 5px;
+  stroke-linecap: square;
+  clip-path: url(#clip);
+}
+
+.aleph-context_linkLine {
+  fill: none;
+  stroke: #005d7e;
+  stroke-width: 2px;
+  stroke-linecap: square;
+  clip-path: url(#clip);
+}
+
+.focusBar:hover {
+  cursor: pointer;
+}
+
+.aleph-hmiToolTip {
+  fill: #ffffff;
+  stroke: #93a3b1;
+  stroke-width: 0.1px;
+  display: inline;
+  pointer-events: none;
+  filter: url(#drop-shadow);
+}
+
+.aleph-technology {
+  font-size: 1.5rem;
+  font-weight: bold;
+  fill: #93a3b1;
+  stroke: none;
+  stroke-width: 0px;
+  pointer-events: none;
+}
+.aleph-type {
+  font-size: 1rem;
+  font-weight: bold;
+  fill: #000;
+  stroke: none;
+  stroke-width: 0px;
+  pointer-events: none;
+}
+.aleph-comment {
+  font-size: 1rem;
+  font-weight: normal;
+  fill: #000;
+  stroke: none;
+  stroke-width: 0px;
+  pointer-events: none;
+}
+.aleph-impact {
+  font-size: 1rem;
+  font-weight: bold;
+  fill: #000;
+  stroke: none;
+  stroke-width: 0px;
+  pointer-events: none;
+}
+.aleph-relevance {
+  font-size: 1rem;
+  font-weight: bold;
+  fill: #000;
+  stroke: none;
+  stroke-width: 0px;
+  pointer-events: none;
+}
+
+.aleph-time {
+  font-size: 1rem;
+  font-weight: lighter;
+  fill: #000;
+  stroke: none;
+  stroke-width: 0px;
+  pointer-events: none;
+}
+
+.High {
+  fill: #a50026;
+}
+
+.Medium {
+  fill: #fee08b;
+}
+
+.Low {
+  fill: #006837;
+}
+
+.aleph-unlinked {
+  opacity: 0.15 !important;
+}
+
+.aleph-linked {
+  opacity: 1 !important;
+}
+
+.aleph-hide {
+  display: none;
+}
+
+.aleph-invisible {
+  visibility: hidden;
+}
+
+.aleph-linkLine_hide {
+  opacity: 0.15;
+}
+
+.aleph-context_linkLine_hide {
+  opacity: 0.15;
+}
+
+#aleph-submit {
+  /*   margin: 50px 45%; */
+  width: 200px;
+}
+
+#aleph-url {
+  width: 33%;
+  margin: 50px 33% 25px 33%;
+}
+
+#aleph-submitUrl {
+  margin-right: 25px;
+}
+
+.aleph-exampleTechSelector {
+  background-color: white;
+  width: 100%;
+  height: 682px;
+  /* text-align: center; */
+}
+.aleph-technologyLabel {
+  font-size: 0.66rem;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  font-weight: normal;
+  color: white;
+}
+.aleph-chartSortOptions {
+  font-size: 1rem;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  font-weight: normal;
+  color: white;
+}
+
+/* .aleph-DisplayOptions {
+  font-size: 1rem;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  right: -45px;
+  top: 60px;
+  transform: rotate(270deg);
+  pointer-events:none;
+} */
+
+.aleph-DisplayOptions {
+  font-size: 1rem;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  font-weight: normal;
+  color: white;
+  position: absolute;
+  right: -42.5px;
+  top: 60px;
+  transform: /* translate(0,0) */ rotate(270deg);
+  pointer-events: none;
+}
+
+.aleph-chartRelationalOptions {
+  font-size: 1rem;
+  margin-left: 10px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  font-weight: normal;
+  color: white;
+}
+
+/* .aleph-controls {
+  width: 275px;
+  height: 375px;
+  background-color: #acafb2;
+  border-radius: 5px;
+  position: fixed;
+  left: -245px;
+  top: 50px;
+  z-index: 400;
+  text-align: center;
+} */
+.aleph-controls {
+  width: 275px;
+  background-color: #acafb2;
+  border-radius: 5px;
+  position: fixed;
+  top: 50px;
+  z-index: 400;
+  text-align: center;
+  height: auto;
+  padding-bottom: 25px;
+}
+
+.aleph-control {
+  position: relative;
+  left: 0px;
+  display: inline-block;
+  padding: 5px;
+  margin: 3px;
+  width: 195px;
+  top: 5px;
+}
+
+.aleph-controls.aleph-closeControls {
+  left: -245px;
+}
+
+.aleph-controls.aleph-openControls {
+  left: -30px;
+}
+
+/* .aleph-controls:hover {
+  cursor: pointer;
+}
+ */
+.aleph-hr {
+  width: 50%;
+  margin: 10px 25% 10px;
+  opacity: 0;
+}
+
+.aleph-technology-icon {
+  width: 75px;
+  height: 75px;
+  margin: 0% auto;
+  display: block;
+}
+
+.aleph-technology-icon:hover {
+  cursor: pointer;
+}
+
+.aleph-technology-deselected {
+  color: #fff;
+  background-color: #808080;
+  border-color: #808080;
+  /*   filter: url(#drop-shadow); */
+  opacity: 0.33;
+  -moz-opacity: 0.33;
+}
+
+.aleph-filter-deselected {
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+}
+
+.aleph-technology-selected {
+  color: #fff;
+}
+.aleph-filter-selected {
+  opacity: 1;
+}
+
+.aleph-halfWidth {
+  width: 33%;
+  margin-right: 0px;
+}
+
+.aleph-technologyLabel {
+  display: block;
+}
+
+.aleph-disabled {
+  cursor: no-drop !important;
+  opacity: 0.25;
+}
+
+/* .aleph-controls.aleph-controls-baseHeight {
+  height: 375px;
+} */
+
+.aleph-primaryInputTech {
+  background-color: #14022e;
+  border-color: #14022e;
+  color: #fff;
+}
+
+.aleph-secondaryInputTech {
+  border-style: solid;
+  /* background-color: #FFF; */
+  /* border-color: #14022e; */
+  border-color: rgba(20, 2, 46, 0.25);
+  border-width: 1px;
+  /* opacity: 1; */
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.aleph-legendBase {
+  width: /* 33.3% */ 50%;
+  height: 32.5px;
+  background-color: #acafb2;
+  position: fixed;
+  right: 0%;
+  top: 0px;
+  opacity: 0;
+}
+
+.aleph-legendSwatch {
+  width: /* 113px */ 8.333%;
+  height: /* 50px */ 32.5px;
+  position: inline-block;
+  display: inline-block;
+  /* margin: 10px; */
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+  font-size: 0.5rem;
+  /* padding: 2.5px; */
+  font-weight: bold;
+}
+
+.aleph-legendSwatchLabel {
+  /*  font-size: 0.5rem; */
+  color: #000;
+  position: inline;
+  margin: 5px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.aleph-half {
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.aleph-primaryLink {
+  /* opacity: 0.80; */
+  /* background-color: #acafb2; */
+  height: 32.5px;
+  padding-top: 7px;
+  padding-bottom: 5px;
+}
+
+.aleph-secondaryLink {
+  /*   fill-opacity:0.25;
+  opacity:0.25; */
+  /*  background-color: #acafb2; */
+  height: 50px;
+}
+/* 
+.aleph-primaryLink.research-and-design {
+  border-width: 1;
+  background:#cd2456;
+  color:#FFF;
+}
+
+.aleph-primaryLink.production {
+  border-width: 1;
+  background:#ef7835;
+  color:#FFF;
+}
+
+.aleph-primaryLink.new-development {
+  border-width: 1;
+  background:#fddd3e;
+  color:#FFF;
+}
+
+.aleph-primaryLink.legal {
+  border-width: 1;
+  background: #2eb5b2;
+  color:#FFF;
+}
+
+.aleph-primaryLink.integration {
+  border-width: 1;
+  background: #36bcee;
+  color:#FFF;
+}
+
+.aleph-primaryLink.defence-application {
+  border-width: 1;
+  background:#7b67a8;
+  color:#FFF;
+}
+
+.aleph-primaryLink.availability {
+  border-width: 1;
+  background:#14022e;
+  color:#FFF;
+} */
+
+.aleph-primaryLink.defence-implication {
+  border-width: 1;
+  background: #cd2456;
+  color: #14022e;
+}
+
+.aleph-primaryLink.integration {
+  border-width: 1;
+  background: #ef7835;
+  color: #14022e;
+}
+
+.aleph-primaryLink.legal-and-ethical {
+  border-width: 1;
+  background: #fddd3e;
+  color: #14022e;
+}
+
+.aleph-primaryLink.production {
+  border-width: 1;
+  background: #2eb5b2;
+  color: #14022e;
+}
+
+.aleph-primaryLink.societal-adoption {
+  border-width: 1;
+  background: #36bcee;
+  color: #14022e;
+}
+
+.aleph-primaryLink.technology-development {
+  border-width: 1;
+  background: #7b67a8;
+  color: #14022e;
+}
+
+.Defence-Implication {
+  fill:/*  none; */ #cd2456;
+  stroke: #cd2456;
+  /*   stroke-width: 1; */
+}
+
+.Integration {
+  fill: #ef7835;
+  stroke: #ef7835;
+}
+
+.Legal-Ethical{
+  fill: #fddd3e;
+  stroke: #fddd3e;
+}
+
+.Production {
+  fill: #2eb5b2;
+  stroke: #2eb5b2;
+}
+
+.Societal-Adoption {
+  fill: #36bcee;
+  stroke: #36bcee;
+}
+
+.Technology-Development {
+  fill: #7b67a8;
+  stroke: #7b67a8;
+}
+
+.aleph-hmiToolTip-Div {
+  background-color: #fff;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #a0a0a0;
+  pointer-events: none;
+ /*  height: auto; */
+}
+
+.aleph-hmiToolTip {
+  fill: #ffffff;
+  stroke: #93a3b1;
+  stroke-width: 0.1px;
+  display: inline;
+  pointer-events: none;
+  filter: url(#drop-shadow);
+}
+
+.aleph-hmiToolTipTitle {
+  font-size: 1rem;
+  fill: #000;
+  font-weight: bold;
+  text-anchor: middle;
+}
+
+.aleph-hmiToolTipTitle-label {
+  font-size: 1.25rem;
+  color: #000;
+  font-weight: bold;
+  text-align: center;
+}
+
+.aleph-hmiToolTip-Div {
+  background-color: #fff;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #a0a0a0;
+  pointer-events: none;
+/*   height: auto; */
+}
+
+span {
+  font-weight: bold;
+}
+
+.aleph-icon-row {
+  width: 100%;
+  display: block;
+  margin: 0px 2.5%;
+}
+
+.aleph-icon-container {
+  width: 10.5%;
+  display: inline-block;
+}
+
+.tech-nameLabel {
+  display: block;
+  font-size: 0.45rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.tech-label {
+  display: block;
+  font-size: 0.5rem;
+  text-align: center;
+}
+
+.eventLabel {
+  fill: #211f20;
+  stroke: none;
+  stroke-width: 1px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-anchor: start;
+}
+
+.linkIcon {
+  pointer-events: none;
+}
+
+.aleph-timeLineCheck:hover {
+  cursor: pointer;
+}
+
+.btn-danger:disabled {
+  color: #14022e;
+  background-color: #fff !important;
+  border-color: #14022e;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #14022e;
+  border-color: #14022e;
+}
+
+.btn-success:hover {
+  color: #fff;
+  border-color: #14022e;
+  background-color: #14022e;
+}
+.btn-success:not(:disabled):not(.disabled):active {
+  color: #fff;
+  border-color: #14022e;
+  background-color: #14022e;
+}
+
+.btn-success:not(:disabled):not(.disabled):active:focus,
+.show > .btn-success.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(20, 2, 46, 0.5);
+}
+
+.aleph-techIcon {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.aleph-selectInstructions {
+  font-size: 1rem;
+  color: #000;
+  font-weight: normal;
+  /* text-align: left; */
+  margin-left: 10%;
+}
+
+.aleph-selectInstructionsTitle {
+  font-size: 2rem;
+  color: #000;
+  font-weight: bold;
+  text-align: middle;
+  /*  margin: 15px 0% 15px 0%; */
+}
+
+#reset {
+  width: 200px;
+}
+
+.reset-submitRow {
+  margin: 25px 33%;
+}
+
+#incremental {
+  margin-left: 15%;
+}
+
+li {
+  width: 90%;
+}
+
+.showHideIcon:hover{
+  cursor:pointer;
+}

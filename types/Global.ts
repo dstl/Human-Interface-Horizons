@@ -1,4 +1,4 @@
-import { FileNode } from "gatsby-plugin-image/dist/src/components/hooks";
+import { FileNode } from 'gatsby-plugin-image/dist/src/components/hooks'
 
 export interface Dictionary {
   [key: string]: string
@@ -132,6 +132,11 @@ export interface ToggledOrderStates {
   [id: string]: string[]
 }
 
+export interface ActiveButtons {
+  toggled: boolean
+  button: string
+}
+
 export interface ToggleConstraints {
   [id: string]: {
     type: string
@@ -150,7 +155,7 @@ export interface SideBarMenuComponents {
 
 export interface ScriptFile {
   file: string
-  remote?:boolean
+  remote?: boolean
 }
 
 export interface CSSFile {

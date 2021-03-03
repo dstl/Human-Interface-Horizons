@@ -1,7 +1,7 @@
 /*
   Project: HMI Technology Convergence visualisation
   Filename: aleph-hmi_technologyconvergence.js
-  Date built: September 2020 to XYZ 2020
+  Date built: September 2020 to February 2020
   Written By: James Bayliss (Data Vis Developer)
   Tech Stack: HTML5, CSS3, JS ES5/6, D3 (v5), JQuery 
 */
@@ -21,7 +21,7 @@ var aleph = {
   lastBUILD_SPECIFIC_UID: -1,
   xCoords: [],
   url: 'http://HMI-technologySelector.co.uk?',
-  margin: { top: 125, right: 100, bottom: 100, left: 100, axis: -25 },
+  margin: { top: 125, right: 75, bottom: 100, left: 100, axis: -25 },
   numberOfTechnologiesAllowed: 5,
   techConvergenceData: [],
   sourceTechnologyArray: [],
@@ -49,7 +49,7 @@ var aleph = {
   techIconImageSize: 35,
   chartHeight: 1750,
 }
-
+var vis = {}
 var technologies_new = {}
 var technologies = {}
 
@@ -57,13 +57,10 @@ var link // global setting up of link var
 var path // global setting up of path var
 var parseDate = d3.timeParse('%Y') // time format parser - currently set up to read in integer years (e.g. 2020, 2017). No month or date/day definition
 var formatDate = d3.timeFormat('%Y') // time format parser - currently set up to read in integer years (e.g. 2020, 2017). No month or date/day definition
-
 var sankey // global setting up of sankey var
 
-// defintion onf D3 tooltip
+// defintion on D3 tooltip
 aleph.tooltip = d3
-  //  .select("body")
-  //  .append("div")
   .selectAll('.aleph-hmiToolTip-Div')
   .style('filter', 'url(#drop-shadow)')
   .attr('class', 'aleph-hmiToolTip-Div aleph-hide')
@@ -80,23 +77,25 @@ d3.selectAll('.aleph-hmiToolTip-Div')
   .style('position', 'relative')
   .style('display', 'block')
   .style('text-anchor', 'middle')
-  .text('Test Title Text')
+  .text('')
 
+// append tooltip subtitle label
 d3.selectAll('.aleph-hmiToolTip-Div')
   .append('label')
   .attr('class', 'aleph-tooltip-label aleph-hmiToolTipSubTitle-label')
   .style('position', 'relative')
   .style('left', 10 + 'px')
   .style('display', 'block')
-  .text('Test Sub-title Text')
+  .text('')
 
+// append tooltip infomation labels
 d3.selectAll('.aleph-hmiToolTip-Div')
   .append('label')
   .attr('class', 'aleph-tooltip-label aleph-hmiToolNewTechnologyInformation-label')
   .style('position', 'relative')
   .style('left', 10 + 'px')
   .style('display', 'block')
-  .text('hmiToolNewTechnologyInformation')
+  .text('')
 
 d3.selectAll('.aleph-hmiToolTip-Div')
   .append('label')
@@ -104,7 +103,7 @@ d3.selectAll('.aleph-hmiToolTip-Div')
   .style('position', 'relative')
   .style('left', 10 + 'px')
   .style('display', 'block')
-  .text('Test Number Text')
+  .text('')
 
 d3.selectAll('.aleph-hmiToolTip-Div')
   .append('label')
@@ -113,7 +112,7 @@ d3.selectAll('.aleph-hmiToolTip-Div')
   .style('left', 10 + 'px')
   .style('font-weight', 'normal')
   .style('display', 'block')
-  .text('Test Title Text')
+  .text('')
 
 d3.selectAll('.aleph-hmiToolTip-Div')
   .append('label')
@@ -121,16 +120,16 @@ d3.selectAll('.aleph-hmiToolTip-Div')
   .style('position', 'relative')
   .style('left', 10 + 'px')
   .style('display', 'block')
-  .text('Test Number Text')
+  .text('')
 
 d3.selectAll('.aleph-hmiToolTip-Div')
   .append('label')
   .attr('class', 'aleph-tooltip-label aleph-hmiToolTipChildrenListTitle-label')
   .style('position', 'relative')
   .style('left', 10 + 'px')
-  .style('font-weight', 'bold')
+  .style('font-weight', 'normal')
   .style('display', 'block')
-  .text('Test Title Text')
+  .text('')
 
 // filters go in defs element
 var defs = d3.selectAll('.aleph-chart').append('defs')
@@ -180,7 +179,7 @@ window.onresize = windowResize
                 Calls functions necessary to set-up initial view
   ARGUMENTS TAKEN: none
   ARGUMENTS RETURNED: none
-  CALLED FROM: body tag in index.html
+  CALLED FROM: renderTechnologyConvergence
   CALLS:    alertSize();
             loadData();
 */
@@ -189,21 +188,65 @@ function onload() {
   loadData() // function call to load initial CSV data file
 
   // store window dimensions as aleph object varaiables
-  aleph.windowWidth = vis.width
-  aleph.windowHeight = vis.height
+  aleph.windowWidth = vis.width - aleph.margin.right /*  - aleph.margin.left */
+  aleph.windowHeight = vis.height - aleph.margin.top - aleph.margin.bottom
 
   // update dimensions of base container DIV to size of browser window
   d3.selectAll('.aleph-container')
     .style('width', aleph.windowWidth + 'px')
-    .style('height', aleph.windowHeight + 'px')
+    .style('height', aleph.windowHeight + 50 + 'px')
 
   // update dimensions of base container SVG panel to size of browser window
   d3.selectAll('.aleph-chart')
     .attr('width', aleph.windowWidth)
-    .attr('height', aleph.chartHeight + 50)
+    .attr('height', aleph.chartHeight + 100)
 
   return
 } // end function onload
+
+function buildLegend() {
+  var labelTexts = [
+    '1st Generation link',
+    '2nd Generation link',
+    '3rd Generation link',
+    '4th Generation link',
+    '5th Generation link',
+  ]
+
+  d3.selectAll('.aleph-container').append('div').attr('class', 'aleph-legendBase')
+
+  var swatchCounter = 0
+
+  for (var i = 0; i < 5; i++) {
+    var legendSwatch = d3
+      .selectAll('.aleph-legendBase')
+      .append('div')
+      .attr('class', 'aleph-legendSwatch aleph-legendSwatch-' + swatchCounter)
+    d3.selectAll('.aleph-legendSwatch.aleph-legendSwatch-' + i)
+      .append('div')
+      .attr('class', 'aleph-primaryLink aleph-half level' + swatchCounter)
+
+    d3.selectAll('.aleph-primaryLink.aleph-half.level' + swatchCounter)
+      .append('label')
+      .text(labelTexts[i])
+    legendSwatch.append('div').attr('class', 'aleph-secondaryLink level' + swatchCounter)
+    swatchCounter++
+  } // end for loop.
+
+  var legendSwatch = d3
+    .selectAll('.aleph-legendBase')
+    .append('div')
+    .attr('class', 'aleph-legendSwatch aleph-legendSwatch-' + swatchCounter)
+  d3.selectAll('.aleph-legendSwatch.aleph-legendSwatch-' + swatchCounter)
+    .append('div')
+    .attr('class', 'aleph-primaryLink aleph-primaryInputTech aleph-half')
+
+  d3.selectAll('.aleph-primaryLink.aleph-primaryInputTech.aleph-half').append('label').text('Primary Input Technology')
+  legendSwatch.append('div').attr('class', 'aleph-secondaryLink aleph-secondaryInputTech aleph-half')
+  d3.selectAll('.aleph-secondaryLink.aleph-secondaryInputTech.aleph-half')
+    .append('label')
+    .text('Secondary Input Technology')
+} // end function
 
 /*
       NAME: windowResize 
@@ -211,7 +254,8 @@ function onload() {
       ARGUMENTS TAKEN: none
       ARGUMENTS RETURNED: none
       CALLED FROM: none
-      CALLS: submitSelection
+      CALLS: alertSize
+              VariableWidthSankeyLink
   
       http://bl.ocks.org/johangithub/97a186c551e7f6587878
 */
@@ -219,7 +263,7 @@ function windowResize() {
   alertSize() // function call to get current browser window dimensions
 
   // store window dimensions as aleph object varaiables
-  aleph.windowWidth = vis.width
+  aleph.windowWidth = vis.width /* - aleph.margin.right */ /*  - aleph.margin.left */
   aleph.windowHeight = vis.height
 
   // update dimensions of base container DIV to size of browser window
@@ -230,7 +274,7 @@ function windowResize() {
   // update dimensions of base container SVG panel to size of browser window
   d3.selectAll('.aleph-chart')
     .attr('width', aleph.windowWidth)
-    .attr('height', aleph.chartHeight + 50)
+    .attr('height', aleph.chartHeight + 100)
 
   aleph.chartWidth = aleph.windowWidth - aleph.margin.left - aleph.margin.right
 
@@ -265,6 +309,7 @@ function windowResize() {
     .attr('x1', 0)
     .attr('x2', 0)
 
+  // update position of sankey chart nodes after/during window resize event
   svg.selectAll('.node').attr('transform', function (d) {
     if (aleph.xCoords.indexOf(d.x) == 0) {
       d.x2 = (aleph.chartWidth / (aleph.numVerticalHorizons - 1)) * aleph.xCoords.indexOf(d.x)
@@ -302,14 +347,14 @@ function windowResize() {
       DESCRIPTION: function called to load single CSV input data file.
       ARGUMENTS TAKEN: none
       ARGUMENTS RETURNED: none
-      CALLED FROM: none
+      CALLED FROM: onload
       CALLS:  none
   */
 function loadData() {
   return new Promise((resolve, reject) => {
     // store relevant file papth as local variable
-    var inputDataFile = `${rootPath}data/convergence.csv`
-    var inputTechnologyCatalogueFile = `${rootPath}data/technologies.csv`
+    var inputDataFile = `${rootPath}data/convergence.csv` // vis-specific input data file
+    var inputTechnologyCatalogueFile = `${rootPath}data/technologies.csv` // base control technologies file
 
     // store all input files as a Promise
     Promise.all([d3.csv(inputDataFile), d3.csv(inputTechnologyCatalogueFile)]).then(function (data) {
@@ -318,11 +363,13 @@ function loadData() {
       technologiesFile = data[1]
       aleph.techConvergenceData = techConvergence
 
+      // dynamically geenrate JSON object of technology information
       technologiesFile.forEach(function (d, i) {
-        var JSONelement = { technology: d.title }
+        var JSONelement = { id: d.id, technology: d.title }
         technologies_new[Number(i + 1)] = JSONelement
       })
 
+      // resave as oroginal technoologies JOSN object.
       technologies = technologies_new
 
       // calculate time axis limit miniumum
@@ -364,20 +411,28 @@ function loadData() {
       resolve(aleph.techConvergenceData)
     }) // end promsie data load
   })
-}
+} // end function loadData
 
 /*
       NAME: submitSelection 
       DESCRIPTION: function called to initially draw chart
       ARGUMENTS TAKEN: techTaxonomy
       ARGUMENTS RETURNED: none
-      CALLED FROM: submitURL, index.html
-      CALLS: recurse, cursorCoords
+      CALLED FROM: renderTechnologyConvergence
+      CALLS: recurse
+              cursorCoords
+              CharacterToCharacter
+              VariableWidthSankeyLink
+              dragmove
+              cursorCoords
 */
 function submitSelection() {
+  // if function is called with no technologies selected, bail out of drawing chart.
   if (aleph.sourceTechnologyArray.length == 0) {
     return
   }
+
+  buildLegend()
 
   // show legend
   d3.selectAll('.aleph-legendBase').classed('aleph-hide', false).moveToFront()
@@ -395,11 +450,11 @@ function submitSelection() {
   aleph.firstPass = true
   /*
         NAME: recurse 
-        DESCRIPTION: function to dynamically recurse through ingested data and contruct multi level JSON object to generarte sankey chart.
+        DESCRIPTION: function to dynamically recurse through ingested data and construct multi level JSON object to generarte sankey chart.
         ARGUMENTS TAKEN: none
         ARGUMENTS RETURNED: none
         CALLED FROM: submitSelection
-        CALLS: none
+        CALLS: recurse
   */
   function recurse() {
     if (aleph.sourceTechnologyArray.length != 0) {
@@ -409,6 +464,7 @@ function submitSelection() {
       var selectedTechnologyArray = []
       var targetTechnology = []
 
+      // lopp through array of selected technologies
       sourceTechnologyArray.forEach(function (d) {
         var techID = d.replace('FID', '')
         var source = ''
@@ -440,8 +496,8 @@ function submitSelection() {
 
             aleph.selectedTechnologyArray = aleph.selectedTechnologyArray.concat(selectedTargetArray)
           })
-        }
-      })
+        } // end outer if
+      }) // end forEach
 
       aleph.layerHistory[linkLevel] = layerArray
       aleph.sourceTechnologyArray = []
@@ -523,15 +579,14 @@ function submitSelection() {
   svg = d3
     .select('.aleph-chart')
     .attr('width', aleph.windowWidth)
-    .attr('height', aleph.chartHeight + 50)
+    .attr('height', aleph.chartHeight + 100)
     .append('g')
     .attr('class', 'aleph-convergenceMap')
     .attr('id', 'aleph-convergenceMap')
     .attr('transform', 'translate(' + aleph.margin.left + ',' + aleph.margin.top + ')')
 
-  // updae chart width and height variables.
+  // update chart width and height variables.
   aleph.chartWidth = aleph.windowWidth - aleph.margin.left - aleph.margin.right
-
   aleph.chartHeight = 1750
 
   // initialise D3 axes for x and y domains
@@ -541,6 +596,7 @@ function submitSelection() {
     parseDate(aleph.timeLineAxisMaxYear + Number(aleph.timeLineAxisPadding)),
   ])
 
+  // dynamically disable button if data nodes extend over full mapped tiem interval
   if (aleph.timeLineAxisMinTechYear == 2020 && aleph.timeLineAxisMaxTechYear == 2040) {
     $('.aleph-expandTimeAxis').prop('disabled', true).addClass('aleph-disabled')
   } else {
@@ -597,6 +653,7 @@ function submitSelection() {
   data.forEach(function (d) {
     BUILD_SPECIFIC_UID = BUILD_SPECIFIC_UID + 1
 
+    // add SOURCE node information to graph.node object array
     graph.nodes.push({
       GLOBAL_UID: d.GLOBAL_UID,
       BUILD_SPECIFIC_UID: BUILD_SPECIFIC_UID,
@@ -604,8 +661,10 @@ function submitSelection() {
       YEAR: +d.SOURCE_YEAR,
       linkType: d.LINKTYPE,
       level: d.LEVEL,
+      newTechnologyInformation: d.newTechnologyInformation,
     })
 
+    // add link information
     graph.links.push({
       BUILD_SPECIFIC_UID: BUILD_SPECIFIC_UID,
       source: d.SOURCE_TECHNOLOGY,
@@ -617,6 +676,7 @@ function submitSelection() {
 
     BUILD_SPECIFIC_UID = BUILD_SPECIFIC_UID + 1
 
+    // add TARGET node information to graph.node object array
     graph.nodes.push({
       GLOBAL_UID: d.GLOBAL_UID,
       BUILD_SPECIFIC_UID: BUILD_SPECIFIC_UID,
@@ -682,6 +742,8 @@ function submitSelection() {
       aleph.xCoords.push(d.x)
     }
   })
+
+  // dynamically determine number of chart vertical horizons being displayed
   aleph.numVerticalHorizons = aleph.xCoords.length
 
   // add in the links
@@ -730,7 +792,7 @@ function submitSelection() {
     .enter()
     .append('g')
     .attr('class', function (d) {
-      return 'node FID-' + d.BUILD_SPECIFIC_UID
+      return /* classStr */ 'node FID-' + d.BUILD_SPECIFIC_UID
     })
     .attr('transform', function (d) {
       aleph.dataMinYear = d3.min([aleph.dataMinYear, d.year])
@@ -760,10 +822,11 @@ function submitSelection() {
   node
     .append('rect')
     .attr('class', function (d) {
-      var level
-      if (d.sourceLinks.length == 0) {
-      }
-      return (
+      // var level
+      // if (d.sourceLinks.length == 0) {
+      // }
+
+      var classStr =
         'aleph-nodeBlock' +
         ' FID-' +
         d.BUILD_SPECIFIC_UID +
@@ -773,7 +836,23 @@ function submitSelection() {
         d.nodeType +
         ' ' +
         CharacterToCharacter(d.name, ' ', '-')
-      )
+
+      for (var technology in technologies) {
+        if (technologies[technology].technology == d['name']) {
+          classStr = classStr + ' hmi-original-tech'
+        }
+      }
+
+      return classStr
+      /* 'aleph-nodeBlock' +
+        ' FID-' +
+        d.BUILD_SPECIFIC_UID +
+        ' ' +
+        d.level +
+        ' ' +
+        d.nodeType +
+        ' ' +
+        CharacterToCharacter(d.name, ' ', '-') */ 
     })
     .attr('height', function (d) {
       if (d.dy < 0) {
@@ -786,21 +865,31 @@ function submitSelection() {
     .on('mouseover', function (d) {
       d3.selectAll('.aleph-hmiToolTip-g').classed('aleph-hide', false).moveToFront()
 
+      var ishmi_original_tech = false
+      if (d3.select(this).classed('hmi-original-tech')) {
+        ishmi_original_tech = true
+      }
+
       // D3 v4
       var x = d3.event.pageX
       var y = d3.event.pageY
 
-      cursorCoords(d, x, y)
+      cursorCoords(d, x, y, ishmi_original_tech)
       return
     })
     .on('mousemove', function (d) {
       // call function to update coordinates and position of tooltip
 
+      var ishmi_original_tech = false
+      if (d3.select(this).classed('hmi-original-tech')) {
+        ishmi_original_tech = true
+      }
+
       // D3 v4
       var x = d3.event.pageX
       var y = d3.event.pageY
 
-      cursorCoords(d, x, y)
+      cursorCoords(d, x, y, ishmi_original_tech)
 
       return
     })
@@ -812,7 +901,15 @@ function submitSelection() {
   node
     .append('svg:image')
     .attr('class', function (d) {
-      return 'aleph-techIcon FID-' + d.BUILD_SPECIFIC_UID + ' ' + CharacterToCharacter(d.name, ' ', '-')
+      var classStr = 'aleph-techIcon FID-' + d.BUILD_SPECIFIC_UID + ' ' + CharacterToCharacter(d.name, ' ', '-')
+
+      for (var technology in technologies) {
+        if (technologies[technology].technology == d['name']) {
+          classStr = classStr + ' hmi-original-tech'
+        }
+      }
+
+      return classStr
     })
     .attr('id', function (d) {
       return 'aleph-techIcon-' + d.BUILD_SPECIFIC_UID
@@ -857,21 +954,31 @@ function submitSelection() {
     .on('mouseover', function (d) {
       d3.selectAll('.aleph-hmiToolTip-g').classed('aleph-hide', false).moveToFront()
 
+      var ishmi_original_tech = false
+      if (d3.select(this).classed('hmi-original-tech')) {
+        ishmi_original_tech = true
+      }
+
       // D3 v4
       var x = d3.event.pageX
       var y = d3.event.pageY
 
-      cursorCoords(d, x, y)
+      cursorCoords(d, x, y, ishmi_original_tech)
       return
     })
     .on('mousemove', function (d) {
       // call function to update coordinates and position of tooltip
 
+      var ishmi_original_tech = false
+      if (d3.select(this).classed('hmi-original-tech')) {
+        ishmi_original_tech = true
+      }
+
       // D3 v4
       var x = d3.event.pageX
       var y = d3.event.pageY
 
-      cursorCoords(d, x, y)
+      cursorCoords(d, x, y, ishmi_original_tech)
 
       return
     })
@@ -933,85 +1040,13 @@ function submitSelection() {
 } // end function submitSelection
 
 /*
-      NAME: buildTechnologySelectionArray 
-      DESCRIPTION: function called to initially draw chart
-      ARGUMENTS TAKEN: 
-      ARGUMENTS RETURNED: none
-      CALLED FROM: none
-      CALLS:  none
-*/
-function buildTechnologySelectionArray(button) {
-  event.stopPropagation()
-
-  // localise HTML content of [de]selected technology
-  var buttonPressed = d3.select(button)
-
-  // if user has DESELECTED a field ...
-  if (
-    buttonPressed.classed('aleph-btn-unselected') &&
-    aleph.sourceTechnologyArray.length < aleph.numberOfTechnologiesAllowed
-  ) {
-    // dynamically modify CSS class declarations attached to all technology selection buttons
-    buttonPressed.classed('aleph-btn-unselected', !buttonPressed.classed('aleph-btn-unselected'))
-
-    // dynamically modify CSS class declarations attached to user-selected technology selection buttons
-    buttonPressed.classed('aleph-btn-selected', !buttonPressed.classed('aleph-btn-selected'))
-
-    aleph.sourceTechnologyArray.push(CharacterToCharacter(button.id, '_', ' '))
-    const filterIndex = aleph.sourceTechnologyArray.indexOf(CharacterToCharacter(button.id, '_', ' '))
-  }
-  // else if user has SELECTED a field
-  else if (buttonPressed.classed('aleph-btn-selected')) {
-    // dynamically modify CSS class declarations attached to all technology selection buttons
-    buttonPressed.classed('aleph-btn-unselected', !buttonPressed.classed('aleph-btn-unselected'))
-
-    // dynamically modify CSS class declarations attached to user-selected technology selection buttons
-    buttonPressed.classed('aleph-btn-selected', !buttonPressed.classed('aleph-btn-selected'))
-
-    const filterIndex = aleph.sourceTechnologyArray.indexOf(CharacterToCharacter(button.id, '_', ' '))
-    if (filterIndex > -1) {
-      aleph.sourceTechnologyArray.splice(filterIndex, 1)
-    }
-  } // end else if ...
-  else if (aleph.sourceTechnologyArray.length == aleph.numberOfTechnologiesAllowed) {
-    console.log('selections have reached maximum amount')
-  }
-
-  // if array of selected technologies is same as max. number of level allowed, modify class name attribution and styling
-  if (aleph.sourceTechnologyArray.length == aleph.numberOfTechnologiesAllowed) {
-    $('.aleph-technology-icon.aleph-btn-unselected').prop('disabled', true).addClass('aleph-disabled')
-  } else {
-    $('.aleph-technology-icon.aleph-btn-unselected').prop('disabled', false).removeClass('aleph-disabled')
-  }
-
-  // if array of selected technologies is same as max. number of level allowed, modofy class name attribution and styling
-  if (aleph.sourceTechnologyArray.length == 0) {
-    $('#aleph-submit')
-      .prop('disabled', true)
-      .addClass('aleph-disabled')
-      .addClass('btn-danger')
-      .removeClass('btn-success')
-    $('#clear').prop('disabled', true).addClass('aleph-disabled')
-  } else {
-    $('#aleph-submit')
-      .prop('disabled', false)
-      .removeClass('aleph-disabled')
-      .removeClass('btn-danger')
-      .addClass('btn-success')
-    $('#clear').prop('disabled', false).removeClass('aleph-disabled')
-  }
-
-  return
-} // end function buildTechnologySelectionArray
-
-/*
       NAME: changeViewStyle 
       DESCRIPTION: function to change chart style once drawn. Modifies node horizontal position and x axis display between being 
                     mapped to time axis and being mapped at equal-interval spacing across screen
       ARGUMENTS TAKEN: button - information on selected button 
       ARGUMENTS RETURNED: none
-      CALLED FROM: index.html
-      CALLS:  transitionChart
+      CALLED FROM: onClickToggle
+      CALLS:    transitionChart(button)
 */
 function changeViewStyle(button) {
   // if user is chacing from x axis time view to stylised display
@@ -1060,9 +1095,11 @@ function changeViewStyle(button) {
       ARGUMENTS TAKEN: none
       ARGUMENTS RETURNED: none
       CALLED FROM: changeViewStyle
-      CALLS: none
+      CALLS: VariableWidthSankeyLink
+            path
 */
 function transitionChart(button) {
+  // globally store laterl postion chart definition
   aleph.lateralPositionType = button.value
 
   // get curent value of x axis type
@@ -1084,13 +1121,18 @@ function transitionChart(button) {
           (aleph.chartWidth / (aleph.numVerticalHorizons - 1)) * aleph.xCoords.indexOf(d.x) - sankey.nodeWidth() / 2
       }
 
+      // if chart is to be transitioned to map against time axis
       if (aleph.lateralPositionType == 'xTime') {
         return 'translate(' + aleph.x(parseDate(d['year'])) + ',' + d.y + ')'
-      } else {
+      }
+
+      // if chart is to be transitioned to map against equally spaced intervals
+      else {
         return 'translate(' + d.x2 + ',' + d.y + ')'
       }
     })
 
+  // update positions of node labels.
   svg
     .selectAll('.aleph-nodeLabel')
     .attr('x', function (d) {
@@ -1152,8 +1194,8 @@ function transitionChart(button) {
     CALLS: wrapTooltipText
     USEFULL: // https://stackoverflow.com/questions/16770763/mouse-position-in-d3
 */
-function cursorCoords(d, x, y) {
-
+function cursorCoords(d, x, y, techState) {
+  // determine height of tooltip
   var toolTipHeight = d3.selectAll('.aleph-hmiToolTip-Div#tooltipDiv').style('height').replace('px', '')
 
   // modify class definiton of tooltip 'g' element and current offset position based on mouse cursor position
@@ -1174,6 +1216,7 @@ function cursorCoords(d, x, y) {
       }
     })
 
+  // update local variables with relevant data node information
   var techName = d.name
   var techYear = d.year
   var numChildren = d.sourceLinks.length
@@ -1181,6 +1224,7 @@ function cursorCoords(d, x, y) {
   var parents = ''
   var newTechnologyDetail = d.newTechnologyInformation
 
+  // construct parent string information
   d.targetLinks.forEach(function (d) {
     parents = parents + d.source.name + ', '
   })
@@ -1191,140 +1235,67 @@ function cursorCoords(d, x, y) {
     children = children + d.target.name + ', '
   })
 
+  // update HTML strings with content
   d3.selectAll('.aleph-hmiToolTipTitle-label').html(techName)
   d3.selectAll('.aleph-hmiToolTipSubTitle-label').html('<span>' + 'Year: ' + '</span>' + techYear)
 
-  if (newTechnologyDetail == undefined) {
-    d3.selectAll('.aleph-hmiToolNewTechnologyInformation-label').html(
-      '<span></span>')
+  if (/* newTechnologyDetail == undefined */ techState == true) {
+    d3.selectAll('.aleph-hmiToolNewTechnologyInformation-label').html('<span></span>')
   } else {
-    d3.selectAll('.aleph-hmiToolNewTechnologyInformation-label').html(
-      '<span>' + 'New Technology Detail: ' + '</span>' + newTechnologyDetail
-    ).classed("aleph-hide", false)
+    d3.selectAll('.aleph-hmiToolNewTechnologyInformation-label')
+      .html('<span>' + 'New Technology Detail: ' + '</span>' + newTechnologyDetail)
+      .classed('aleph-hide', false)
   }
 
   d3.selectAll('.aleph-hmiToolTipParents-label').html(
     '<span>' + 'Number of Parent Technologies: ' + '</span>' + numParents
   )
-  d3.selectAll('.aleph-hmiToolTipParentsList-label').html(parents.substring(0, parents.length - 2))
+  //d3.selectAll('.aleph-hmiToolTipParentsList-label').html(parents.substring(0, parents.length - 2))
+
+  var arrayOfParents = parents.split(',')
+  arrayOfParents.pop()
+
+  if (arrayOfParents.length > 0) {
+    d3.selectAll('.aleph-hmiToolTipParentsList-label').text('').html('')
+
+    var bulletStr = '<span>Parent technologies to selected item:</span>'
+    arrayOfParents.forEach(function (d, i) {
+      bulletStr = bulletStr + "<span></br><li></span><span style='font-weight:normal'>" + d + '</span>'
+    }) // end forEach
+
+    d3.selectAll('.aleph-hmiToolTipParentsList-label').html(bulletStr)
+  } // end if ...
+  else {
+    d3.selectAll('.aleph-hmiToolTipParentsList-label').text('').html('')
+  } // end else ..
+
+
+
+
+  /* 
+    UPDATE CHILD TECH INFOMRAITON (NUMBER AND NAMES)
+  */  
   d3.selectAll('.aleph-hmiToolTipChildren-label').html('<span>' + 'Number of Children: ' + '</span>' + numChildren)
-  d3.selectAll('.aleph-hmiToolTipChildrenListTitle-label').text(children.substring(0, children.length - 2))
+
+  var arrayOfChildren = children.split(',')
+  arrayOfChildren.pop()
+
+  if (arrayOfChildren.length > 0) {
+    d3.selectAll('.aleph-hmiToolTipChildrenListTitle-label').text('').html('')
+
+    var bulletStr = '<span>Child technologies to selected item:</span>'
+    arrayOfChildren.forEach(function (d, i) {
+      bulletStr = bulletStr + "<span></br><li></span><span style='font-weight:normal'>" + d + '</span>'
+    }) // end forEach
+
+    d3.selectAll('.aleph-hmiToolTipChildrenListTitle-label').html(bulletStr)
+  } // end if ...
+  else {
+    d3.selectAll('.aleph-hmiToolTipChildrenListTitle-label').text('').html('')
+  } // end else ..
 
   return
 } // end function cursorCoords
-
-/*
-    NAME: wrapTooltipText 
-    DESCRIPTION: function to wrap long lines to defined width. can be used for labels, strings, axis titles etc.
-    ARGUMENTS TAKEN:  text
-                      content_width
-                      ttmargin
-    ARGUMENTS RETURNED: none
-    CALLED FROM: removeLinklines
-    CALLS: none
-*/
-function wrapTooltipText(text, content_width, ttmargin) {
-  text.each(function () {
-    var text = d3.select(this),
-      words = text.text().split(/\s+/).reverse(),
-      word,
-      line = [],
-      lineNumber = 0,
-      lineHeight = 15, // ems
-      y = text.attr('y'),
-      dy = 1,
-      tspan = text.text(null).append('tspan').attr('x', ttmargin).attr('y', y).attr('dy', dy)
-
-    while ((word = words.pop())) {
-      line.push(word)
-
-      tspan.text(line.join(' '))
-      if (tspan.node().getComputedTextLength() > content_width) {
-        line.pop()
-        tspan.text(line.join(' '))
-        line = [word]
-        tspan = text
-          .append('tspan')
-          .attr('x', ttmargin)
-          .attr('y', y)
-          .attr('dy', ++lineNumber * lineHeight + dy)
-          .text(word)
-
-        vis.lineCount++
-      }
-    }
-  })
-
-  return
-} // end function wrapTooltipText()
-
-/*
-    NAME: returnToTechSelector 
-    DESCRIPTION: function called to return user back to intial onload view of proxy tech selector.
-    ARGUMENTS TAKEN:  none
-    ARGUMENTS RETURNED: none
-    CALLED FROM: index.html
-    CALLS: loadData
-*/
-function returnToTechSelector() {
-  // display legend base. initialised url string.
-  d3.selectAll('.aleph-legendBase').classed('aleph-hide', true)
-
-  aleph.url = 'http://HMI-technologySelector.co.uk?'
-
-  // construct url string
-  aleph.sourceTechnologyArray.forEach(function (d) {
-    aleph.url = aleph.url + d + '=true&'
-  })
-
-  // modify copyURL button styling and classes
-  $('.btn.aleph-copyUrl').prop('disabled', false).removeClass('aleph-disabled')
-
-  // modify submitUrl button styling and classes
-  $('.btn.aleph-submitUrl').prop('disabled', false).removeClass('aleph-disabled')
-
-  // modify DOM components button styling and classes
-  d3.selectAll('.aleph-exampleTechSelector').classed('aleph-hide', false)
-  d3.selectAll('.aleph-chart').classed('aleph-hide', true)
-  d3.selectAll('.aleph-controls').classed('aleph-hide', true)
-
-  // clear and reintiialsie selction arrays
-  aleph.techConvergenceData = []
-  aleph.sourceTechnologyArray = []
-  aleph.targetTechnologyArray = []
-  aleph.selectedTechnologyArray = []
-  aleph.layerHistory = {}
-  aleph.lateralPositionType = 'xTime'
-
-  // grab references to all butttons.
-  var buttons = d3.selectAll('.btn.aleph-technologyButton')._groups[0]
-
-  // loop through all buttons modofiying label text for each one to initial styling and content.
-  buttons.forEach(function (d) {
-    if (d.innerText.indexOf('(') != -1) {
-      var index = d.innerText.indexOf('(')
-      d.innerText = d.innerText.slice(0, index)
-    }
-  })
-
-  // modify styling and assigned classed of all tech buttons
-  d3.selectAll('.aleph-technology-icon')
-    .classed('aleph-btn-selected', false)
-    .classed('aleph-btn-unselected', true)
-    .classed('aleph-disabled', false)
-
-  // remove base group eleement.
-  d3.selectAll('.aleph-convergenceMap').remove()
-
-  // reset view of URL text box.
-  document.getElementById('aleph-url').value = ''
-  document.getElementById('aleph-url').placeholder = 'Copy your URL here ...'
-
-  // call function to load data (mimicing restarting of visual)
-  loadData()
-
-  return
-} // end function returnToTechSelector
 
 /*
     NAME: copyURL 
@@ -1368,14 +1339,16 @@ function submitURL() {
 } // end function submitURL
 
 /*
-    NAME: darkMode 
-    DESCRIPTION: function called to handle user drag moing of individual sankey node
+    NAME: dragmove 
+    DESCRIPTION: function called to handle user drag moving of individual sankey node
     ARGUMENTS TAKEN: d
     ARGUMENTS RETURNED: none
     CALLED FROM: submitSelection
-    CALLS: none
+    CALLS: VariableWidthSankeyLink
+            path
 */
 function dragmove(d) {
+  // hide tooltip group element
   d3.selectAll('.aleph-hmiToolTip-g').classed('aleph-hide', true)
 
   if (aleph.xCoords.indexOf(d.x) == 0) {
@@ -1386,6 +1359,7 @@ function dragmove(d) {
     d.x2 = (aleph.chartWidth / (aleph.numVerticalHorizons - 1)) * aleph.xCoords.indexOf(d.x) - sankey.nodeWidth() / 2
   }
 
+  // update positioning of user-selected node..
   d3.select(this).attr('transform', function () {
     if (aleph.lateralPositionType == 'xTime') {
       return (
@@ -1400,7 +1374,10 @@ function dragmove(d) {
     }
   })
 
+  // redfine the sankey chart layout
   sankey.relayout()
+
+  // update positioning of links related to user-selected node..
   link.attr('d', function (d, i) {
     if (d.level != 'level1' && d.source.sourceLinks.length != d.source.targetLinks.length) {
       d3.select(this).classed('aleph-areaLink', true)
@@ -1416,8 +1393,9 @@ function dragmove(d) {
     DESCRIPTION: function called to handling transitioning of x axis when time extend of all selected nodes is less than time extent of catalogue
     ARGUMENTS TAKEN: button
     ARGUMENTS RETURNED: none
-    CALLED FROM: index.html
-    CALLS: none
+    CALLED FROM: onClickToggle
+    CALLS: VariableWidthSankeyLink
+            path
 */
 function expandTimeAxis(button) {
   // if user has currently selected data extent to view chart by
@@ -1443,9 +1421,10 @@ function expandTimeAxis(button) {
     ])
   }
 
+  // update lateral position varaible.
   aleph.lateralPositionType = 'xTime'
 
-  // append g element to hold x time axis
+  // transition x axis
   svg
     .selectAll('.axis.axis--x')
     .transition()
@@ -1477,6 +1456,7 @@ function expandTimeAxis(button) {
     .attr('x1', 0)
     .attr('x2', 0)
 
+  // transition all chart nodes accordingly
   svg
     .selectAll('.node')
     .transition()
@@ -1504,7 +1484,6 @@ function expandTimeAxis(button) {
         return path(d)
       }
     })
-  /* .attr("d", path) */
 
   // transition the axis
   d3.selectAll('.axis.axis--x')
@@ -1523,6 +1502,19 @@ function expandTimeAxis(button) {
   return
 } // end function expandTimeAxis
 
+/*
+    NAME: VariableWidthSankeyLink 
+    DESCRIPTION: function called handle creating and transitioning of variable-width sankey chart link lines.
+    ARGUMENTS TAKEN: d: node information
+    ARGUMENTS RETURNED: none
+    CALLED FROM: windowResize
+                dragMove
+                submitSelection
+                transitionChart
+                expandTimeAxis
+    CALLS: none
+            
+*/
 // D3 Sankey Link with Variable Width
 //borrowed from sankey.js, draws one a line from top of source to top of target, top of target to bottom of target, bottom of target to bottom of source, bottom of source to top of source
 //http://bl.ocks.org/chriswhong/dd794c5ca90769602066
@@ -1678,10 +1670,66 @@ function VariableWidthSankeyLink(d, i) {
   }
 } // end function sankey.link
 
-function reset(button) {
-  aleph.sourceTechnologyArray = []
+/*
+    NAME: alertSize
+    DESCRIPTION: determine current width and height dimensions of window
+    ARGUMENTS TAKEN: none
+    ARGUMENTS RETURNED: none
+    CALLED FROM: onload
+                windowResize
+    CALLS: none
+*/
+function alertSize() {
+  var myWidth = 0,
+    myHeight = 0
+  if (typeof window.innerWidth == 'number') {
+    //Non-IE
+    myWidth = window.innerWidth
+    myHeight = window.innerHeight
+  } else if (
+    document.documentElement &&
+    (document.documentElement.clientWidth || document.documentElement.clientHeight)
+  ) {
+    //IE 6+ in 'standards compliant mode'
+    myWidth = document.documentElement.clientWidth
+    myHeight = document.documentElement.clientHeight
+  } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+    //IE 4 compatible
+    myWidth = document.body.clientWidth
+    myHeight = document.body.clientHeight
+  }
 
-  d3.selectAll('.aleph-technology-icon').classed('aleph-btn-selected', false).classed('aleph-btn-unselected', true)
+  vis.width = myWidth
+  vis.height = myHeight
 
   return
-} // end function reset
+}
+
+// http://stackoverflow.com/questions/14167863/how-can-i-bring-a-circle-to-the-front-with-d3
+d3.selection.prototype.moveToFront = function () {
+  return this.each(function () {
+    this.parentNode.appendChild(this)
+  })
+}
+d3.selection.prototype.moveToBack = function () {
+  return this.each(function () {
+    var firstChild = this.parentNode.firstChild
+    if (firstChild) {
+      this.parentNode.insertBefore(this, firstChild)
+    }
+  })
+}
+
+/*
+    NAME: CharacterToCharacter
+    DESCRIPTION: change one character type to another in a text string
+    ARGUMENTS TAKEN: str: text string to consider
+                      char1: character to find and change
+                      char2 : character to change to .
+    ARGUMENTS RETURNED: modified string
+    CALLED FROM: submitSelection
+    CALLS: none
+*/
+function CharacterToCharacter(str, char1, char2) {
+  return str.split(char1).join(char2)
+} // end function CharacterToCharacter

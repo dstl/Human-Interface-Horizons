@@ -73,9 +73,9 @@ body {
 .aleph-container {
     width: 1920px;
     height: 1900px;
-   /*  position: absolute; */
-    top: 100px;
-    left: 0px;
+    position: absolute;
+    top: 140px;
+    left: 30px;
 }
 
 .aleph_chart {
@@ -123,8 +123,8 @@ body {
 
 .link {
   fill: none;
-  stroke: #acafb2;
-  stroke-width: 2px;
+  stroke: /* #acafb2; */ #14022e;
+  stroke-width: 4px;
 }
 
 .aleph-btn-unselected {
@@ -418,4 +418,32 @@ cursor:pointer;
 
 .aleph-map-image{
   transform:scale(1.00)
+}
+
+
+
+
+
+.aleph-bannerBase {
+  pointer-events: auto;
+  z-index: 299;
+  position: fixed;
+  top: 90px;
+  left: 0px;
+  background-color: #FFF;
+  width: 100%;
+}
+
+.aleph-bannerSVGBase-rect {
+   fill: #FFF !important;
+  fill-opacity: 0.5;
+}
+
+.aleph-bannerSVGBase-rect.aleph-isScrolling {
+  fill: #fff;
+  fill-opacity: 0.9;
+}
+
+.aleph-hide {
+  display: none;
 }

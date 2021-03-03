@@ -2,14 +2,15 @@ import React, { Fragment } from 'react'
 import { Header } from './header'
 import { Footer } from './footer'
 import { PageHeader } from '../PageHeader'
-import '../../styles/layout.scss'
 import { graphql, useStaticQuery } from 'gatsby'
+import '../../styles/layout.scss'
 
 interface Breadcrumb {
   label: string
   link: string
 }
 interface Props {
+  mainContainerClassName?: string
   className?: string
   title?: string
   breadcrumb?: Breadcrumb
@@ -18,7 +19,7 @@ interface Props {
 }
 
 const Layout = (props: Props) => {
-  const { title, breadcrumb, children, pageHeader, className } = props
+  const { title, breadcrumb, children, pageHeader, className, mainContainerClassName } = props
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -38,8 +39,7 @@ const Layout = (props: Props) => {
         siteTitle={title || site.siteMetadata.title}
         PageHeader={pageHeader ? <PageHeader text={pageHeader} breadcrumb={breadcrumb} /> : <Fragment></Fragment>}
       />
-      {/* {pageHeader && <PageHeader text={pageHeader} breadcrumb={breadcrumb} />} */}
-      <div className="main-container">{children}</div>
+      <div className={mainContainerClassName ? mainContainerClassName : 'main-container'}>{children}</div>
       <Footer />
     </div>
   )

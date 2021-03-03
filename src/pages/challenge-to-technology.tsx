@@ -10,6 +10,7 @@ import { graphql, Link, navigate } from 'gatsby'
 import SEO from '../components/core/seo'
 import Layout from '../components/core/layout'
 import '../styles/challenge-to-tech.scss'
+import { FixedHeaderOffset } from '../components/core/fixed-header-offset'
 
 interface Props {
   data: {
@@ -35,6 +36,7 @@ export default function ChallengeToTech(props: Props) {
   return (
     <Layout pageHeader="Technology to Future Challenge Mapping">
       <SEO title="Challenge to Technology" />
+      <FixedHeaderOffset hasNavbar={true} />
       <div className="c-to-t__grid">
         <div className="c-to-t__grid-text">
           This page shows a series of defence-specific challenges which were extracted from a detailed analysis of a

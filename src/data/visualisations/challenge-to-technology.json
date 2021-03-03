@@ -9,17 +9,16 @@
   "rootPath": "/",
   "renderFunction": "renderChallengeToTechnology",
   "scripts": [
-    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/js/jquery.min.js"},
-    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/js/jquery-ui.js"},
-    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/js/d3.v5.min.js"},
-    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/js/useful-full.js"},
-    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/js/sankey.js"},
+    {"file": "/js/jquery.min.js"},
+    {"file": "/js/jquery-ui.js"},
+    {"file": "/js/d3.v5.min.js"},    
+    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/js/challengetotechnologylookup-sankey.js"},
     {"file": "/visualisationScripts/hmi_challengetotechnologylookup/js/aleph-hmi-challengetotechnologylookup.js"},
     {"file": "/visualisationScripts/hmi_challengetotechnologylookup/js/gatsbyBridge.js"}
   ],
   "css": [
-    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/css/jquery-ui.css"},
-    {"file": "/visualisationScripts/hmi_challengetotechnologylookup/css/bootstrap.css"},
+    {"file": "/css/jquery-ui.css"},
+    {"file": "/css/bootstrap.css"},
     {"file": "/visualisationScripts/hmi_challengetotechnologylookup/css/aleph-hmi-challengetotechnologylookup.css"}
   ],
   "settings": {

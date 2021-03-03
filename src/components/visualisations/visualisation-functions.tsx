@@ -42,16 +42,16 @@ const navigateToTechnologyDetailPage = (techName: string) => {
 export const renderVisualisationFunc = (svg: any, domRef: any, renderFunction: string, technologies: any, prefixedPath: string) => {
   if (svg && domRef) {
     //TODO: Remove or comment out
-    console.log('renderVisualisation() calling ' + renderFunction)
+    // console.log('renderVisualisation() calling ' + renderFunction)
     let renderFunctionObject = window[renderFunction]
     if (renderFunctionObject) {
       renderFunctionObject(technologies, prefixedPath, navigateToTechnologyDetailPage)
     } else {
       //TODO: Remove or comment out
-      console.log("Couldn't find render function")
+      // console.log("Couldn't find render function")
     }
   } else {
     //TODO: Remove or comment out
-    console.log("Couldn't find svg")
+    // console.log("Couldn't find svg")
   }
 }

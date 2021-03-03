@@ -63,34 +63,41 @@ $defaultBorderRadius: 4px;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  min-height: 150px;
+  min-height: 200px;
   max-height: calc(100vh - 200px);
 
+  margin-top: 3vh;
+
   @include sm {
-    margin-top: 20px;
+    margin-top: 2vh;
+    min-height: 200px;
     max-height: calc(100vh - 200px);
   }
   @include md {
-    margin-top: 45px;
-    max-height: calc(100vh - 230px);
+    margin-top: 4.5vh;
+    min-height: 200px;
+    max-height: 75vh;
   }
   @include lg {
-    margin-top: 65px;
-    max-height: calc(100vh - 280px);
+    margin-top: 6.5vh;
+    min-height: 250px;
+    max-height: 75vh;
   }
   @include xl {
-    margin-top: 100px;
-    max-height: calc(100vh - 340px);
+    margin-top: 7vh;
+    min-height: 300px;
+    max-height: 75vh;
   }
   @include xxl {
-    margin-top: 125px;
-    max-height: calc(100vh - 385px);
+    margin-top: 10vh;
+    min-height: 300px;
+    max-height: 75vh;
   }
 }
 
 .slider-side-menu-toggle-title {
   cursor: pointer;
-  height: 120px;
+  height: 84px;
   width: 35px;
   border-right: solid 1px black;
   border-top: solid 1px black;
@@ -101,71 +108,97 @@ $defaultBorderRadius: 4px;
   background-color: #14022e;
   color: white;
 
+  // DEFAULT rgb(255, 94, 94)
+  // @include test-size-color-default;
+
+  margin-top: 0vh;
+
   @include sm {
+    // SM rgb(64, 128, 64)
+    // @include test-size-color-sm;
+    margin-top: -0.5vh;
     width: 35px;
   }
   @include md {
+    // MD rgb(245, 223, 125)
+    // @include test-size-color-md;
+    margin-top: -0.1vh;
     width: 40px;
+    height: 100px;
   }
   @include lg {
+    // LG rgb(115, 195, 226)
+    // @include test-size-color-lg;
+    margin-top: 0.5vh;
     width: 45px;
+    height: 110px;
   }
   @include xl {
+    // XL rgb(167, 115, 226)
+    // @include test-size-color-xl;
+    margin-top: -0.5vh;
     width: 50px;
+    height: 120px;
   }
   @include xxl {
+    // XXL rgb(23, 25, 126)
+    // @include test-size-color-xxl;
+    margin-top: 0.1vh;
     height: 150px;
     width: 55px;
   }
 }
 
 .tech-detail-visualisation-page-menu {
-  margin-top: (100vh / 10);
+  align-self: flex-end;
+  max-height: unset;
+  margin-top: unset;
+  margin-bottom: unset;
+  margin-bottom: 0.5vh;
   @include sm {
-    margin-top: (100vh / 4.2);
+    margin-bottom: 1vh;
   }
   @include md {
-    margin-top: (100vh / 2.8);
+    margin-bottom: 3vh;
   }
   @include lg {
-    margin-top: (100vh / 2);
+    margin-bottom: 10vh;
   }
   @include xl {
-    margin-top: (100vh / 1.96);
+    margin-bottom: 16vh;
   }
   @include xxl {
-    margin-top: (100vh / 1.9);
+    margin-bottom: 20vh;
   }
 }
 
 .tech-detail-visualisation-page-tab {
-  margin-top: calc(100vh / 2);
+  margin-top: calc(100vh / 2.2);
 }
 
 .slider-side-menu-text {
-  display: inline-block;
-  width: 185px;
-  -webkit-transform-origin: 80px 75px;
-  transform-origin: 80px 75px;
-  -webkit-transform: rotate(-90deg);
+  margin: 0 auto;
+  transform-origin: 38px 35px;
   transform: rotate(-90deg);
-  text-align: center;
   font-size: 12pt;
   @include sm {
     font-size: 12pt;
+    transform-origin: 37px 34px;
   }
   @include md {
     font-size: 14pt;
+    transform-origin: 43px 40px;
   }
   @include lg {
     font-size: 16pt;
+    transform-origin: 48px 45px;
   }
   @include xl {
-    font-size: 18pt;
+    transform-origin: 52px 47px;
   }
   @include xxl {
     font-size: 20pt;
-    width: 155px;
+    transform-origin: 65px 60px;
   }
 }
 
@@ -215,19 +248,19 @@ $defaultBorderRadius: 4px;
     }
     @include md {
       height: 45px;
-      font-size: 12pt;
+      font-size: 10pt;
     }
     @include lg {
       height: 48px;
-      font-size: 16pt;
+      font-size: 12pt;
     }
     @include xl {
       height: 51px;
-      font-size: 18pt;
+      font-size: 14pt;
     }
     @include xxl {
       height: 53px;
-      font-size: 20pt;
+      font-size: 16pt;
     }
   }
   > .toggle-on {
@@ -278,5 +311,15 @@ $defaultBorderRadius: 4px;
     outline: 1px solid slategrey !important;
     border-radius: 10px !important;
     margin: 10px;
+  }
+}
+
+.submit-button {
+  &__disabled {
+    opacity: 0.3;
+    cursor: default !important;
+    &:focus {
+      outline: 0;
+    }
   }
 }

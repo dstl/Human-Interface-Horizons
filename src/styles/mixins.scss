@@ -37,43 +37,55 @@ $screen-xxl-h: 2160px;
 @mixin test-size-color-xxl {
   background-color: rgb(23, 25, 126);
 }
-// Usage
+
+// USAGE
+// // DEFAULT rgb(255, 94, 94)
 // @include test-size-color-default;
+
+// // SM rgb(64, 128, 64)
 // @include test-size-color-sm;
+
+// // MD rgb(245, 223, 125)
 // @include test-size-color-md;
+
+// // LG rgb(115, 195, 226)
 // @include test-size-color-lg;
+
+// // XL rgb(167, 115, 226)
 // @include test-size-color-xl;
+
+// // XXL rgb(23, 25, 126)
 // @include test-size-color-xxl;
 
 /* <<--------- TESTING DONT DELETE -----------<< */
 
 /* >>------ RESPONSIVE SIZES ----->> */
 @mixin sm {
-  @media (min-height: #{$screen-sm-h}) and (min-width: #{$screen-sm-w}) {
+  @media (min-width: #{$screen-sm-w}) {
     @content;
   }
 }
 
 @mixin md {
-  @media (min-height: #{$screen-md-h}) and (min-width: #{$screen-md-w}) {
+  @media (min-width: #{$screen-md-w}) {
     @content;
   }
 }
 
 @mixin lg {
-  @media (min-height: #{$screen-lg-h}) and (min-width: #{$screen-lg-w}) {
+  @media (min-width: #{$screen-lg-w}) {
     @content;
   }
 }
 
 @mixin xl {
-  @media (min-height: #{$screen-xl-h}) and (min-width: #{$screen-xl-w}) {
+  @media (min-width: #{$screen-xl-w}) {
     @content;
   }
 }
 
 @mixin xxl {
-  @media (min-height: #{$screen-xxl-h}) and (min-width: #{$screen-xxl-w}) {
+  @media (min-width: #{$screen-xxl-w}) {
     @content;
   }
 }

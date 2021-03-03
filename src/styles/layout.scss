@@ -21,7 +21,8 @@ body {
 
   & header {
     z-index: 5000;
-    position: sticky !important;
+    position: fixed !important;
+    /* position: fixed !important; */
     width: 100%;
     top: 0 !important;
     grid-area: headerGridRow;
@@ -117,6 +118,10 @@ body {
 }
 
 .main-container {
+  /*   position:absolute;
+  top:50px;
+  left:0px; */
+
   height: fit-content;
   margin: 0px 35px;
   margin-bottom: 5px;
@@ -161,5 +166,91 @@ body {
   *::before,
   *::after {
     box-sizing: unset !important;
+  }
+}
+
+// Visualisation Overrides
+
+.aleph-bannerBase {
+  margin-top: 0px;
+  @include sm {
+    margin-top: 10px; // Default
+  }
+  @include md {
+    margin-top: 40px;
+  }
+  @include lg {
+    margin-top: 82px;
+  }
+  @include xl {
+    margin-top: 120px;
+  }
+  @include xxl {
+    margin-top: 161px;
+  }
+}
+
+$sm_headerOffsetHeight: 51px;
+$sm_headerOffsetPadding: 10px;
+
+$md_headerOffsetHeight: 76px;
+$md_headerOffsetPadding: 11.5px;
+
+$lg_headerOffsetHeight: 101px;
+$lg_headerOffsetPadding: 12.5px;
+
+$xl_headerOffsetHeight: 126px;
+$xl_headerOffsetPadding: 13.5px;
+
+$xxl_headerOffsetHeight: 151px;
+$xxl_headerOffsetPadding: 15px;
+
+.fixed-header-offset {
+  height: $sm_headerOffsetHeight;
+  padding: $sm_headerOffsetPadding;
+  @include sm {
+    height: $sm_headerOffsetHeight;
+    padding: $sm_headerOffsetPadding;
+  }
+  @include md {
+    height: $md_headerOffsetHeight;
+    padding: $md_headerOffsetPadding;
+  }
+  @include lg {
+    height: $lg_headerOffsetHeight;
+    padding: $lg_headerOffsetPadding;
+  }
+  @include xl {
+    height: $xl_headerOffsetHeight;
+    padding: $xl_headerOffsetPadding;
+  }
+  @include xxl {
+    height: $xxl_headerOffsetHeight;
+    padding: $xxl_headerOffsetPadding;
+  }
+}
+
+.fixed-header-offset-with-navbar {
+  height: calc(#{$sm_headerOffsetHeight} + 35px);
+  padding: $sm_headerOffsetPadding;
+  @include sm {
+    height: calc(#{$sm_headerOffsetHeight} + 35px);
+    padding: $sm_headerOffsetPadding;
+  }
+  @include md {
+    height: calc(#{$md_headerOffsetHeight} + 45px);
+    padding: $md_headerOffsetPadding;
+  }
+  @include lg {
+    height: calc(#{$lg_headerOffsetHeight} + 55px);
+    padding: $lg_headerOffsetPadding;
+  }
+  @include xl {
+    height: calc(#{$xl_headerOffsetHeight} + 75px);
+    padding: $xl_headerOffsetPadding;
+  }
+  @include xxl {
+    height: calc(#{$xxl_headerOffsetHeight} + 85px);
+    padding: $xxl_headerOffsetPadding;
   }
 }

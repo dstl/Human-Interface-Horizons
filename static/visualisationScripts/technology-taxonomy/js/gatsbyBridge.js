@@ -11,20 +11,12 @@ function onClickToggle(id, groupId, state) {
 }
 
 function onClickSubmit(groupId, toggledStates, orderedIds) {
-  //TODO: Remove or comment out
-  console.log('TAXON toggled states: ', toggledStates)
-  console.log(`TAXON Order of submitted IDs: [ ${orderedIds} ]`)
-  /*
-  aleph.taxonomyArray = toggledStates
-    .filter((toggle) => {
-      return toggle.toggled
-    })
-    .map((toggle) => {
-      return toggle.button
-    })
-  */
+  
+  // initialsie relevant arrays
+  aleph.taxonomyArray = [];
+  aleph.nodeLevelsY = [];
+
   aleph.taxonomyArray = [...orderedIds]
-  console.log('TAXON taxonomy array: ', aleph.taxonomyArray)
   submitSelection()
 }
 

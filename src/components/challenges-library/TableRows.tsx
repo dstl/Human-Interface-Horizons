@@ -20,7 +20,11 @@ export const TableRows = (props: Props) => {
             if (header === 'id' || header === 'family') return null
             else
               return (
-                <td key={header} className={`ccl__${header}__content`} scope={i === 0 ? 'col' : 'row'}>
+                <td
+                  key={header}
+                  className={`ccl__${header}__content ccl__all_table_data`}
+                  scope={i === 0 ? 'col' : 'row'}
+                >
                   {challenges[challengeId][header]}
                 </td>
               )

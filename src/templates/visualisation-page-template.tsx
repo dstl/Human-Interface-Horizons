@@ -41,6 +41,7 @@ export const query = graphql`
               id
               labelOn
               labelOff
+              isDisabled
             }
             clearButton {
               id

@@ -48,8 +48,8 @@ export const Visualisation = (props: Props) => {
   useEffect(() => {
     if (typeof window !== `undefined`) {
       if (scriptStatuses.length > 0) {
-        if (scriptStatuses.every((status) => status === 'ready')) {
-          console.log('All scripts loaded, about to render')
+        if (scriptStatuses.every(status => status === "ready")) {
+          // console.log("All scripts loaded, about to render");
           if (!svg) svg = createD3SVG(domRef.current, width, height, heightRatio)
           renderVisualisationFunc(svg, domRef.current, renderFunction, props.params, withPrefix(rootPath))
         }
@@ -66,52 +66,52 @@ export const Visualisation = (props: Props) => {
 
   const onClickNav = (navigateLink: string, groupId?: string): Promise<void> => {
     //TODO: Remove or comment out
-    console.log(`\nToggle Clicked \n   navigateLink: ${navigateLink} \n   GroupID: ${groupId}\n\n`)
+    // console.log(`\nToggle Clicked \n   navigateLink: ${navigateLink} \n   GroupID: ${groupId}\n\n`)
     return navigate(navigateLink)
   }
 
   const onClickFunc = (functionName: string, groupId?: string): void => {
     //TODO: Remove or comment out
-    console.log(`\nFunction Button Clicked \n   functionName: ${functionName} \n   GroupID: ${groupId}\n\n`)
+    // console.log(`\nFunction Button Clicked \n   functionName: ${functionName} \n   GroupID: ${groupId}\n\n`)
     if (window[functionName]) {
       window[functionName](groupId)
     } else {
       //TODO: Remove or comment out
-      console.log("Couldn't find " + functionName)
+      // console.log("Couldn't find " + functionName)
     }
   }
 
   const onClickToggle = (id: string, groupId?: string, state?: boolean): void => {
     //TODO: Remove or comment out
-    console.log(`\nToggle Clicked \n   ID: ${id} \n   GroupID: ${groupId} \n   State: ${state}\n\n`)
+    // console.log(`\nToggle Clicked \n   ID: ${id} \n   GroupID: ${groupId} \n   State: ${state}\n\n`)
     if (window['onClickToggle']) {
       window['onClickToggle'](id, groupId, state)
     } else {
       //TODO: Remove or comment out
-      console.log("Couldn't find onClickToggle")
+      // console.log("Couldn't find onClickToggle")
     }
   }
 
   const onClickSubmit = (groupId: string, toggledStates: object[], orderedIds: string[]): void => {
     //TODO: Remove or comment out
-    console.log(`\nSubmit Clicked \n   GroupID: ${groupId} \n   OrderedIds: [ ${orderedIds} ]\n\n`)
+    // console.log(`\nSubmit Clicked \n   GroupID: ${groupId} \n   OrderedIds: [ ${orderedIds} ]\n\n`)
     if (window['onClickSubmit']) {
       window['onClickSubmit'](groupId, toggledStates, orderedIds)
     } else {
       //TODO: Remove or comment out
 
-      console.log("Couldn't find onClickSubmit")
+      // console.log("Couldn't find onClickSubmit")
     }
   }
 
   const onClickClear = (groupId: string): void => {
     //TODO: Remove or comment out
-    console.log(`\nClear Clicked \n   GroupID: ${groupId}\n\n`)
+    // console.log(`\nClear Clicked \n   GroupID: ${groupId}\n\n`)
     if (window['onClickClear']) {
       window['onClickClear'](groupId)
     } else {
       //TODO: Remove or comment out
-      console.log("Couldn't find onClickClear")
+      // console.log("Couldn't find onClickClear")
     }
   }
 

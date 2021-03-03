@@ -74,9 +74,8 @@ body {
 
 .aleph-container {
   background-color: #ffffff !important;
-  /* overflow: auto; */
- /*  position: absolute; */
-  top: 100px;
+  position: absolute;
+  top: 140px;
   left: 0px;
 }
 
@@ -268,13 +267,15 @@ body {
   height: auto;
   position: fixed;
   right: 100px;
-  top: 5px;
+  top: 150px;
   /* opacity: 0.9; */
   pointer-events: none;
   background-color: white;
   border-style: solid;
   border-width: 1px;
 }
+
+
 
 .aleph-primaryInputTech {
   background-color: #14022e;
@@ -337,55 +338,55 @@ label{
   height: /* 30px */50%;
 }
 
-.aleph-primaryLink.level1 {
+.aleph-primaryLink.level0 {
   border-width: 1;
   background: rgba(123, 103, 168, 1);
 }
 
-.aleph-secondaryLink.level1 {
+.aleph-secondaryLink.level0 {
   border-width: 1;
   background: rgba(123, 103, 168, 0.25);
 }
 
-.aleph-primaryLink.level2 {
+.aleph-primaryLink.level1 {
   /* border-color: #36bcee; */
   border-width: 1;
   background: rgba(54, 188, 238, 1);
 }
-.aleph-secondaryLink.level2 {
+.aleph-secondaryLink.level1 {
   /* border-color: #36bcee; */
   border-width: 1;
   background: rgba(54, 188, 238, 0.25);
 }
 
-.aleph-primaryLink.level3 {
+.aleph-primaryLink.level2 {
   /* border-color: #36bcee; */
   border-width: 1;
   background: rgba(46, 181, 178, 1);
 }
-.aleph-secondaryLink.level3 {
+.aleph-secondaryLink.level2 {
   /* border-color: #36bcee; */
   border-width: 1;
   background: rgba(46, 181, 178, 0.25);
 }
 
-.aleph-primaryLink.level4 {
+.aleph-primaryLink.level3 {
   /* border-color: #36bcee; */
   border-width: 1;
   background: rgba(253, 221, 62, 1);
 }
-.aleph-secondaryLink.level4 {
+.aleph-secondaryLink.level3 {
   /* border-color: #36bcee; */
   border-width: 1;
   background: rgba(253, 221, 62, 0.25);
 }
 
-.aleph-primaryLink.level5 {
+.aleph-primaryLink.level4 {
   /* border-color: #36bcee; */
   border-width: 1;
   background: rgba(239, 120, 53, 1);
 }
-.aleph-secondaryLink.level5 {
+.aleph-secondaryLink.level4 {
   /* border-color: #36bcee; */
   border-width: 1;
   background: rgba(239, 120, 53, 0.25);

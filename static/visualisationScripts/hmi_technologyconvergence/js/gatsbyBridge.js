@@ -1,7 +1,6 @@
 var rootPath;
 
 function onClickToggle(id, groupId, state) {
-  console.log("onClickToggle  id=" + id + " groupId=" + groupId + " state=" + state)
   if (id === "change-view-style") {
     if (state) {
       changeViewStyle({value: "x"})
@@ -27,7 +26,6 @@ function renderTechnologyConvergence(params, prefixedPath, navigateToTechnologyD
       const techString = technologies[param].technology
       aleph.sourceTechnologyArray.push(techString)
     }
-    console.log("sourceTechnologyArray", aleph.sourceTechnologyArray)
     submitSelection()  
   });
 }

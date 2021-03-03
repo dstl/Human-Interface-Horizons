@@ -1,5 +1,11 @@
 import React, { Fragment } from 'react'
-import { ToggleState, ToggleConstraints, VisSettingsGroup, ToggledOrderStates } from '../../../types/Global'
+import {
+  ToggleState,
+  ToggleConstraints,
+  VisSettingsGroup,
+  ToggledOrderStates,
+  ActiveButtons,
+} from '../../../types/Global'
 import { FunctionButton, NavigateButton, ToggleButton, SubmitButton, ClearButton } from './menu-buttons'
 
 /**
@@ -23,7 +29,7 @@ export const renderButtons = (
   let isToggled: boolean
   let isDisabled: boolean
   let groupToggleStates: ToggleState = {}
-  let activeButtons: object[] = []
+  let activeButtons: ActiveButtons[] = []
 
   const createdGroupButtons: JSX.Element[] = group.buttons.map((button, i) => {
     const { type, label, action, id, labelOn, labelOff } = button
@@ -103,8 +109,15 @@ export const renderButtons = (
   if (group.settings && group.settings.submitButton) {
     const label = group.settings.submitButton.labelOff || 'Error'
     const orderedIds = toggledOrderArrays[group.id] ? toggledOrderArrays[group.id] : []
+    let isDisabled = false
+
+    if (group.settings.submitButton.isDisabled) {
+      isDisabled = !activeButtons.map((button) => button.toggled).includes(true)
+    }
+
     createdGroupButtons.push(
       <SubmitButton
+        isDisabled={isDisabled}
         key={label}
         label={label}
         groupId={group.id}

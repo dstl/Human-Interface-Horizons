@@ -1,7 +1,7 @@
 /*
   Project: HMI Technology Taxonomy visualisation
   Filename: aleph_himTechnologyComparison.js
-  Date built: September 2020 to October 2020
+  Date built: September 2020 to February 2021
   Written By: James Bayliss (Data Vis Developer)
   Tech Stack: HTML5, CSS3, JS ES5/6, D3 (v5), JQuery 
 */
@@ -15,6 +15,7 @@ https://observablehq.com/@d3/collapsible-tree // D3 collapsible tree - d3 Observ
 
 // Initialisation of global 'aleph' object construct. Stores all main dynamic variables for UI design and response
 var aleph = {
+  bannerBaseHeight: 100,
   url: 'http://HMI-technologySelector.co.uk?' /* text stub to add to to mimic building URL */,
   expandCollapseAll: true /* inintialisation variable to denot onload view of tree */,
   spacer: 100 /* interval integer value to define spacing between vertical tiers of tree */,
@@ -22,7 +23,7 @@ var aleph = {
   taxonomyArray: [] /* initialisation of array to store selected filter values in */,
   nodeLevelsY: [] /* flat array to store y-horizon coordiante values */,
   margin: {
-    top: 75,
+    top: 100,
     right: 75,
     bottom: 25,
     left: 100,
@@ -32,6 +33,7 @@ var aleph = {
   lastSelectedLevelToDisplayTo: Infinity,
 }
 
+var vis = {}
 var i = 0 // iterator
 var root // main base treemap variable element
 var treemap // main base treemap variable element
@@ -62,14 +64,28 @@ d3.selectAll('.aleph-background')
                 Calls functions necessary to set-up initial view
   ARGUMENTS TAKEN: none
   ARGUMENTS RETURNED: none
-  CALLED FROM: body tag in index.html
+  CALLED FROM: renderTechnologyTaxonomy
   CALLS:    alertSize();
             loadData();
 */
 function onload() {
+
   alertSize() // function call to get current browser window dimensions
   loadData() // function call to load initial CSV data file
 
+  
+
+  // docuement.getElementById("taxonomy-submit").disabled = true;
+  // docuement.getElementById("taxonomy-clear").disabled = true;
+
+  // docuement.getElementById("taxonomy-collapse-all").disabled = true;
+  // docuement.getElementById("taxonomy-expand-all").disabled = true;
+
+  // store window dimensions as aleph object varaiables
+  aleph.windowWidth = vis.width
+  aleph.windowHeight = vis.height
+
+  // handle onload state of taxonomy tree
   if (aleph.expandCollapseAll == false) {
     d3.select('#expand').classed('aleph-expandCollapseAll', true)
     d3.select('#collapse').classed('aleph-expandCollapseAll', true)
@@ -81,7 +97,7 @@ function onload() {
   }
 
   // store window dimensions as aleph object varaiables
-  aleph.windowWidth = vis.width
+  aleph.windowWidth = vis.width - aleph.margin.right - aleph.margin.left
   aleph.windowHeight = 2000 - aleph.margin.bottom - aleph.margin.top
 
   // update dimensions of base container DIV to size of browser window
@@ -94,6 +110,35 @@ function onload() {
     .attr('width', aleph.windowWidth)
     .attr('height', aleph.windowHeight + 50)
 
+  // append base Div to contain static fixed controls (sliders, sort order buttons, main title) to visual
+
+  // aleph-tree-levelLabels-g
+
+
+  d3.selectAll('.aleph-container')
+    .append('div')
+    .attr('class', 'aleph-bannerBase aleph-hide')
+    /* .style('width', aleph.windowWidth + 'px') */
+    .style('height', aleph.bannerBaseHeight + 'px')
+    .style('background-color', 'none')
+    .style('position', 'fixed')
+
+  // append base SVG to base Div tontain attach static fixed controls (sliders, sort order buttons, main title) to visual
+  d3.selectAll('.aleph-bannerBase')
+    .append('svg')
+    .attr('class', 'aleph-bannerSVGBase')
+    .attr('width', "100%"/* aleph.windowWidth */)
+    .attr('height', aleph.bannerBaseHeight)
+    .attr('y', -50)
+    .style('background-color', 'none')
+
+  // append base background rectangle
+  d3.selectAll('.aleph-bannerSVGBase')
+    .append('rect')
+    .attr('class', 'aleph-bannerSVGBase-rect')
+    .attr('width', "100%"/* aleph.windowWidth */)
+    .attr('height', aleph.bannerBaseHeight)
+
   /*
   Use the settings tab to select and submit up to three different categories for grouping technologies. This will produce a hierarchical taxonomy graph like the one below, allowing you to see how different technologies relate to one another.
   */
@@ -102,10 +147,10 @@ function onload() {
     .append('svg:image')
     .attr('class', 'aleph-map-image')
     .attr('xlink:href', `${rootPath}image/map.svg`)
-    .attr('x', 150)
-    .attr('y', 0)
+    .attr('x', 0)
+    .attr('y', -0)
     .attr('width', aleph.windowWidth - aleph.margin.left - aleph.margin.right)
-    .attr('height', 900)
+    .attr('height', /* 900 */ vis.height - aleph.margin.top - aleph.margin.bottom)
 
   return
 } // end function onload
@@ -115,8 +160,8 @@ function onload() {
       DESCRIPTION: function called when user resizes window. handles updating of content reliant on dimension of window
       ARGUMENTS TAKEN: none
       ARGUMENTS RETURNED: none
-      CALLED FROM: none
-      CALLS:  none
+      CALLED FROM: manual user resaigin opf browser window
+      CALLS:  alertSize
   
       http://bl.ocks.org/johangithub/97a186c551e7f6587878
 */
@@ -124,9 +169,13 @@ function windowResize() {
   alertSize() // function call to get current browser window dimensions
 
   // store window dimensions as aleph object varaiables
-  aleph.windowWidth = vis.width
+  aleph.windowWidth = vis.width - aleph.margin.right - aleph.margin.left
   // aleph.windowHeight = vis.height;
   aleph.windowHeight = 2000 - aleph.margin.bottom - aleph.margin.top
+
+  d3.selectAll('.aleph-map-image')
+    .attr('width', aleph.windowWidth - aleph.margin.left - aleph.margin.right)
+    .attr('height', vis.height - aleph.margin.top - aleph.margin.bottom)
 
   // update dimensions of base container DIV to size of browser window
   d3.selectAll('.aleph-container')
@@ -154,8 +203,11 @@ function windowResize() {
     root.x0 = aleph.windowHeight / 2
     root.y0 = 0
 
+    // determine spacing between node horizons based on resized window dimensions
     aleph.spacer = aleph.windowWidth / (root.height + 2)
     aleph.nodeLevelsY = []
+
+    // update taxonomy tree
     update(root, 0)
     addLevelLabels(aleph.numberOfLevels)
   } else {
@@ -166,15 +218,15 @@ function windowResize() {
 
 /*
       NAME: loadData 
-      DESCRIPTION: function called to load single CSV input data file.
+      DESCRIPTION: function called to load required CSV input data file.
       ARGUMENTS TAKEN: none
       ARGUMENTS RETURNED: none
-      CALLED FROM: none
+      CALLED FROM: onload
       CALLS:  none
 */
 function loadData() {
-  // store relevant file papth as local variable
-  var inputDataFile = `${rootPath}data/taxonomy.csv`
+  // store relevant file path as local variable
+  var inputDataFile = `${rootPath}data/taxonomy.csv` // abridged version of main catalogue
 
   // store all input files as a Promise
   Promise.all([d3.csv(inputDataFile)]).then(function (data) {
@@ -191,14 +243,17 @@ function loadData() {
       DESCRIPTION: function called to initially draw chart
       ARGUMENTS TAKEN: techTaxonomy
       ARGUMENTS RETURNED: none
-      CALLED FROM: none
-      CALLS:  none
+      CALLED FROM: onClickSubmit
+      CALLS:  addLevelLabels
+              rename
+              createNestingFunction
 */
 function submitSelection() {
   // update classes of relevant DOM objects.
   $('#clear').prop('disabled', false).removeClass('aleph-disabled')
   $('#expand').prop('disabled', false).removeClass('aleph-disabled')
   $('#collapse').prop('disabled', false).removeClass('aleph-disabled')
+  d3.selectAll('.aleph-bannerBase').classed('aleph-hide', false)
 
   // remove relevant DOM objects.
   d3.selectAll('.aleph-map-image').remove()
@@ -210,13 +265,13 @@ function submitSelection() {
         ARGUMENTS TAKEN: value - key name
         ARGUMENTS RETURNED: none
         CALLED FROM: submitSelection
-        CALLS: none
+        CALLS: rename
   */
   function rename(value) {
     if (!value || typeof value !== 'object') return value
     if (Array.isArray(value)) return value.map(rename)
     return Object.fromEntries(Object.entries(value).map(([k, v]) => [keys[k] || k, rename(v)]))
-  }
+  } // end function rename
 
   // key-value object to define requried JSON object names.
   var keys = {
@@ -227,9 +282,9 @@ function submitSelection() {
 
   /*
         NAME: createNestingFunction 
-        DESCRIPTION: recursive function to build requried JSON object
+        DESCRIPTION: recursive function to build required JSON object
         ARGUMENTS TAKEN: propertyName - key name
-        ARGUMENTS RETURNED: none
+        ARGUMENTS RETURNED: d[propertyName]
         CALLED FROM: submitSelection
         CALLS: none
   */
@@ -237,7 +292,7 @@ function submitSelection() {
     return function (d) {
       return d[propertyName]
     }
-  }
+  } // end function createNestingFunction
 
   // https://stackoverflow.com/questions/22512853/d3-js-use-d3-nest-adding-keys-dynamically
   var levels = aleph.taxonomyArray.map(function (d, i) {
@@ -250,7 +305,7 @@ function submitSelection() {
     nest = nest.key(createNestingFunction(levels[i]))
   }
 
-  // construct updarted strcutre for alpeh tree object
+  // construct updated structure for aleph tree object
   aleph.treeData = {
     name: 'Taxonomy',
     children: rename(nest.entries(aleph.techTaxonomy)), //compute the nest
@@ -259,7 +314,7 @@ function submitSelection() {
   // append the svg object to the body of the page
   // appends a 'group' element to 'svg'
   // moves the 'group' element to the top left margin
-  /* var */ svg = d3
+  svg = d3
     .select('.aleph-chart')
     .attr('width', aleph.windowWidth)
     .attr('height', aleph.windowHeight + 50)
@@ -272,10 +327,11 @@ function submitSelection() {
   d3.selectAll('.aleph-tree-levelLabels-g').remove()
 
   // reposition group element for all horizon labels
-  svg
+  /* svg */
+  d3.selectAll(".aleph-bannerSVGBase")
     .append('g')
     .attr('class', 'aleph-tree-levelLabels-g')
-    .attr('transform', 'translate(' + 0 + ',' + -20 + ')')
+    .attr('transform', 'translate(' + /* aleph.margin.left */130 + ',' + 65 + ')')
 
   // declares a tree layout and assigns the size
   treemap = d3
@@ -306,6 +362,7 @@ function submitSelection() {
   $('.btn.aleph-copyUrl').prop('disabled', false).removeClass('aleph-disabled')
   $('.btn.aleph-submitUrl').prop('disabled', false).removeClass('aleph-disabled')
 
+  // finalise content of selection arracy to help define and append tree horizon labels.
   aleph.taxonomyArray.push('Technology')
   aleph.taxonomyArray.unshift('Taxonomy')
   addLevelLabels(aleph.numberOfLevels)
@@ -321,88 +378,24 @@ function submitSelection() {
 } // end function submitSelection
 
 /*
-      NAME: buildTaxonomyArray 
-      DESCRIPTION: function to build up flat array of technologies selected on proxy selection page.
-      ARGUMENTS TAKEN: fid - button details
-      ARGUMENTS RETURNED: none
-      CALLED FROM: index.html
-      CALLS: none
-*/
-function buildTaxonomyArray(fid) {
-  event.stopPropagation()
-
-  // localise HTML content of [de]selected technology
-  var buttonPressed = d3.select(fid)
-
-  // dynamically modify CSS class declarations attached to all technology selection buttons
-  buttonPressed.classed('aleph-btn-unselected', !buttonPressed.classed('aleph-btn-unselected'))
-
-  // dynamically modify CSS class declarations attached to user-selected technology selection buttons
-  buttonPressed.classed('aleph-btn-selected', !buttonPressed.classed('aleph-btn-selected'))
-
-  // if user has DESELECTED a taxonomy field ...
-  if (buttonPressed.classed('aleph-btn-unselected')) {
-    const filterIndex = aleph.taxonomyArray.indexOf(fid.value)
-    if (filterIndex > -1) {
-      aleph.taxonomyArray.splice(filterIndex, 1)
-    }
-
-    // update text on button to suit current state
-    d3.select(fid).text(toTitleCase(CharacterToCharacter(fid.value, '_', ' ')).replace('Of', 'of'))
-
-    // loop through array and update dynamic order numbering
-    aleph.taxonomyArray.forEach(function (d, i) {
-      const filterIndex = aleph.taxonomyArray.indexOf(d)
-
-      d3.select('#' + SpaceToCharacter(d, '-')).text(
-        toTitleCase(CharacterToCharacter(d, '_', ' ')).replace('Of', 'of') + ' (' + Number(filterIndex + 1) + ')'
-      )
-    })
-  }
-  // else if user has SELECTED a taxonomy field
-  else {
-    aleph.taxonomyArray.push(fid.value)
-    const filterIndex = aleph.taxonomyArray.indexOf(fid.value)
-    d3.select(fid).text(
-      toTitleCase(CharacterToCharacter(fid.value, '_', ' ')).replace('Of', 'of') + ' (' + Number(filterIndex + 1) + ')'
-    )
-  }
-
-  // modify classnames if array is maximum legnth (disabled all other buttons)
-  if (aleph.taxonomyArray.length == aleph.numberOfLevels) {
-    $('.btn.aleph-btn-unselected').prop('disabled', true).addClass('aleph-disabled')
-  } else {
-    $('.btn.aleph-btn-unselected').prop('disabled', false).removeClass('aleph-disabled')
-  }
-
-  // if array is not populated ...
-  if (aleph.taxonomyArray.length == 0) {
-    $('#submit').prop('disabled', true).addClass('aleph-disabled').addClass('btn-danger').removeClass('btn-success')
-    $('#clear').prop('disabled', true).addClass('aleph-disabled')
-    $('#expand').prop('disabled', true).addClass('aleph-disabled')
-    $('#collapse').prop('disabled', true).addClass('aleph-disabled')
-  } else {
-    $('#submit').prop('disabled', false).removeClass('aleph-disabled').removeClass('btn-danger').addClass('btn-success')
-    $('#clear').prop('disabled', false).removeClass('aleph-disabled')
-    $('#expand').prop('disabled', false).removeClass('aleph-disabled')
-    $('#collapse').prop('disabled', false).removeClass('aleph-disabled')
-  }
-
-  return
-} // end function buildTaxonomyArray
-
-/*
       NAME: addLevelLabels 
-      DESCRIPTION: function to add level labels to visual
+      DESCRIPTION: function to add level labels to top of visual
       ARGUMENTS TAKEN: levelsToShow - number of levels to dislay labels for
       ARGUMENTS RETURNED: none
-      CALLED FROM: update
-      CALLS: wrapNodeLabels
+      CALLED FROM: windowResize
+                  submitSelection
+      CALLS:  wrapNodeLabels
+              collapseToSetLevel
+              update
+              expandChart
+              toTitleCase
+              CharacterToCharacter
 */
 function addLevelLabels(levelsToShow) {
-  // remvoe previously created label group
+  // remove previously created label group
   d3.selectAll('.aleph-tree-levelLabels-branch-g').remove()
 
+  // select chart base object and attach data to map labels with
   d3.selectAll('.aleph-tree-levelLabels-g')
     .selectAll('.aleph-tree-levelLabels-branch-g')
     .data(aleph.nodeLevelsY)
@@ -417,6 +410,7 @@ function addLevelLabels(levelsToShow) {
     .on('click', function (d, i) {
       aleph.displayToSelectedLevel = i
 
+      // handle user actions on clicking any of the taxonomy tree horizon labels top expand or contract treee to that level.
       if (aleph.displayToSelectedLevel < aleph.lastSelectedLevelToDisplayTo) {
         root.children.forEach(collapseToSetLevel)
         collapseToSetLevel(root)
@@ -449,49 +443,12 @@ function addLevelLabels(levelsToShow) {
 } // function end addLevelLabels
 
 /*
-      NAME: clearChart 
-      DESCRIPTION: function to clear current view.
-      ARGUMENTS TAKEN: none
-      ARGUMENTS RETURNED: none
-      CALLED FROM: index.html
-      CALLS: none
-*/
-function clearChart() {
-  event.stopPropagation()
-
-  // modify classes on relevant DOM content
-  d3.selectAll('.btn.aleph-taxonomy-filter')
-    .classed('aleph-btn-unselected', true)
-    .classed('aleph-btn-selected', false)
-    .classed('aleph-disabled', false)
-
-  $('.btn').prop('disabled', false)
-
-  // disable relevant DOM content
-  $('#submit').prop('disabled', true).addClass('aleph-disabled').addClass('btn-danger').addClass('btn-success')
-  $('#clear').prop('disabled', true).addClass('aleph-disabled')
-  $('#expand').prop('disabled', true).addClass('aleph-disabled')
-  $('#collapse').prop('disabled', true).addClass('aleph-disabled')
-
-  // remove current taxomnomy tree from display
-  d3.selectAll('.aleph-taxonomyTree').remove()
-
-  // initialsie relevant arrays
-  aleph.taxonomyArray = []
-  aleph.nodeLevelsY = []
-
-  // console.log('end of function statement')
-
-  return
-} // end function clearChart();
-
-/*
       NAME: collapse 
       DESCRIPTION: function to collapse tree branch based on node click
       ARGUMENTS TAKEN: d
       ARGUMENTS RETURNED: none
       CALLED FROM: collapse, collapseAll
-      CALLS: none
+      CALLS: collapse
 */
 function collapse(d) {
   if (d.children) {
@@ -507,7 +464,7 @@ function collapse(d) {
       DESCRIPTION: function to collapse tree branch based on taxonomic filter label
       ARGUMENTS TAKEN: d
       ARGUMENTS RETURNED: none
-      CALLED FROM:  on click
+      CALLED FROM: on user click on a chart horizon label at top of chart
       CALLS: collapseToSetLevel
 */
 function collapseToSetLevel(d) {
@@ -531,7 +488,10 @@ function collapseToSetLevel(d) {
                       duration - duration of transtion (0 or 1250)
       ARGUMENTS RETURNED: none
       CALLED FROM: click, windowResize, update, expandAll, collapseAll, diagonal
-      CALLS: addLevelLabels, click
+      CALLS: addLevelLabels
+              click
+              navFunc
+              diagonal
 */
 function update(source, duration) {
   // Assigns the x and y position for the nodes
@@ -559,7 +519,7 @@ function update(source, duration) {
     return d.id || (d.id = ++i)
   })
 
-  // Enter any new modes at the parent's previous position.
+  // Enter any new nodes at the parent's previous position.
   var nodeEnter = node
     .enter()
     .append('g')
@@ -581,6 +541,7 @@ function update(source, duration) {
       return d._children ? 1e-6 : 0
     })
 
+  // append technology icon to node (only if node is a end of branch technology node, not an intermediate branching node)
   nodeEnter
     .append('svg:image')
     .filter(function (d) {
@@ -602,7 +563,7 @@ function update(source, duration) {
     .attr('width', aleph.techIconImageSize)
     .attr('height', aleph.techIconImageSize)
 
-  // Update the nodes...
+  // handle user on click functionality to open tech information page from user clicking on technology icon
   d3.selectAll('.aleph-techIcon').on('click', function (d) {
     navFunc(d.data['slug'])
     return
@@ -785,11 +746,11 @@ function expand(d) {
 
 /*
       NAME: expandAll 
-      DESCRIPTION: function to collapse entire tree
+      DESCRIPTION: function to expand entire tree
       ARGUMENTS TAKEN: none
       ARGUMENTS RETURNED: none
       CALLED FROM: expandChart
-      CALLS: collapse, update
+      CALLS: expand, update
 */
 function expandAll() {
   expand(root)
@@ -835,7 +796,7 @@ function expandChart() {
       ARGUMENTS TAKEN: none
       ARGUMENTS RETURNED: none
       CALLED FROM: index.html
-      CALLS: expandAll
+      CALLS: collapseAll
 */
 function collapseChart() {
   event.stopPropagation()
@@ -922,3 +883,67 @@ function submitURL() {
 
   return
 } // end function submitURL
+
+/*
+    NAME: CharacterToCharacter
+    DESCRIPTION: change one character type to another in a text string
+    ARGUMENTS TAKEN: str: text string to consider
+                      char1: character to find and change
+                      char2 : character to change to .
+    ARGUMENTS RETURNED: modified string
+    CALLED FROM: submitSelection
+                  addLevelLabels
+    CALLS: none
+*/
+function CharacterToCharacter(str, char1, char2) {
+  return str.split(char1).join(char2)
+} // end function CharacterToCharacter
+
+/*
+    NAME: toTitleCase
+    DESCRIPTION: change one cconvert text string to title case format
+    ARGUMENTS TAKEN: str: text string to consider
+    ARGUMENTS RETURNED: modified string
+    CALLED FROM: addLevelLabels
+    CALLS: none
+*/
+function toTitleCase(str) {
+  return str.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+  })
+} //end function toTitleCase(str)
+
+/*
+    NAME: alertSize
+    DESCRIPTION: determine current width and height dimensions of window
+    ARGUMENTS TAKEN: none
+    ARGUMENTS RETURNED: none
+    CALLED FROM: submitSelection
+                windowResize
+    CALLS: none
+*/
+function alertSize() {
+  var myWidth = 0,
+    myHeight = 0
+  if (typeof window.innerWidth == 'number') {
+    //Non-IE
+    myWidth = window.innerWidth
+    myHeight = window.innerHeight
+  } else if (
+    document.documentElement &&
+    (document.documentElement.clientWidth || document.documentElement.clientHeight)
+  ) {
+    //IE 6+ in 'standards compliant mode'
+    myWidth = document.documentElement.clientWidth
+    myHeight = document.documentElement.clientHeight
+  } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+    //IE 4 compatible
+    myWidth = document.body.clientWidth
+    myHeight = document.body.clientHeight
+  }
+
+  vis.width = myWidth
+  vis.height = myHeight
+
+  return
+}

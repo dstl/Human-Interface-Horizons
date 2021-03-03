@@ -8,6 +8,7 @@ import { simpleFilterTechnologies } from '../components/technology-selector/filt
 import { FileNode } from 'gatsby-plugin-image/dist/src/components/hooks'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import '../styles/tech-convergance.scss'
+import { FixedHeaderOffset } from '../components/core/fixed-header-offset'
 interface Props {
   data: {
     allTechnologiesCsv: TechnologyQueryData[]
@@ -71,6 +72,7 @@ export default function TechnologyConvergence(props: Props) {
   return (
     <Layout title-="Aleph HMI" pageHeader={'Technology Convergence Timeline'}>
       <SEO title="Technology Convergence" />
+      <FixedHeaderOffset hasNavbar={true} />
       <div className="tech-conver">
         <div className="tech-conver__header-GI">
           Choose from technologies below to generate a visualisation showing how these technologies could combine with
@@ -107,24 +109,14 @@ export default function TechnologyConvergence(props: Props) {
             )
           })}
         </div>
-        <div className="tech-conver__buttons-GI">
-          <div className="tech-conver__buttons-right">
-            <button
-              disabled={!resetEnabled}
-              onClick={() => onClickReset()}
-              style={{ opacity: !resetEnabled ? 0.3 : 1 }}
-            >
-              Reset
-            </button>
-            <button
-              disabled={!submitEnabled}
-              onClick={() => onClickSubmit()}
-              style={{ opacity: !submitEnabled ? 0.3 : 1 }}
-            >
-              Submit
-            </button>
-          </div>
-        </div>
+      </div>
+      <div className="tech-conver__buttons-right">
+        <button disabled={!resetEnabled} onClick={() => onClickReset()} style={{ opacity: !resetEnabled ? 0.3 : 1 }}>
+          Reset
+        </button>
+        <button disabled={!submitEnabled} onClick={() => onClickSubmit()} style={{ opacity: !submitEnabled ? 0.3 : 1 }}>
+          Submit
+        </button>
       </div>
     </Layout>
   )
@@ -142,7 +134,7 @@ export const TechnologyQuery = graphql`
         }
       }
     }
-    technologyImages: allFile(filter: { relativePath: { regex: "/tech-images/icons/black/" } }) {
+    technologyImages: allFile(filter: { relativePath: { regex: "image/black/png/" } }) {
       edges {
         node {
           name

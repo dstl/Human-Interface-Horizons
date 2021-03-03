@@ -14,6 +14,380 @@ $familyTabFontColor: white;
 $familyTabsBackColorSelected: #cd2456;
 $familyTabFontColorSelected: $theadColor;
 
+// COLS SM sizes
+@mixin col_size_1_sm {
+  $col_size_1_sm: 52px !important;
+  width: $col_size_1_sm;
+  min-width: $col_size_1_sm;
+  max-width: $col_size_1_sm;
+}
+
+@mixin col_size_2_sm {
+  $col_size_2_sm: 60px !important;
+  width: $col_size_2_sm;
+  min-width: $col_size_2_sm;
+  max-width: $col_size_2_sm;
+}
+@mixin col_size_3_sm {
+  $col_size_3_sm: 70px !important;
+  width: $col_size_3_sm;
+  min-width: $col_size_3_sm;
+  max-width: $col_size_3_sm;
+}
+
+@mixin col_size_4_sm {
+  $col_size_4_sm: 88px !important;
+  width: $col_size_4_sm;
+  min-width: $col_size_4_sm;
+  max-width: $col_size_4_sm;
+}
+
+@mixin col_size_5_sm {
+  $col_size_5_sm: 90px !important;
+  width: $col_size_5_sm;
+  min-width: $col_size_5_sm;
+  max-width: $col_size_5_sm;
+}
+
+@mixin col_size_6_sm {
+  $col_size_6_sm: 95px !important;
+  width: $col_size_6_sm;
+  min-width: $col_size_6_sm;
+  max-width: $col_size_6_sm;
+}
+
+// COLS MD sizes
+@mixin col_size_1_md {
+  $col_size_1_md: 85px !important;
+  width: $col_size_1_md;
+  min-width: $col_size_1_md;
+  max-width: $col_size_1_md;
+}
+
+@mixin col_size_2_md {
+  $col_size_2_md: 95px !important;
+  width: $col_size_2_md;
+  min-width: $col_size_2_md;
+  max-width: $col_size_2_md;
+}
+
+@mixin col_size_3_md {
+  $col_size_3_md: 105px !important;
+  width: $col_size_3_md;
+  min-width: $col_size_3_md;
+  max-width: $col_size_3_md;
+}
+
+@mixin col_size_4_md {
+  $col_size_4_md: 125px !important;
+  width: $col_size_4_md;
+  min-width: $col_size_4_md;
+  max-width: $col_size_4_md;
+}
+
+@mixin col_size_5_md {
+  $col_size_5_md: 133px !important;
+  width: $col_size_5_md;
+  min-width: $col_size_5_md;
+  max-width: $col_size_5_md;
+}
+
+@mixin col_size_6_md {
+  $col_size_6_md: 210px !important;
+  width: $col_size_6_md;
+  min-width: $col_size_6_md;
+  max-width: $col_size_6_md;
+}
+
+// COLS LG sizes
+@mixin col_size_1_lg {
+  $col_size_1_lg: 105px !important;
+  width: $col_size_1_lg;
+  min-width: $col_size_1_lg;
+  max-width: $col_size_1_lg;
+}
+
+@mixin col_size_2_lg {
+  $col_size_2_lg: 115px !important;
+  width: $col_size_2_lg;
+  min-width: $col_size_2_lg;
+  max-width: $col_size_2_lg;
+}
+
+@mixin col_size_3_lg {
+  $col_size_3_lg: 125px !important;
+  width: $col_size_3_lg;
+  min-width: $col_size_3_lg;
+  max-width: $col_size_3_lg;
+}
+
+@mixin col_size_4_lg {
+  $col_size_4_lg: 170px !important;
+  width: $col_size_4_lg;
+  min-width: $col_size_4_lg;
+  max-width: $col_size_4_lg;
+}
+
+@mixin col_size_5_lg {
+  $col_size_5_lg: 180px !important;
+  width: $col_size_5_lg;
+  min-width: $col_size_5_lg;
+  max-width: $col_size_5_lg;
+}
+
+@mixin col_size_6_lg {
+  $col_size_6_lg: 290px !important;
+  width: $col_size_6_lg;
+  min-width: $col_size_6_lg;
+  max-width: $col_size_6_lg;
+}
+
+// COLS XL sizes
+@mixin col_size_1_xl {
+  $col_size_1_xl: 140px !important;
+  width: $col_size_1_xl;
+  min-width: $col_size_1_xl;
+  max-width: $col_size_1_xl;
+}
+
+@mixin col_size_2_xl {
+  $col_size_2_xl: 160px !important;
+  width: $col_size_2_xl;
+  min-width: $col_size_2_xl;
+  max-width: $col_size_2_xl;
+}
+
+@mixin col_size_3_xl {
+  $col_size_3_xl: 200px !important;
+  width: $col_size_3_xl;
+  min-width: $col_size_3_xl;
+  max-width: $col_size_3_xl;
+}
+
+@mixin col_size_4_xl {
+  $col_size_4_xl: 210px !important;
+  width: $col_size_4_xl;
+  min-width: $col_size_4_xl;
+  max-width: $col_size_4_xl;
+}
+
+@mixin col_size_5_xl {
+  $col_size_5_xl: 220px !important;
+  width: $col_size_5_xl;
+  min-width: $col_size_5_xl;
+  max-width: $col_size_5_xl;
+}
+
+@mixin col_size_6_xl {
+  $col_size_6_xl: 350px !important;
+  width: $col_size_6_xl;
+  min-width: $col_size_6_xl;
+  max-width: $col_size_6_xl;
+}
+
+// COLS XXL sizes
+@mixin col_size_1_xxl {
+  $col_size_1_xxl: 170px !important;
+  width: $col_size_1_xxl;
+  min-width: $col_size_1_xxl;
+  max-width: $col_size_1_xxl;
+}
+
+@mixin col_size_2_xxl {
+  $col_size_2_xxl: 200px !important;
+  width: $col_size_2_xxl;
+  min-width: $col_size_2_xxl;
+  max-width: $col_size_2_xxl;
+}
+
+@mixin col_size_3_xxl {
+  $col_size_3_xxl: 200px !important;
+  width: $col_size_3_xxl;
+  min-width: $col_size_3_xxl;
+  max-width: $col_size_3_xxl;
+}
+
+@mixin col_size_4_xxl {
+  $col_size_4_xxl: 260px !important;
+  width: $col_size_4_xxl;
+  min-width: $col_size_4_xxl;
+  max-width: $col_size_4_xxl;
+}
+
+@mixin col_size_5_xxl {
+  $col_size_5_xxl: 270px !important;
+  width: $col_size_5_xxl;
+  min-width: $col_size_5_xxl;
+  max-width: $col_size_5_xxl;
+}
+
+@mixin col_size_6_xxl {
+  $col_size_6_xxl: 420px !important;
+  width: $col_size_6_xxl;
+  min-width: $col_size_6_xxl;
+  max-width: $col_size_6_xxl;
+}
+
+@mixin header-font-sizes {
+  font-size: 9pt;
+  @include sm {
+    font-size: 9pt;
+  }
+  @include md {
+    font-size: 13pt;
+  }
+  @include lg {
+    font-size: 15pt;
+  }
+  @include xl {
+    font-size: 17pt;
+  }
+  @include xxl {
+    font-size: 22pt;
+  }
+}
+
+@mixin row-font-sizes {
+  font-size: 8pt;
+  @include sm {
+    font-size: 8pt;
+  }
+  @include md {
+    font-size: 12pt;
+  }
+  @include lg {
+    font-size: 14pt;
+  }
+  @include xl {
+    font-size: 16pt;
+  }
+  @include xxl {
+    font-size: 21pt;
+  }
+}
+
+@mixin colSize1 {
+  @include col_size_1_sm;
+  @include sm {
+    @include col_size_1_sm;
+  }
+  @include md {
+    @include col_size_1_md;
+  }
+  @include lg {
+    @include col_size_1_lg;
+  }
+  @include xl {
+    @include col_size_1_xl;
+  }
+  @include xxl {
+    @include col_size_1_xxl;
+  }
+}
+
+@mixin colSize2 {
+  @include col_size_2_sm;
+  @include sm {
+    @include col_size_2_sm;
+  }
+  @include md {
+    @include col_size_2_md;
+  }
+  @include lg {
+    @include col_size_2_lg;
+  }
+  @include xl {
+    @include col_size_2_xl;
+  }
+  @include xxl {
+    @include col_size_2_xxl;
+  }
+}
+
+@mixin colSize3 {
+  @include col_size_3_sm;
+
+  @include sm {
+    @include col_size_3_sm;
+  }
+  @include md {
+    @include col_size_3_md;
+  }
+  @include lg {
+    @include col_size_3_lg;
+  }
+  @include xl {
+    @include col_size_3_xl;
+  }
+  @include xxl {
+    @include col_size_3_xxl;
+  }
+}
+
+@mixin colSize4 {
+  @include col_size_4_sm;
+
+  @include sm {
+    @include col_size_4_sm;
+  }
+  @include md {
+    @include col_size_4_md;
+  }
+  @include lg {
+    @include col_size_4_lg;
+  }
+  @include xl {
+    @include col_size_4_xl;
+  }
+  @include xxl {
+    @include col_size_4_xxl;
+  }
+}
+
+@mixin colSize5 {
+  @include col_size_5_sm;
+  @include sm {
+    @include col_size_5_sm;
+  }
+  @include md {
+    @include col_size_5_md;
+  }
+  @include lg {
+    @include col_size_5_lg;
+  }
+  @include xl {
+    @include col_size_5_xl;
+  }
+  @include xxl {
+    @include col_size_5_xxl;
+  }
+}
+
+@mixin colSize6 {
+  @include col_size_6_sm;
+  @include sm {
+    @include col_size_6_sm;
+  }
+  @include md {
+    @include col_size_6_md;
+  }
+  @include lg {
+    @include col_size_6_lg;
+  }
+  @include xl {
+    @include col_size_6_xl;
+  }
+  @include xxl {
+    @include col_size_6_xxl;
+  }
+}
+
+@mixin colSize7 {
+  width: unset !important;
+  min-width: -webkit-fill-available !important;
+  max-width: unset !important;
+}
+
 @mixin verticalAlign {
   writing-mode: vertical-rl;
   text-orientation: upright;
@@ -71,6 +445,7 @@ $familyTabFontColorSelected: $theadColor;
       width: 60%;
       margin: 0px auto;
     }
+    @include row-font-sizes;
   }
 
   &__family-1 {
@@ -119,7 +494,8 @@ $familyTabFontColorSelected: $theadColor;
   }
 
   &__table {
-    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
     height: auto;
 
     &::-webkit-scrollbar {
@@ -193,75 +569,115 @@ $familyTabFontColorSelected: $theadColor;
     }
   }
 
-  &__all-headers {
+  &__all-para {
     padding: 5px;
     text-align: left;
     font-weight: bold;
   }
+
+  &__all_table_data {
+    @include row-font-sizes;
+  }
+
+  &__all-headers {
+    @include header-font-sizes;
+
+    &__0 {
+      @include colSize5;
+    }
+    &__1 {
+      @include colSize6;
+    }
+    &__2 {
+      @include colSize6;
+    }
+    &__3 {
+      @include colSize5;
+    }
+    &__4 {
+      @include colSize1;
+    }
+    &__5 {
+      @include colSize3;
+    }
+    &__6 {
+      @include colSize2;
+    }
+    &__7 {
+      @include colSize4;
+    }
+    &__8 {
+      @include colSize4;
+    }
+    &__9 {
+      @include colSize7;
+    }
+  }
+
   &__challenge {
     &__content {
-      min-height: 100px !important;
-      min-width: 100px;
       font-weight: bold;
+      @include colSize5;
     }
   }
 
   &__definition {
     &__content {
-      min-width: 100px;
+      @include colSize6;
     }
   }
 
   &__scenario {
     &__content {
-      min-width: 150px;
+      @include colSize6;
     }
   }
 
   &__domain {
     &__content {
       text-align: center;
-      min-width: 125px;
+      @include colSize5;
     }
   }
 
   &__horizon {
     &__content {
       text-align: center;
-      min-width: 125px;
+      @include colSize1;
     }
   }
 
   &__impact {
     &__content {
       text-align: center;
-      min-width: 125px;
+      @include colSize3;
     }
   }
 
   &__valence {
     &__content {
       text-align: center;
-      min-width: 125px;
+      @include colSize2;
     }
   }
 
   &__activity {
     &__content {
       text-align: center;
-      min-width: 125px;
+      @include colSize4;
     }
   }
 
   &__cognition {
     &__content {
-      min-width: 125px;
+      text-align: center;
+      @include colSize4;
     }
   }
 
   &__challenges {
     &__content {
-      min-width: 275px;
+      @include colSize7;
     }
   }
 }

@@ -7,6 +7,7 @@ import { ScenarioData, ScenarioTitles } from '../../types/Global'
 import '../styles/scenario-lib.scss'
 import { FileNode, getImage } from 'gatsby-plugin-image/dist/src/components/hooks'
 import { mapEdgesToNodes } from '../lib/helpers'
+import { FixedHeaderOffset } from '../components/core/fixed-header-offset'
 
 interface Props {
   data: {
@@ -24,6 +25,7 @@ export default function ScenarioLibrary(props: Props) {
   return (
     <Layout title-="Aleph HMI" pageHeader={'Future Scenarios'}>
       <SEO title="Scenario Library" />
+      <FixedHeaderOffset hasNavbar={true} />
       <div className="s-l-p__container">
         <div className="s-l-p__grid-container">
           <div className="s-l-p__x-title-left">{titles.xTitleLeft}</div>

@@ -73,8 +73,11 @@ body {
 
 .aleph-container {
   background-color: #ffffff !important;
-  transform: translate(-60px, 0px);
- /*  transform: translate(-60px, -30px); */
+  /* transform: translate(-60px, 0px); */
+  /* transform: translate(-60px, -30px); */
+  position: absolute;
+  top: 165px;
+  left: 0px;
 }
 
 .aleph-chart {
@@ -178,49 +181,8 @@ body {
 }
 
 /* 
-.Availability {
-  fill: none;
-  stroke: #14022e;
-  stroke-width:1;
-}
-
-.Defence-Application {
-  fill: #7b67a8;
-  stroke: #7b67a8;
-}
-
-.Integration {
-  fill: #36bcee;
-  stroke: #36bcee;
-}
-
-.Legal {
-  fill: #2eb5b2;
-  stroke: #2eb5b2;
-}
-
-.New-Development {
-  fill: #fddd3e;
-  stroke: #fddd3e;
-}
-
-.Production {
-  fill: #ef7835;
-  stroke: #ef7835;
-}
-
-.Research-and-Design {
-  fill: #cd2456;
-  stroke: #cd2456;
-}
-
-.Other {
-  fill: #808080;
-  stroke: #808080;
-} */
-
 .Defence-Implication {
-  fill: none; /* #14022e */
+  fill: none;
   stroke: #14022e;
 }
 
@@ -247,7 +209,7 @@ body {
 .Technology-Development {
   fill: #ef7835;
   stroke: #ef7835;
-}
+} */
 
 /* 
 
@@ -838,7 +800,7 @@ body {
   stroke: #ef7835;
 }
 
-.Legal-and-Ethical {
+.Legal-Ethical{
   fill: #fddd3e;
   stroke: #fddd3e;
 }

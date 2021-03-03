@@ -2,7 +2,7 @@ var rootPath
 var displayLabelsValue = false
 
 function onClickToggle(id, groupId, state) {
-  console.log('onClickToggle  id=' + id + ' groupId=' + groupId + ' state=' + state)
+  
   if (id === 'chart-sort-alphabetical') {
     changeSortOrder({ id: 'eventType' })
   }

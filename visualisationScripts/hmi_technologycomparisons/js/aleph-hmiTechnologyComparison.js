@@ -1,7 +1,7 @@
 /*
   Project: HMI Technology Comparisons visualisation
   Filename: aleph-himTechnologyComparison.js
-  Date built: July 2020 to January 2021
+  Date built: July 2020 to February 2021
   Written By: James Bayliss (Data Vis Developer)
   Tech Stack: HTML5, CSS3, JS ES5/6, D3 (v5), JQuery 
 */
@@ -58,6 +58,8 @@ var aleph = {
   brushExtentType: 'revertTo',
 }
 
+vis = {}
+
 // function call based on browser window resize.
 window.onresize = windowResize
 
@@ -67,9 +69,8 @@ window.onresize = windowResize
                 Calls functions necessary to set-up initial view
   ARGUMENTS TAKEN: none
   ARGUMENTS RETURNED: none
-  CALLED FROM: body tag in index.html
+  CALLED FROM: renderTechnologyComparison
   CALLS:    alertSize();
-            loadData();
 */
 function onload() {
   alertSize() // function call to get current browser window dimensions
@@ -106,8 +107,8 @@ function onload() {
       DESCRIPTION: function called when user resizes window. handles updating of content reliant on dimension of window
       ARGUMENTS TAKEN: none
       ARGUMENTS RETURNED: none
-      CALLED FROM: none
-      CALLS:  none
+      CALLED FROM: user window resizing
+      CALLS: alertSize
   
       http://bl.ocks.org/johangithub/97a186c551e7f6587878
   */
@@ -141,14 +142,6 @@ function windowResize() {
   aleph.chartWidth = aleph.windowWidth - aleph.margin.left - aleph.margin.right
   aleph.chartHeight = aleph.windowHeight - aleph.margin.top - aleph.margin.bottom
 
-  // currently redundant code; may be useful down in future development to prevent resetting of cotnext brushes on window resize
-  if (x) {
-    // // console.log("Some timelines displayed by user");
-  } else {
-    // // console.log("no timelines displayed by user");
-    return
-  }
-
   // update range of tiemline chart x-axes
   x.range([0, width])
   x2.range([0, width])
@@ -162,8 +155,10 @@ function windowResize() {
   // update full-width y-axis ticks at offsets to category tick intervals.
   d3.selectAll('.yAxisTicks').attr('x1', x(x.domain()[0])).attr('x2', x(x.domain()[1]))
 
+  // store locally the chart tick selection
   var ticks = d3.selectAll('.axis.axis--x').selectAll('.tick text').style('display', 'inline')
 
+  // if browser window is small, only display alternating tick labels to avoid overlap
   ticks.each(function (_, i) {
     if (i % 2 !== 0 && aleph.windowWidth < 992) {
       d3.select(this).style('display', 'none')
@@ -213,8 +208,8 @@ function windowResize() {
       DESCRIPTION: function called to load single CSV input data file.
       ARGUMENTS TAKEN: none
       ARGUMENTS RETURNED: none
-      CALLED FROM: none
-      CALLS:  none
+      CALLED FROM: renderTechnologyComparison
+      CALLS: resolve
   */
 function loadData() {
   return new Promise((resolve, reject) => {
@@ -260,14 +255,14 @@ function loadData() {
       resolve(aleph.techComparisonMasterObject)
     })
   }) // end promsie data load
-}
+} // end function loadData
 
 /*
       NAME: showHideTechnologyTimeLine 
       DESCRIPTION: function called to just show/hide technology timeline panel
       ARGUMENTS TAKEN: fid - button information
       ARGUMENTS RETURNED: none
-      CALLED FROM: proxy HTML buttons in index.html
+      CALLED FROM: addTechnologyButtonsToControls
       CALLS: none
   */
 function showHideTechnologyTimeLine(fid) {
@@ -289,7 +284,6 @@ function showHideTechnologyTimeLine(fid) {
 
     // for each technology currently displayed on UI
     for (var tech in aleph.selectedTechnologies) {
-      // console.log(tech)
       // if its own counter is greater than counter of technology selected to hide/show
       if (aleph.selectedTechnologies[tech].counter > counter) {
         // extract out y-axis transition value
@@ -302,29 +296,25 @@ function showHideTechnologyTimeLine(fid) {
         )
 
         // modify position up/down of remaining tech timelines below timeline hidden/displayed
-        d3.selectAll('.timeline-g-' + tech)
-          .transition()
-          .duration(1250)
-          .ease(d3.easeLinear)
-          .attr('transform', function () {
-            if (buttonPressed.classed('icon-show')) {
-              return 'translate(0,' + Number(y - aleph.timeLineHeight + 35) + ')'
-            } else if (buttonPressed.classed('icon-hide')) {
-              return 'translate(0,' + Number(y + aleph.timeLineHeight - 35) + ')'
-            }
-          })
+        d3.selectAll('.timeline-g-' + tech).attr('transform', function () {
+          if (buttonPressed.classed('icon-show')) {
+            return 'translate(0,' + Number(y - aleph.timeLineHeight + 35) + ')'
+          } else if (buttonPressed.classed('icon-hide')) {
+            return 'translate(0,' + Number(y + aleph.timeLineHeight - 35) + ')'
+          }
+        })
       }
     }
   } else {
     // // console.log("tech has NOT been selected");
   }
 
-  setTimeout(function () {
-    d3.selectAll('.btn.aleph-visibility.aleph-control.btn-primary.aleph-halfWidth.aleph-btn-selected').classed(
-      'aleph-no-pointer-events',
-      false
-    )
-  }, 2000)
+  // setTimeout(function () {
+  //   d3.selectAll('.btn.aleph-visibility.aleph-control.btn-primary.aleph-halfWidth.aleph-btn-selected').classed(
+  //     'aleph-no-pointer-events',
+  //     false
+  //   )
+  // }, 2000)
 
   return
 } // end function showHideTechnologyTimeLine
@@ -432,7 +422,9 @@ function addTechnologyButtonsToControls(panel) {
       ARGUMENTS TAKEN: technologies - array fo technology names selected by user on previous screen
       ARGUMENTS RETURNED: none
       CALLED FROM: submitSelection
-      CALLS: buildTimeLineChart - function to build construct of new timeline panel based on information for selected technology
+              renderTechnologyComparison
+              submitURL
+      CALLS: zsbuildTimeLineChart - function to build construct of new timeline panel based on information for selected technology
               addTechnologyButtonsToControls
 */
 function addTimeLinePanels() {
@@ -447,84 +439,15 @@ function addTimeLinePanels() {
     //... and modify/calculate new height after adding new timeline panel
     d3.selectAll('.aleph-chart').attr('height', Number(aleph.currentSVGbaseHeight) /* + 50 */)
 
-    // call function to add tech display buttons and build timeline chartss
-    addTechnologyButtonsToControls(panel)
-
+    // call function to add tech display buttons and build timeline charts
     buildTimeLineChart(panel, aleph.currentSVGbaseHeight)
   } // end forEach
 
+  // update height of bse SVG panel
   d3.selectAll('.aleph-chart').attr('height', Number(aleph.currentSVGbaseHeight) + 50)
 
   return
 } // end function addTimeLinePanels
-
-/*
-      NAME: submitSelection 
-      DESCRIPTION: function call to submit user selection of technologies to view .. 
-      ARGUMENTS TAKEN: none
-      ARGUMENTS RETURNED: none
-      CALLED FROM: index.html
-      CALLS: addTimeLinePanels
-*/
-function submitSelection() {
-  d3.selectAll('.aleph-exampleTechSelector').classed('aleph-hide', true)
-  d3.selectAll('.aleph-chart').classed('aleph-hide', false)
-  d3.selectAll('.aleph-controls').classed('aleph-hide', false)
-
-  // recalculate chat width and height
-  aleph.chartWidth = aleph.windowWidth - aleph.margin.left - aleph.margin.right
-  aleph.chartHeight = aleph.windowHeight - aleph.margin.top - aleph.margin.bottom
-
-  var selectedIcons = document.querySelectorAll('img:not(.aleph-technology-deselected)')
-
-  // for each selected technology icons
-  selectedIcons.forEach(function (d) {
-    var button = d
-    var id = button.id.replace('FID', '')
-    aleph.technologySelectionArray.push(id)
-    aleph.url = aleph.url + id + '=true&'
-
-    // push technology/panel information from master JSON object data store to JSON obj of for selceted technologies
-    aleph.selectedTechnologies[id] = aleph.techComparisonMasterObject[/* button. */ id]
-
-    // add 'counter' key to panel information for selected technology
-    aleph.selectedTechnologies[id].counter = aleph.technologyCounter
-
-    // initialise keys relating to time range start/end for selected technology.
-    // One set for the time interval currently selected on the tech's own brush on context chart
-    aleph.selectedTechnologies[id].currentInterval = {
-      start: null,
-      end: null,
-    }
-    // One set for the time interval defined by the earliest and latest date for an individual event on tech timeline.
-    aleph.selectedTechnologies[id].sourceInterval = {
-      start: null,
-      end: null,
-    }
-
-    // One set for the time interval defined by the earliest and latest date that all tech timelines are initially displayed against.
-    aleph.selectedTechnologies[id].baseInterval = {
-      start: null,
-      end: null,
-    }
-
-    // update modifyBy variable to "add"
-    modifyBy = 'add'
-
-    // increment selected technology' counter by 1
-    aleph.technologyCounter++
-  })
-
-  // call fucntion to build new timeline [panel] for each tech selected
-  addTimeLinePanels()
-
-  // clear filter arrays
-  aleph.environmentFilters = []
-  aleph.disruptionFilters = []
-  aleph.sensoryFilters = []
-
-  return
-} // end function submitSelection
 
 /*
       NAME: copyURL 
@@ -591,305 +514,70 @@ function submitURL() {
   return
 } // end function submitURL
 
-/*
-      NAME: submitURL 
-      DESCRIPTION: function call to return to proxy example tech selector page
-      ARGUMENTS TAKEN: none
-      ARGUMENTS RETURNED: none
-      CALLED FROM: index.html
-      CALLS: none
-*/
-function returnToTechSelector() {
-  // show legend
-  d3.selectAll('.aleph-legendBase').classed('aleph-hide', true)
-
-  $('.btn.btn-secondary')
-    .prop('disabled', false)
-    .removeClass('aleph-filter-deselected')
-    .addClass('aleph-filter-selected')
-  $('.aleph-technology-icon').prop('disabled', false).removeClass('aleph-technology-deselected')
-
-  $('#aleph-submit').prop('disabled', true).removeClass('btn-success').addClass('btn-danger').addClass('aleph-disabled')
-
-  aleph.disruptionFilters = ['step', 'incremental', 'disruptive']
-  aleph.sensoryFilters = ['audio', 'tactile', 'visual']
-  aleph.environmentFilters = ['air', 'land', 'maritime']
-
-  // remove  tech selector button array
-  d3.selectAll('.aleph-tech-button-group').remove()
-
-  // modify class styling of copy/submit form items.
-  $('.btn.aleph-copyUrl').prop('disabled', false).removeClass('aleph-disabled')
-  $('.btn.aleph-submitUrl').prop('disabled', false).removeClass('aleph-disabled')
-
-  // modify class styling of DOM items.
-  d3.selectAll('.aleph-exampleTechSelector').classed('aleph-hide', false)
-  d3.selectAll('.aleph-chart').classed('aleph-hide', true)
-  d3.selectAll('.aleph-controls').classed('aleph-hide', true).style('height', 'auto')
-
-  // reinitialise arrays
-  aleph.technologySelectionArray = []
-  aleph.selectedTechnologies = {}
-
-  // grab references to all buttons.
-  var buttons = d3.selectAll('.btn.aleph-technologyButton')._groups[0]
-
-  // for each button referecne...
-  buttons.forEach(function (d) {
-    if (d.innerText.indexOf('(') != -1) {
-      var index = d.innerText.indexOf('(')
-      d.innerText = d.innerText.slice(0, index)
-    }
-  })
-
-  // modify class styling of DOM tech buttons.
-  d3.selectAll('.btn.aleph-technologyButton').classed('aleph-btn-selected', false).classed('aleph-btn-unselected', true)
-
-  // remove tiemline group element
-  d3.selectAll('.timeline-g').remove()
-
-  d3.select('.aleph-chart').attr('height', 0)
-  aleph.technologyCounter = 0
-
-  return
-} // end function returnToTechSelector
-
-/*
-      NAME: filterTechnologiesByEnvironment 
-      DESCRIPTION: function call to filter tech icons by environment var
-      ARGUMENTS TAKEN: button - info on DOM button pressed
-      ARGUMENTS RETURNED: none
-      CALLED FROM: index.html
-      CALLS: filterTechnologies_correctly
-*/
-function filterTechnologiesByEnvironment(button) {
-  // localised button variable
-  var buttonPressed = d3.select(button)
-
-  // modify classname styling/defs
-  buttonPressed.classed('aleph-filter-deselected', !buttonPressed.classed('aleph-filter-deselected'))
-
-  // modify classname styling/defs
-  buttonPressed.classed('aleph-filter-selected', !buttonPressed.classed('aleph-filter-selected'))
-
-  // localise HTML content of [de]selected technology
-  var buttonPressed = d3.select(button)
-  var filterValue = button.value
-
-  if (aleph.environmentFilters.indexOf(filterValue) == -1) {
-    aleph.environmentFilters.push(filterValue)
-  } else {
-    const filterIndex = aleph.environmentFilters.indexOf(filterValue)
-    if (filterIndex > -1) {
-      aleph.environmentFilters.splice(filterIndex, 1)
-    }
-  }
-  // call function to correcly filter tech icons.
-  filterTechnologies_correctly()
-
-  return
-} // end function filterTechnologiesByEnvironment
-
-/*
-      NAME: filterTechnologiesByDisruptiveness 
-      DESCRIPTION: function call to filter tech icons by disruptiveness var
-      ARGUMENTS TAKEN: button - info on DOM button pressed
-      ARGUMENTS RETURNED: none
-      CALLED FROM: index.html
-      CALLS: filterTechnologies_correctly
-*/
-function filterTechnologiesByDisruptiveness(button) {
-  // localised button variable
-  var buttonPressed = d3.select(button)
-
-  // modify classname styling/defs
-  buttonPressed.classed('aleph-filter-deselected', !buttonPressed.classed('aleph-filter-deselected'))
-
-  // modify classname styling/defs
-  buttonPressed.classed('aleph-filter-selected', !buttonPressed.classed('aleph-filter-selected'))
-
-  // localise HTML content of [de]selected technology
-  var buttonPressed = d3.select(button)
-  var filterValue = button.value
-
-  if (aleph.disruptionFilters.indexOf(filterValue) == -1) {
-    aleph.disruptionFilters.push(filterValue)
-  } else {
-    const filterIndex = aleph.disruptionFilters.indexOf(filterValue)
-    if (filterIndex > -1) {
-      aleph.disruptionFilters.splice(filterIndex, 1)
-    }
-  }
-
-  // call function to correcly filter tech icons.
-  filterTechnologies_correctly()
-
-  return
-} // end function filterTechnologiesByDisruptiveness
-
-/*
-      NAME: filterTechnologiesBySensory 
-      DESCRIPTION: function call to filter tech icons by disruptiveness var
-      ARGUMENTS TAKEN: button - info on DOM button pressed
-      ARGUMENTS RETURNED: none
-      CALLED FROM: index.html
-      CALLS: filterTechnologies_correctly
-*/
-function filterTechnologiesBySensory(button) {
-  // localised button variable
-  var buttonPressed = d3.select(button)
-
-  // modify classname styling/defs
-  buttonPressed.classed('aleph-filter-deselected', !buttonPressed.classed('aleph-filter-deselected'))
-
-  // modify classname styling/defs
-  buttonPressed.classed('aleph-filter-selected', !buttonPressed.classed('aleph-filter-selected'))
-
-  // localise HTML content of [de]selected technology
-  var buttonPressed = d3.select(button)
-  var filterValue = button.value
-
-  if (aleph.sensoryFilters.indexOf(filterValue) == -1) {
-    aleph.sensoryFilters.push(filterValue)
-  } else {
-    const filterIndex = aleph.sensoryFilters.indexOf(filterValue)
-    if (filterIndex > -1) {
-      aleph.sensoryFilters.splice(filterIndex, 1)
-    }
-  }
-
-  // call function to correcly filter tech icons.
-  filterTechnologies_correctly()
-
-  return
-} // end function filterTechnologiesBySensory
-
-/*
-      NAME: filterTechnologies_correctly 
-      DESCRIPTION: function call to filter tech icons by all retaiend filters simultaneously
-      ARGUMENTS TAKEN: button - info on DOM button pressed
-      ARGUMENTS RETURNED: none
-      CALLED FROM: index.html
-      CALLS: filterTechnologies_correctly
-*/
-function filterTechnologies_correctly() {
-  // get reference for all technology icons.
-  var technologyIcons = d3.selectAll('.aleph-technology-icon')._groups[0]
-  var id = '' // initial id variable
-
-  // for eh technology references ...
-  technologyIcons.forEach(function (d) {
-    // get its class listing
-    var classList = d.classList['value'].split(' ')
-
-    // get its ID
-    id = d.id
-
-    // check that at least one disruption filter retained is present in tech class listing
-    const foundDisruption = classList.some((r) => aleph.disruptionFilters.includes(r))
-
-    // check that at least one sensory filter retained is present in tech class listing
-    const foundSensory = classList.some((r) => aleph.sensoryFilters.includes(r))
-
-    // check that at least one environment filter retained is present in tech class listing
-    const foundEnvionment = classList.some((r) => aleph.environmentFilters.includes(r))
-
-    // construct temp array store for boolean values fo each filter group
-    var filterCheck = [foundDisruption, foundSensory, foundEnvionment]
-
-    // any of the filter groups has not been found ...
-    if (filterCheck.indexOf(false) != -1) {
-      d3.select('#' + id)
-        .classed('aleph-technology-selected', false)
-        .classed('aleph-technology-deselected', true)
-    } else {
-      d3.select('#' + id)
-        .classed('aleph-technology-selected', true)
-        .classed('aleph-technology-deselected', false)
-    }
-  }) // end forEach
-
-  var countStillSelected = d3.selectAll('.aleph-technology-icon.aleph-technology-selected')
-
-  if (
-    countStillSelected._groups[0].length >= aleph.minAllowed &&
-    countStillSelected._groups[0].length <= aleph.maxAllowed
-  ) {
-    $('#aleph-submit')
-      .prop('disabled', false)
-      .removeClass('aleph-disabled')
-      .removeClass('btn-danger')
-      .addClass('btn-success')
-  } else {
-    $('#aleph-submit')
-      .prop('disabled', true)
-      .addClass('aleph-disabled')
-      .removeClass('btn-success')
-      .addClass('btn-danger')
-  }
-
-  return
-} // end filterTechnologies_correctly();
-
-/*
-      NAME: manuallyFilterTechnology 
-      DESCRIPTION: function called to manually filter a tech if remaing techs are to many to view. 
-      ARGUMENTS TAKEN: button - info on DOM button pressed
-      ARGUMENTS RETURNED: none
-      CALLED FROM: index.html
-      CALLS: filterTechnologies_correctly
-*/
-function manuallyFilterTechnology(button) {
-  // localise ID
-  var id = button.id
-
-  // localise HTML content of [de]selected technology
-  if (d3.select('#' + id).classed('aleph-technology-deselected')) {
-    d3.select('#' + id)
-      .classed('aleph-technology-selected', true)
-      .classed('aleph-technology-deselected', false)
-  } else {
-    d3.select('#' + id)
-      .classed('aleph-technology-selected', false)
-      .classed('aleph-technology-deselected', true)
-  }
-
-  var countStillSelected = d3.selectAll('.aleph-technology-icon.aleph-technology-selected')
-
-  if (
-    countStillSelected._groups[0].length >= aleph.minAllowed &&
-    countStillSelected._groups[0].length <= aleph.maxAllowed
-  ) {
-    $('#aleph-submit')
-      .prop('disabled', false)
-      .removeClass('aleph-disabled')
-      .removeClass('btn-danger')
-      .addClass('btn-success')
-  } else {
-    $('#aleph-submit')
-      .prop('disabled', true)
-      .addClass('aleph-disabled')
-      .removeClass('btn-success')
-      .addClass('btn-danger')
-  }
-
-  return
-} // end function  manuallyFilterTechnology
-
 Array.prototype.contains = function (...args) {
   return [...args].every((c) => this.includes(c))
 }
 
-function reset(button) {
-  d3.selectAll('.aleph-technology-icon')
-    .classed('aleph-technology-selected', true)
-    .classed('aleph-technology-deselected', false)
+/*
+    NAME: CharacterToCharacter
+    DESCRIPTION: change one character type to another in a text string
+    ARGUMENTS TAKEN: str: text string to consider
+                      char1: character to find and change
+                      char2 : character to change to .
+    ARGUMENTS RETURNED: modified string
+    CALLED FROM: submitSelection
+    CALLS: none
+*/
+function CharacterToCharacter(str, char1, char2) {
+  return str.split(char1).join(char2)
+} // end function CharacterToCharacter
 
-  d3.selectAll('.btn.aleph-filter').classed('aleph-filter-selected', true).classed('aleph-filter-deselected', false)
+/*
+    NAME: alertSize
+    DESCRIPTION: determine current width and height dimensions of window
+    ARGUMENTS TAKEN: none
+    ARGUMENTS RETURNED: none
+    CALLED FROM: submitSelection
+                windowResize
+    CALLS: none
+*/
+function alertSize() {
+  var myWidth = 0,
+    myHeight = 0
+  if (typeof window.innerWidth == 'number') {
+    //Non-IE
+    myWidth = window.innerWidth
+    myHeight = window.innerHeight
+  } else if (
+    document.documentElement &&
+    (document.documentElement.clientWidth || document.documentElement.clientHeight)
+  ) {
+    //IE 6+ in 'standards compliant mode'
+    myWidth = document.documentElement.clientWidth
+    myHeight = document.documentElement.clientHeight
+  } else if (document.body && (document.body.clientWidth || document.body.clientHeight)) {
+    //IE 4 compatible
+    myWidth = document.body.clientWidth
+    myHeight = document.body.clientHeight
+  }
 
-  aleph.disruptionFilters = ['step', 'incremental', 'disruptive']
-  aleph.sensoryFilters = ['audio', 'tactile', 'visual']
-  aleph.environmentFilters = ['air', 'land', 'maritime']
+  vis.width = myWidth
+  vis.height = myHeight
 
   return
-} // end function reset
+}
+
+// http://stackoverflow.com/questions/14167863/how-can-i-bring-a-circle-to-the-front-with-d3
+d3.selection.prototype.moveToFront = function () {
+  return this.each(function () {
+    this.parentNode.appendChild(this)
+  })
+}
+d3.selection.prototype.moveToBack = function () {
+  return this.each(function () {
+    var firstChild = this.parentNode.firstChild
+    if (firstChild) {
+      this.parentNode.insertBefore(this, firstChild)
+    }
+  })
+}

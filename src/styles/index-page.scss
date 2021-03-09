@@ -45,16 +45,19 @@
           width: 46% !important;
         }
         @include md {
-          width: 58% !important;
+          width: 59% !important;
         }
         @include lg {
           width: 63% !important;
         }
         @include xl {
-          width: 65% !important;
+          width: 64% !important;
         }
         @include xxl {
-          width: 67% !important;
+          width: 66% !important;
+        }
+        @include xxxl {
+          width: 60% !important;
         }
         height: unset !important;
         margin: 2px auto;

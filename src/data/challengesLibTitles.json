@@ -1,15 +1,15 @@
 {
   "challengesLibraryTitles": {
-    "ref": "REF",
-    "challenge": "INDIVIDUAL COGNITIVE CHALLENGE",
-    "definition": "DEFINITION",
-    "scenario": "REPRESENTATIVE SCENARIO",
-    "domain": "RELEVANT DOMAINS",
-    "horizon": "TIME HORIZON",
-    "impact": "PERCEIVED IMPACT",
-    "valence": "DIRECTION OF EFFECT FOR DEFENCE",
-    "activity": "ACTIVITY",
-    "cognition": "AREAS OF COGNITION",
-    "challenges": "KEY CHALLENGES FOR DEVELOPMENT AND RESEARCH FROM A COGNITIVE PERSPECTIVE"
+    "ref": "Ref",
+    "challenge": "Individual cognitive challenge",
+    "definition": "Definition",
+    "scenario": "Representative scenario",
+    "domain": "Relevant domains",
+    "horizon": "Time horizon",
+    "impact": "Perceived impact",
+    "valence": "Direction of effect for Defence",
+    "activity": "Activity",
+    "cognition": "Areas of cognition",
+    "challenges": "Key challenges for development and research from a cognitive prespective"
   }
 }

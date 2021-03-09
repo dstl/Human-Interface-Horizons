@@ -19,47 +19,64 @@ Visualisations are custom built with [d3](https://d3js.org/)
 
 Hosting is provided by GitHub Pages.
 
+This project uses [**yarn**](https://yarnpkg.com/) to manage the packages. **Yarn** is an alternative to **npm**. Please avoid using **npm**. 
+
+This project uses [**prettier**](https://prettier.io/) to maintain consistent project formatting. Please ensure you have this extension enabled on your IDE for this particular project. Check out this [Link](https://prettier.io/docs/en/editors.html) for support.
+
+----
+
 # Build and Deploy Instructions
 
-## Package Manager
-This project uses [**yarn**](https://yarnpkg.com/) to manage the packages. **Yarn** is an alternaltive to **npm**. Please avoid using **npm**. 
-
-## Project Formatting
-This project uses [**prettier**](https://prettier.io/) to maintain consistant project formmating. Please ensure you have this extension **Enabled** on your IDE for this particular project. Check out this [Link](https://prettier.io/docs/en/editors.html) for support.
-
 ## Prepare your Development Environment
-Follow the these steps to prepare your development environment.
-1. Install Nodejs - version 14 or newer
-    - Download [here](https://nodejs.org/en/download/)
-1. Install yarn 
-    - `npm install -g yarn` 
-1. Make sure you have a suitable IDE installed. We recommend [VS Code](https://code.visualstudio.com/)
-    - Ensure you have the [prettier](https://prettier.io/docs/en/editors.html) extention installed.
-1. Clone this repository to your local machine
+In order to be able to operate as a super-user there are a number of functions and tools that will be required. This will enable a super-user to make changes to content in the HIH tool. The necessary steps for preparing the development environment are included below.
+- First, you will need to have editing permissions for this [Dstl GitHub repository](https://github.com/dstl/Human-Interface-Horizons) on which the HIH Tool is hosted.
+- [Git for Windows](https://git-scm.com/download/win) installed on your machine. Ensure that your credentials are set up and you are able to access the repository from powershell.
+- You will need to install [Nodejs](https://nodejs.org/en/download/ ) - Version 14 or newer.
+- Make sure you have a suitable development tool installed - we recommend [VS Code](https://code.visualstudio.com/)
+- Ensure you have the [prettier](https://prettier.io/docs/en/editors.html) extension installed.
+You will also require a suitable editor for editing .csv files (e.g. Excel).
+- Finally, once Nodejs is installed, install ‘yarn package manager’ using node package manager from PowerShell, using the command: `npm install -g yarn`
 
-## Run Locally
-To run a local hosted version for testing and debugging, follow these steps:
+## Clone the repository
+All data files are stored in the code repository for the project. To make changes you will need to edit a local copy of the repository and then rebuild the site. You will need to edit and build from a local copy of this repository. 
 
-1. Fresh install from newly cloned repo. This will install all packages needed for the build. This step is only needed once when you clone the repo. 
-    * `$ yarn`
-1.  Start the development server 
-    * `$ yarn develop`
-1. Start a 'production-like' local server for testing
-    * `$ yarn deploy-local`
+Navigate to a directory on your local machine where you want to work, open PowerShell and clone the repository using the following command: `git clone git@github.com:dstl/Human-Interface-Horizons.git`
+
+Install local node packages required to build the project by running: `yarn install`
+
+## Making Changes
+The correct file must first be identified in order to ensure any amendments are reflected in the HIH tool. Changes can then be made to the .csv file in question, using an appropriate file such as Excel. This simply involves opening the local copy of the .csv file and making changes by selecting the appropriate cell/s and amending the content.
+
+Ensure you do not move or rename any of these files.
+
+## Build Test
+Prior to deployment it is recommended that you perform a test build to check the site builds correctly and displays as intended. Once you are content that changes are correct, perform a test build in order to launch a 'production-like' local server for testing of the site using the command: `yarn cbs`
+
+The cbs script (short for clean, build, serve) performs these functions sequentially.
+
+An address (similar to http://localhost:9000) will be displayed in PowerShell. You will need to open this page in your browser to view the local build. You should check that the content has been changed and appears as required.
 
 ## Deploy to Git Pages
-### Deployment
-The tool uses a nodejs module, `gh-pages`, to manage deployment to GitHub Pages.
+Pushing and committing the changes will enable the amended site to appear on the GitHub Pages site. To complete this final step, from the top level of the local repository run the following command to rebuild and publish the site to GitHub Pages in PowerShell: `yarn deploy`
 
-`$ yarn deploy`
+## Commit changes to repository
+To commit the changes made to the remote (GitHub) repository and allow this version to be built on in the future, the following steps should be followed in PowerShell:
 
-### GitHub repository settings
-The repository must be configured to publish github pages:
+Stage the changes: `git add .`
+
+Commit the changes to the local repository: `git commit -m “insert name for the change for reference purposes”`
+
+Push recent commits from the local repository to the remote repository: `git push`
+
+## GitHub repository settings
+The tool uses a nodejs module, gh-pages, to manage deployment to GitHub Pages. The repository must be configured to publish GitHub Pages. This only needs to be done once:
 1) Make sure the repo is public
 1) Go to "**Settings**" for the repository
 1) In the "**GitHub Pages**" section, select the branch "**gh-pages**" as the source. And "**/**" as the root
 
 For more information see: [How Gatsby Works with GitHub Pages](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/how-gatsby-works-with-github-pages/)
+
+----
 
 # Licence and Copyright
 **Code**: [MIT License](LICENCE)

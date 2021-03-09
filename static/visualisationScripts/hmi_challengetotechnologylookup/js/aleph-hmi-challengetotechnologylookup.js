@@ -731,7 +731,7 @@ function submitSelection() {
 
           // else, do nothing (no page opening on a cogn. challenge interaction)
           else {
-            console.log('you have clicked a cognitive challenge')
+            // console.log('you have clicked a cognitive challenge')
           }
 
           /// modify class name defintions of otehr soure and target nodes

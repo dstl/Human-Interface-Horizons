@@ -5,6 +5,7 @@ import Layout from '../components/core/layout'
 import { MarkdownQueryData } from '../../types/Global'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import '../styles/scenario-pages.scss'
+import { FixedHeaderOffset } from '../components/core/fixed-header-offset'
 
 export default function ScenarioTemplate({ data }: { data: MarkdownQueryData }) {
   const { frontmatter, html } = data.markdownRemark
@@ -13,6 +14,7 @@ export default function ScenarioTemplate({ data }: { data: MarkdownQueryData }) 
 
   return (
     <Layout pageHeader={frontmatter.title} breadcrumb={{ label: 'Scenario Library', link: '/scenario-library' }}>
+      <FixedHeaderOffset hasNavbar={true} />
       <SEO title={frontmatter.title} />
       <div className="scen__container">
         <GatsbyImage className={'scen__image'} image={imageData} alt={frontmatter.title + ' Image'} />

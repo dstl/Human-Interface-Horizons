@@ -1,8 +1,8 @@
 id,name,title,subtitle,imageAltTxt,imageName
-1,technology-selector,Technology Events Timeline,"Compare and contrast the possible development pathways for different HMI technologies",Technology Selector Image,"comparison-timelines"
-2,challenge-to-technology,Technology to Future Challenge Mapping,"Examine the links between HMI technologies and the future Defence-specific challenges of the future",Challenge to Technology Image,"challenge-to-technology"
-3,cognitive-challenge-library,Future Cognitive Challenges Table,"See information about the cognitive challenges of the Future Operating Environment displayed in tabular form",Cognitive Challenge Library image,"cognitive-challenge-library"
-4,technology-library,HMI Technology Catalogue,"Look at more detailed information about individual HMI technologies.",Technology Library image,"technology-library"
-5,technology-taxonomy,Technology Taxonomy Builder,"Explore different ways of classifying HMI technologies based on different factors",Technology Taxonomy image,"taxonomy"
-6,technology-convergence,Technology Convergence Timeline,"See how different HMI technologies could be integrated in the future to deliver new capabilities",Technology Convergence Timeline Image,"convergence"
-7,scenario-library,Future Scenarios,"Read immersive scenarios depicting how HMI technology might be used in different future contexts.",Scenario Library Image,"scenarios-library"
+1,technology-selector,Technology Events Timeline,Compare and contrast the possible development pathways for different HMI technologies,Technology Selector Image,comparison-timelines
+2,challenge-to-technology,Technology to Future Challenge Mapping,Examine the links between HMI technologies and the future Defence-specific challenges of the future,Challenge to Technology Image,challenge-to-technology
+3,cognitive-challenge-library,Future Cognitive Challenges Table,See information about the cognitive challenges of the Future Operating Environment displayed in tabular form,Cognitive Challenge Library image,cognitive-challenge-library
+4,technology-library,HMI Technology Catalogue,Look at more detailed information about individual HMI technologies,Technology Library image,technology-library
+5,technology-taxonomy,Technology Taxonomy Builder,Explore different ways of classifying HMI technologies based on different factors,Technology Taxonomy image,taxonomy
+6,technology-convergence,Technology Convergence Timeline,See how different HMI technologies could be integrated in the future to deliver new capabilities,Technology Convergence Timeline Image,convergence
+7,scenario-library,Future Scenarios,Read immersive scenarios depicting how HMI technology might be used in different future contexts,Scenario Library Image,scenarios-library

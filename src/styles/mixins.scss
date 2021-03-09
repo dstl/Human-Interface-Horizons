@@ -1,22 +1,19 @@
 // sm = 1280 X 720
 $screen-sm-w: 1280px;
-$screen-sm-h: 720px;
 
 // md = 1920 X 1080
 $screen-md-w: 1920px;
-$screen-md-h: 1080px;
 
 // lg = 2560 X 1440
 $screen-lg-w: 2560px;
-$screen-lg-h: 1440px;
 
 // xl = 3200 X 1800
 $screen-xl-w: 3200px;
-$screen-xl-h: 1800px;
 
 // xxl = 3840 X 2160
 $screen-xxl-w: 3840px;
-$screen-xxl-h: 2160px;
+
+$screen-xxxl-w: 4096px;
 
 /* >>--------- TESTING DONT DELETE --------->> */
 @mixin test-size-color-default {
@@ -89,6 +86,12 @@ $screen-xxl-h: 2160px;
     @content;
   }
 }
+
+@mixin xxxl {
+  @media (min-width: #{$screen-xxxl-w}) {
+    @content;
+  }
+}
 /* <<------ RESPONSIVE SIZES -----<< */
 
 @mixin main-content-global {
@@ -146,13 +149,16 @@ $screen-xxl-h: 2160px;
     font-size: 12pt;
   }
   @include lg {
-    font-size: 14pt;
+    font-size: 15pt;
   }
   @include xl {
-    font-size: 16pt;
+    font-size: 18pt;
   }
   @include xxl {
-    font-size: 18pt;
+    font-size: 21pt;
+  }
+  @include xxxl {
+    font-size: 24pt;
   }
 }
 @mixin s-md-font-size-global {

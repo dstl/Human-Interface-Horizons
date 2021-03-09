@@ -40,15 +40,13 @@ export const Visualisation = (props: Props) => {
     isTechDetails,
   } = props
 
-  console.log('isTechDetails', isTechDetails)
-
   const domRef = useRef() as React.MutableRefObject<HTMLInputElement>
 
   let scriptStatuses: string[] = []
   useEffect(() => {
     if (typeof window !== `undefined`) {
       if (scriptStatuses.length > 0) {
-        if (scriptStatuses.every(status => status === "ready")) {
+        if (scriptStatuses.every((status) => status === 'ready')) {
           // console.log("All scripts loaded, about to render");
           if (!svg) svg = createD3SVG(domRef.current, width, height, heightRatio)
           renderVisualisationFunc(svg, domRef.current, renderFunction, props.params, withPrefix(rootPath))
@@ -99,7 +97,6 @@ export const Visualisation = (props: Props) => {
       window['onClickSubmit'](groupId, toggledStates, orderedIds)
     } else {
       //TODO: Remove or comment out
-
       // console.log("Couldn't find onClickSubmit")
     }
   }

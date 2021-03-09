@@ -1,20 +1,20 @@
 ﻿FID,title,slug,area_of_cognition,direction_of_information,sensory_information,information_throughput,relevant_environments,likelihood_of_successful_development,disruptiveness,usability,level_of_cognitive_demand_required,accessibility,likely_availability,level_of_human_control,ease_of_replacement
 1,Touchscreens,touchscreens,Mechanical Reasoning,Bidirectional,Visual (text and non-text),High,All,High,Incremental,Good,Medium,Broad,High,Significant Volitional Control,Medium
 2,Touch-interactive large objects,touch_interactive_large_objects,Mechanical Reasoning,Human to Machine,Tactile,Low,All,Low,Incremental,Good,Low,Broad,High,Full Volitional Control,High
-3,Gesture and movement sensors,gesture_and_movement_sensors,Spatial Reasoning,Human to Machine,Movement/Orientation,Medium,All,Low,Incremental,Okay,Low,Moderate,High,Significant Volitional Control,High
+3,Gesture and movement sensors,gesture_and_movement_sensors,Spatial Reasoning,Human to Machine,Movement/Orientation,Medium,All,Low,Incremental,Average,Low,Moderate,High,Significant Volitional Control,High
 4,Handheld controllers,handheld_controllers,Spatial Reasoning,Human to Machine,Movement/Orientation,Medium,Land/Air/Maritime,High,Incremental,Excellent,Low,Moderate,High,Significant Volitional Control,Medium
 5,Keyboard and text input devices,keyboard_and_text_input_devices,Verbal Communication,Human to Machine,Visual (text),Low,All,High,Incremental,Excellent,Medium,Moderate,High,Significant Volitional Control,Medium
-6,Drawing or writing implements,drawing_or_writing_implements,Visual Perception,Bidirectional,Visual (text and non-text),Medium,All,Low,Incremental,Okay,Medium,Moderate,High,Full Volitional Control,Medium
-7,Image recognition cameras,image_recognition_cameras,Visual Perception,Human to Machine,Visual (non-text),Medium,Land/Air/Maritime,Medium,Step,Okay,Low,Broad,High,Limited Volitional Control,Medium
-8,Eye tracking equipment,eye_tracking_equipment,Attention,Human to Machine,Movement/Orientation,Medium,Land/Air/Maritime,Medium,Step,Okay,Low,Broad,High,Limited Volitional Control,Medium
-9,Physiological monitors,physiological_monitors,Other Senses Perception,Human to Machine,Electrical Signal,Medium,Land/Air/Maritime,Low,Disruptive,Okay,Low,Broad,High,No Control,Medium
+6,Drawing or writing implements,drawing_or_writing_implements,Visual Perception,Bidirectional,Visual (text and non-text),Medium,All,Low,Incremental,Average,Medium,Moderate,High,Full Volitional Control,Medium
+7,Image recognition cameras,image_recognition_cameras,Visual Perception,Human to Machine,Visual (non-text),Medium,Land/Air/Maritime,Medium,Step,Average,Low,Broad,High,Limited Volitional Control,Medium
+8,Eye tracking equipment,eye_tracking_equipment,Attention,Human to Machine,Movement/Orientation,Medium,Land/Air/Maritime,Medium,Step,Average,Low,Broad,High,Limited Volitional Control,Medium
+9,Physiological monitors,physiological_monitors,Other Senses Perception,Human to Machine,Electrical Signal,Medium,Land/Air/Maritime,Low,Disruptive,Average,Low,Broad,High,No Control,Medium
 10,Physical virtual reality control interfaces,physical_virtual_reality_control_interfaces,Other Senses Perception,Bidirectional,Movement/Orientation,Medium,Land/Air/Maritime,Low,Step,Poor,Medium,Moderate,High,Significant Volitional Control,Medium
 11,Smart clothing and other wearables,smart_clothing_and_other_wearables,Other Senses Perception,Bidirectional,Tactile,Medium,Land/Air/Maritime,Medium,Step,Poor,Low,Broad,Medium,Limited Volitional Control,Medium
 12,Telepresence equipment,telepresence_equipment,Verbal Communication,Bidirectional,Audiovisual,High,Land/Air/Maritime,Medium,Step,Good,Low,Broad,Medium,Limited Volitional Control,Medium
-13,Speech-based interfaces,speech_based_interfaces,Verbal Communication,Bidirectional,Audio (speech),Medium,Land/Air/Maritime,Medium,Step,Okay,Medium,Broad,High,Significant Volitional Control,Medium
+13,Speech-based interfaces,speech_based_interfaces,Verbal Communication,Bidirectional,Audio (speech),Medium,Land/Air/Maritime,Medium,Step,Average,Medium,Broad,High,Significant Volitional Control,Medium
 14,Vehicle controls,vehicle_controls,Spatial Reasoning,Bidirectional,Movement/Orientation,Medium,Land/Air/Maritime,High,Step,Excellent,Medium,Moderate,High,Full Volitional Control,Medium
-15,Robot Controller Interfaces,robot_controller_interfaces,Mechanical Reasoning,Human to Machine,Movement/Orientation,Medium,Land/Air/Maritime,High,Incremental,Good,Medium,Broad,Medium,Full Volitional Control,Medium
-16,Exoskeletons,exoskeletons,Mechanical Reasoning,Bidirectional,Movement/Orientation,Medium,Land,Low,Step,Okay,Medium,Moderate,Low,Significant Volitional Control,Low
+15,Robot controller interfaces,robot_controller_interfaces,Mechanical Reasoning,Human to Machine,Movement/Orientation,Medium,Land/Air/Maritime,High,Incremental,Good,Medium,Broad,Medium,Full Volitional Control,Medium
+16,Exoskeletons,exoskeletons,Mechanical Reasoning,Bidirectional,Movement/Orientation,Medium,Land,Low,Step,Average,Medium,Moderate,Low,Significant Volitional Control,Low
 17,Body-integrated interfaces,body_integrated_interfaces,Decision-Making,Bidirectional,Electrical Signal,Medium,Land/Air/Maritime,Medium,Disruptive,Good,Low,Moderate,Low,Significant Volitional Control,Low
 18,Smart home devices,smart_home_devices,Decision-Making,Bidirectional,Audiovisual,Low,Land/Air/Maritime,High,Step,Good,Medium,Broad,High,Significant Volitional Control,Medium
 19,Rapid 3D modelling,rapid_3d_modelling,Spatial Reasoning,Bidirectional,Tactile,High,Land/Air/Maritime,Medium,Incremental,Poor,High,Broad,Medium,Significant Volitional Control,Medium
@@ -22,9 +22,9 @@
 21,Physical/tactile displays,physical_tactile_displays,Other Senses Perception,Direction of Information,Tactile,High,Land/Air/Maritime,Low,Incremental,Poor,High,Moderate,Medium,Significant Volitional Control,Medium
 22,Visual/light indicators,visual_light_indicators,Visual Perception,Machine to Human,Visual (non-text),Low,All,High,Incremental,Excellent,Low,Broad,High,Significant Volitional Control,Medium
 23,2D visual displays,2d_visual_displays,Visual Perception,Machine to Human,Visual (text and non-text),High,All,High,Incremental,Excellent,Medium,Broad,High,Significant Volitional Control,Low
-24,3D visual displays,3d_visual_displays,Visual Perception,Machine to Human,Visual (non-text),High,All,Low,Incremental,Okay,Medium,Broad,High,Significant Volitional Control,Low
+24,3D visual displays,3d_visual_displays,Visual Perception,Machine to Human,Visual (non-text),High,All,Low,Incremental,Average,Medium,Broad,High,Significant Volitional Control,Low
 25,Virtual reality headsets,virtual_reality_headsets,Visual Perception,Bidirectional,Visual (text and non-text),High,All,Medium,Incremental,Poor,Medium,Broad,High,Limited Volitional Control,Low
-26,Augmented reality glasses,augmented_reality_glasses,Visual Perception,Bidirectional,Visual (text and non-text),Medium,All,Medium,Disruptive,Okay,Medium,Broad,High,Limited Volitional Control,Low
+26,Augmented reality glasses,augmented_reality_glasses,Visual Perception,Bidirectional,Visual (text and non-text),Medium,All,Medium,Disruptive,Average,Medium,Broad,High,Limited Volitional Control,Low
 27,Audio indicators,audio_indicators,Listening,Machine to Human,Audio (non-speech),Low,All,High,Incremental,Poor,Low,Broad,High,Significant Volitional Control,Medium
-28,Brain computer interfaces,brain-computer,Decision-making,Human to Machine,Electrical Signal,High,All,Medium,Disruptive,Okay,High,Broad,Medium,Limited Volitional Control,Low
+28,Brain computer interfaces,brain-computer,Decision-making,Human to Machine,Electrical Signal,High,All,Medium,Disruptive,Average,High,Broad,Medium,Limited Volitional Control,Low
 29,Olfactory interfaces,olfactory,Other Senses Perception,Machine to Human,Chemical Senses,Low,,Low,Incremental,Poor,Low,Moderate,Medium,Limited Volitional Control,High

@@ -8,7 +8,6 @@ import { AllLandingPageCsvData } from '../../types/Global'
 import '../styles/index-page.scss'
 import { FileNode } from 'gatsby-plugin-image/dist/src/components/hooks'
 import { FixedHeaderOffset } from '../components/core/fixed-header-offset'
-const comparisonTimelinesA = require('../images/landing/index-page-main/comparison-timelines-a.svg')
 const comparisonTimelinesB = require('../images/landing/index-page-main/comparison-timelines-b.svg')
 interface Props {
   data: AllLandingPageCsvData
@@ -18,8 +17,6 @@ export default function Index(props: Props) {
   const landingImagesSmall = mapEdgesToNodes(props.data.landingImagesSmall)
   const landingImages = landingImagesSmall
 
-  console.log(landingImages)
-
   return (
     <Layout mainContainerClassName="main-container-index-page">
       <SEO title="Home" />
@@ -28,10 +25,19 @@ export default function Index(props: Props) {
 
       <div className="landing__images-grid">
         <div className="landing__center-text-block">
-          This tool aims to help users understand potential impacts and developments relating to human machine
-          interfaces (HMIs) over the next 20 years from a Defence perspective. There are a number of different
-          visualisations and resources which are designed to help you explore different aspects of future HMI
-          technologies. Select from the options below.
+          <p>
+            This tool aims to help users understand potential impacts and developments relating to human-machine
+            interfaces (HMIs) over the next 20 years from a Defence perspective. There are a number of different
+            visualisations and resources which are designed to help you explore different aspects of future HMI
+            technologies. These can be selected using the surrounding tiles.
+          </p>
+          <p>
+            The best place to start is probably the HMI Technology Catalogue, which will provide you with an
+            introduction to the different technologies that were analysed. The other tiles on the left cover potential
+            cognitive challenges associated with the future operating environment. The tiles below and to the right
+            allow you to explore how HMI technologies might develop over time, how they might be categorised and how
+            they could end up being used in the future.
+          </p>
         </div>
         {data.map((item) => {
           const { id, imageAltTxt, imageName, name, title, subtitle } = item.node

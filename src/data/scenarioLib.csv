@@ -1,10 +1,10 @@
 id,className,imageTitle,slug,xTitleLeft,xTitleCenter,xTitleRight,yTitleTop,ySubtitleTop,yTitleMiddle,ySubtitleMiddle,yTitleBottom,ySubtitleBottom,imageName
-1,scenario-1,"Dismounted Soldier",scenario/1-dismounted-soldier,Dismounted,Remote Operation,Command and Control,Peacekeeping (Land),"This set of scenarios depicts an operational environment where UK ground forces are deployed within an urban setting in support of a peace support mission.",Security (Maritime),"This set of scenarios depicts an operational environment where UK naval forces are deployed in support of a security mission.",War Fighting (Air),"This set of scenarios depicts an operational environment where UK air platforms are deployed within a war fighting context.","Scenario 1 - preview image"
-2,scenario-2,"Combat Medical Technician",scenario/2-combat-medical-technician,"","","","","","","","","","Scenario 2 - preview image"
-3,scenario-3,"J3 Operational HQ",scenario/3-j3-operational-hq,"","","","","","","","","","Scenario 3 - preview image"
-4,scenario-4,"Amphibious Patrolling",scenario/4,"","","","","","","","","","Scenario 4 - preview image"
-5,scenario-5,"Mine Warefare Specialist",scenario/5,"","","","","","","","","","Scenario 5 - preview image"
-6,scenario-6,"The Command Ship",scenario/6,"","","","","","","","","","Scenario 6 - preview image"
-7,scenario-7,"RAF Regiment Gunner",scenario/7,"","","","","","","","","","Scenario 7 - preview image"
-8,scenario-8,"Fast-Jet Pilot",scenario/8,"","","","","","","","","","Scenario 8 - preview image"
-9,scenario-9,"Cyberspace and Network Security Officer",scenario/9,"","","","","","","","","","Scenario 9 - preview image"
+1,scenario-1,Dismounted Soldier,scenario/1-dismounted-soldier,Dismounted,Remote Operation,Command and Control,Peacekeeping (Land),This set of scenarios depicts an operational environment where UK ground forces are deployed within an urban setting in support of a peace support mission.,Security (Maritime),This set of scenarios depicts an operational environment where UK naval forces are deployed in support of a security mission.,War Fighting (Air),This set of scenarios depicts an operational environment where UK air platforms are deployed within a war fighting context.,Scenario 1 - preview image
+2,scenario-2,Combat Medical Technician,scenario/2-combat-medical-technician,,,,,,,,,,Scenario 2 - preview image
+3,scenario-3,J3 Operational HQ,scenario/3-j3-operational-hq,,,,,,,,,,Scenario 3 - preview image
+4,scenario-4,Amphibious Patrolling,scenario/4,,,,,,,,,,Scenario 4 - preview image
+5,scenario-5,Mine Warfare Specialist,scenario/5,,,,,,,,,,Scenario 5 - preview image
+6,scenario-6,The Command Ship,scenario/6,,,,,,,,,,Scenario 6 - preview image
+7,scenario-7,RAF Regiment Gunner,scenario/7,,,,,,,,,,Scenario 7 - preview image
+8,scenario-8,Fast-Jet Pilot,scenario/8,,,,,,,,,,Scenario 8 - preview image
+9,scenario-9,Cyberspace and Network Security Officer,scenario/9,,,,,,,,,,Scenario 9 - preview image

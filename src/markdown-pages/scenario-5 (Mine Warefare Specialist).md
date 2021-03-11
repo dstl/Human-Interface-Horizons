@@ -8,7 +8,7 @@ You open the heavy door and are immediately struck by its cool darkness.
 
 *“Jack, lights on,”* you call into the darkness and note the way your voice gets swallowed by the room’s anechoic walls. Your personal assistant hears you though and dutifully obeys. 
 
-The lights comes on dimly and get gradually brighter, feeding you light comfortably as your pupils adjust. You look around the room, searching for your suit on its hanger on the rail in the corner. Your name is printed across the suit’s shoulders. You walk over, grab it and start pulling it on quickly. In the muted calmness of the room, it’s easy for you to forget the urgency of the situation.
+The lights come on dimly and get gradually brighter, feeding you light comfortably as your pupils adjust. You look around the room, searching for your suit on its hanger on the rail in the corner. Your name is printed across the suit’s shoulders. You walk over, grab it and start pulling it on quickly. In the muted calmness of the room, it’s easy for you to forget the urgency of the situation.
 
 Once donned, you seal the magnetic strip on the front of your suit. As you stride over to the printer, tucked into its alcove in the wall, you feel the gentle stretch of the suit’s clinging material. 
 

@@ -82,5 +82,3 @@ For more information see: [How Gatsby Works with GitHub Pages](https://www.gatsb
 **Code**: [MIT License](LICENCE)
 
 **Content**: © Crown copyright (2021), Dstl. This material is licensed under the terms of the Open Government Licence except where otherwise stated. To view this licence, visit the [licence page](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/) or write to the Information Policy Team, The National Archives, Kew, London TW9 4DU, or email: [psi@nationalarchives.gsi.gov.uk](mailto:psi@nationalarchives.gsi.gov.uk?subject=Crown%20copyright).​
-
-**Illustrations**: by [Monkeys vs Robots](https://www.monkeysvsrobots.co.uk/)

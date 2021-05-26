@@ -38,6 +38,9 @@ export default function Index(props: Props) {
             allow you to explore how HMI technologies might develop over time, how they might be categorised and how
             they could end up being used in the future.
           </p>
+          <p>
+            An instructional video explaining the various elements of the tool and how to use them can be downloaded using <a href="https://github.com/dstl/Human-Interface-Horizons/blob/test/docs/HIH_Tool_Guidance_Video.mp4?raw=true">this link</a>.
+          </p>
         </div>
         {data.map((item) => {
           const { id, imageAltTxt, imageName, name, title, subtitle } = item.node

@@ -21,6 +21,8 @@ Hosting is provided by GitHub Pages.
 
 This project uses [**yarn**](https://yarnpkg.com/) to manage the packages. **Yarn** is an alternative to **npm**. Please avoid using **npm**. 
 
+Please ensure you have Nodejs v14.18.1 installed. We recommend using [nvm](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows) to manages node versions.
+
 This project uses [**prettier**](https://prettier.io/) to maintain consistent project formatting. Please ensure you have this extension enabled on your IDE for this particular project. Check out this [Link](https://prettier.io/docs/en/editors.html) for support.
 
 ----
@@ -31,7 +33,7 @@ This project uses [**prettier**](https://prettier.io/) to maintain consistent pr
 In order to be able to operate as a super-user there are a number of functions and tools that will be required. This will enable a super-user to make changes to content in the HIH tool. The necessary steps for preparing the development environment are included below.
 - First, you will need to have editing permissions for this [Dstl GitHub repository](https://github.com/dstl/Human-Interface-Horizons) on which the HIH Tool is hosted.
 - [Git for Windows](https://git-scm.com/download/win) installed on your machine. Ensure that your credentials are set up and you are able to access the repository from powershell.
-- You will need to install [Nodejs](https://nodejs.org/en/download/ ) - Version 14 or newer.
+- You will need to install [Nodejs](https://nodejs.org/en/download/ ) - We recommend using [nvm](https://docs.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows) to manages node versions.
 - Make sure you have a suitable development tool installed - we recommend [VS Code](https://code.visualstudio.com/)
 - Ensure you have the [prettier](https://prettier.io/docs/en/editors.html) extension installed.
 You will also require a suitable editor for editing .csv files (e.g. Excel).
